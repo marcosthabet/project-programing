@@ -1,0 +1,29 @@
+Team 31
+--------
+
+Jana Abdelaziz
+id: 1230172 
+email:jana.abdelaziz05@eng-st.cu.edu.eg
+
+Marwan Karim 
+id: 1230253
+email:marwan.ahmed05@eng-st.cu.edu.eg
+
+Loujayna Hicham 
+id: 1230233
+email:loujayna.hossam05@eng-st.cu.edu.eg
+
+Marcos Thabet 
+id: 1230113
+email:marcos.thabet05@eng-st.cu.edu.eg
+
+Workload distribution:
+-----------------------
+1- Output Class:
+Draw the full toolbars: Marcos Thabet
+Draw function for each figure type : Jana Abdelaziz & Loujayna Hicham
+
+2- Input Class:
+ Marwan Karim
+
+3- Test Code: everyone tested their own codes.
