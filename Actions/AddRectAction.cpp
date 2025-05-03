@@ -6,8 +6,17 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddRectAction::AddRectAction(ApplicationManager * pApp):Action(pApp)
-{}
+AddRectAction::AddRectAction(ApplicationManager* pApp) :Action(pApp),
+P1{ 0, 0 }, P2{ 0, 0 } //Initialize the points to (0,0)
+{
+	//Initialize the rectangle graphics info
+	RectGfxInfo.BorderWdth =1;
+	RectGfxInfo.isFilled = false;//default is not filled
+	RectGfxInfo.DrawClr = BLUE;
+	RectGfxInfo.FillClr = WHITE;
+
+}
+
 
 void AddRectAction::ReadActionParameters() 
 {	
@@ -20,6 +29,7 @@ void AddRectAction::ReadActionParameters()
 	//Read 1st corner and store in point P1
 	pIn->GetPointClicked(P1.x, P1.y);
 
+
 	pOut->PrintMessage("New Rectangle: Click at second corner");
 
 	//Read 2nd corner and store in point P2
@@ -29,6 +39,7 @@ void AddRectAction::ReadActionParameters()
 	//get drawing, filling colors and pen width from the interface
 	RectGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	RectGfxInfo.FillClr = pOut->getCrntFillColor();
+	RectGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 
 	pOut->ClearStatusBar();
 

@@ -2,6 +2,8 @@
 #define CRECT_H
 
 #include "CFigure.h"
+#include "..\defs.h"
+
 
 class CRectangle : public CFigure
 {

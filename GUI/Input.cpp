@@ -1,6 +1,6 @@
 #include "Input.h"
 #include "Output.h"
-
+#include "UI_Info.h"
 
 Input::Input(window* pW) 
 {
@@ -60,6 +60,7 @@ ActionType Input::GetUserAction() const
 			case ITM_TRI: return DRAW_TRI;
 			case ITM_HEX: return DRAW_HEX;
 			case ITM_SQU: return DRAW_SQU;
+
 				//features cases
 			case ITM_CLRALL: return CLRALL; 	//Clear all figures
 			case ITM_SWAP: return SWAP;	//Swap 2 figures
@@ -76,6 +77,9 @@ ActionType Input::GetUserAction() const
 			case ITM_TO_PLAY: return TO_PLAY;	//Switch to Play mode
 			case ITM_SELECT: return SELECT;	//Select a figure
 			case ITM_EXIT: return EXIT;
+
+				
+			
 
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}

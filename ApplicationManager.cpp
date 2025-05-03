@@ -1,16 +1,27 @@
 #include "ApplicationManager.h"
-#include "Actions\AddRectAction.h"
-
+#include "Figures/CFigure.h"
+#include "GUI/Input.h"
+#include "GUI/Output.h"
+#include "Actions/AddRectAction.h"
+#include "Actions/AddSquareAction.h"
+#include "Actions/AddTriangleAction.h"
+#include "Actions/AddHexagonAction.h"
+#include "Actions/AddCircleAction.h"
 
 //Constructor
-ApplicationManager::ApplicationManager()
-{
+ApplicationManager::ApplicationManager() :
+	FigCount(0), SelectedFig(NULL), Clipboard(NULL), pIn(NULL), pOut(NULL) {
+
+//Create an array of figure pointers and set them to NULL		
+	for (int i = 0; i < MaxFigCount; i++) {
+		FigList[i] = NULL;
+	}
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	
 	FigCount = 0;
-		
+
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
@@ -35,6 +46,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
+			break;
+		case DRAW_SQU:
+			pAct = new AddSquareAction(this);
+			break;
+		case DRAW_TRI:
+			pAct = new AddTriangleAction(this);
+			break;
+		case DRAW_HEX:
+			pAct = new AddHexagonAction(this);
+			break;
+		case DRAW_CIRC:
+			pAct = new AddCircleAction(this);
 			break;
 
 		case EXIT:
@@ -61,8 +84,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	if(FigCount < MaxFigCount )
-		FigList[FigCount++] = pFig;	
+	if (FigCount < MaxFigCount) {
+		FigList[FigCount++] = pFig;
+		pFig->SetID(FigCount); // set the ID of the figure
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
@@ -90,16 +115,22 @@ void ApplicationManager::UpdateInterface() const
 //Return a pointer to the input
 Input *ApplicationManager::GetInput() const
 {	return pIn; }
+
+
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
+
+
 ////////////////////////////////////////////////////////////////////////////////////
-//Destructor
+//Destructor to clean up figures
 ApplicationManager::~ApplicationManager()
 {
-	for(int i=0; i<FigCount; i++)
+	for (int i = 0; i < FigCount; i++) {
 		delete FigList[i];
+	}
 	delete pIn;
 	delete pOut;
+	delete Clipboard; //if not NULL
 	
 }

@@ -1,5 +1,6 @@
 #include "Output.h"
-
+#include "Input.h"
+#include "UI_Info.h"
 
 Output::Output()
 {
@@ -24,12 +25,13 @@ Output::Output()
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = TURQUOISE;
 	UI.PenWidth = 3;	//width of the figures frames
+	
 
 	
 	//Create the output window
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
-	pWind->ChangeTitle("Paint for Kids - Programming Techniques Project - Spring 2024");
+	pWind->ChangeTitle("Paint for Kids - Programming Techniques Project - Spring 2025 - Team 31");
 	
 	CreateDrawToolBar();
 	CreateStatusBar();
