@@ -6,7 +6,7 @@
 
 class DeleteAction : public Action  
 {
-	
+	// el7a2ona
 		CFigure* backup;
 		CFigure* ToBeDeleted;
 	public:
