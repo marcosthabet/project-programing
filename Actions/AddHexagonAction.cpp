@@ -31,4 +31,22 @@ void AddHexagonAction::Execute() {
     ReadActionParameters();
     CHexagon* hexagon = new CHexagon(Center, HexagonGfxInfo);
     pManager->AddFigure(hexagon);
+    
+    //Add the action to Undo list
+    pManager->AddtoUndo(this);
 }
+
+void AddHexagonAction::Undo()
+{
+    pManager->AddtoRedo(this);
+    DeletedFigure = pManager->DeleteLastFigure();
+    pManager->RemovefromUndo();
+}
+
+void AddHexagonAction::Redo()
+{
+    pManager->AddFigure(DeletedFigure);
+    pManager->AddtoUndo(this);
+    pManager->RemovefromRedo();
+}
+

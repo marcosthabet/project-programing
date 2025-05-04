@@ -21,6 +21,8 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	int UndoCount;
+	int RedoCount;
+	bool RedoStatus;  //checks that redo is only done after redo/undo actions
 
 	CFigure* DeletedFiguresArr[5];  //list of all deleted figures to undo
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
@@ -28,7 +30,9 @@ private:
 
 	CFigure* SelectedFig; //Pointer to the selected figure
 
-	Action* Undoarr[5];
+	Action* Undoarr[5]; //list of all actions to undo
+	Action* Redoarr[5]; //list of all actions to redo
+	Action* LastAction; //pointer to the last action done
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -47,12 +51,24 @@ public:
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
+	
+	// -- DEL functions
 	void Delete(CFigure* pFig);             //Deletes the selected -if any- firure
 	CFigure* DeleteLastFigure();                //deletes last figure from figlist 
+	
+	// -- CLRALL functions
+	void ClearAll();                        //deletes all the drawn figures from the array
+	
+	// -- UNDO functions
 	void AddtoUndo(Action* action);         //adds action to undoarr
 	void RemovefromUndo();                  //removes action from undoarr 
-	Action* GetLastActiontoUndo();          //returns last action in redoarr
-	void ClearUndoList();
+	Action* GetLastActiontoUndo();          //returns last action in undoarr
+	
+	// -- REDO functions
+	void AddtoRedo(Action* action);         //adds action to redoarr
+	void RemovefromRedo();                  //removes action from redoarr
+	Action* GetLastFiguretoRedo();         //returns last action in redoarr
+   
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

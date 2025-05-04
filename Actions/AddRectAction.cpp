@@ -61,8 +61,17 @@ void AddRectAction::Execute()
 
 	
 }
+
 void AddRectAction::Undo()
-	{
-		DeletedFigure = pManager->DeleteLastFigure();
-		pManager->RemovefromUndo();
-	}
+{
+	pManager->AddtoRedo(this);
+	DeletedFigure = pManager->DeleteLastFigure();
+	pManager->RemovefromUndo();
+}
+
+void AddRectAction::Redo()
+{
+	pManager->AddFigure(DeletedFigure);
+	pManager->AddtoUndo(this);
+	pManager->RemovefromRedo();
+}

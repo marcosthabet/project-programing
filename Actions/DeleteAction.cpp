@@ -36,3 +36,15 @@ void DeleteAction::Undo()
 	pManager->AddFigure(ToBeDeleted);
 	pManager->RemovefromUndo();
 }
+
+void DeleteAction::Redo()
+{
+	if (ToBeDeleted != NULL)
+	{
+		Output* pOut = pManager->GetOutput();
+		pManager->Delete(ToBeDeleted);
+		pManager->AddtoUndo(this);
+		pOut->ClearDrawArea();
+		pManager->RemovefromRedo();
+	}
+}

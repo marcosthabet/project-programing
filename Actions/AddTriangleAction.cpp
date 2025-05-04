@@ -37,4 +37,23 @@ void AddTriangleAction::Execute() {
 	ReadActionParameters();
 	CTriangle* triangle = new CTriangle(point1, point2, point3, TriangleGfxInfo);
 	pManager->AddFigure(triangle);
+
+	//Add the action to Undo list
+	pManager->AddtoUndo(this);
 }
+
+void AddTriangleAction::Undo()
+{
+	pManager->AddtoRedo(this);
+	DeletedFigure = pManager->DeleteLastFigure();
+	pManager->RemovefromUndo();
+}
+
+void AddTriangleAction::Redo()
+{
+	pManager->AddFigure(DeletedFigure);
+	pManager->AddtoUndo(this);
+	pManager->RemovefromRedo();
+}
+
+

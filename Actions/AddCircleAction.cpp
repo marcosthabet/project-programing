@@ -36,4 +36,20 @@ void AddCircleAction::Execute() {
 	ReadActionParameters();
 	CCircle* circle = new CCircle(center, radius, CircleGfxInfo);
 	pManager->AddFigure(circle);
+
+	//Add the action to Undo list
+	pManager->AddtoUndo(this);
+}
+
+void AddCircleAction::Undo()
+{
+	pManager->AddtoRedo(this);
+	DeletedFigure = pManager->DeleteLastFigure();
+	pManager->RemovefromUndo();
+}
+void AddCircleAction::Redo()
+{
+	pManager->AddtoUndo(this);
+	pManager->AddFigure(DeletedFigure);
+	pManager->RemovefromRedo();
 }
