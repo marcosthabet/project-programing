@@ -7,7 +7,12 @@
 #include "Actions/AddTriangleAction.h"
 #include "Actions/AddHexagonAction.h"
 #include "Actions/AddCircleAction.h"
+#include "DeleteAction.h"
+#include "Actions/SelectFigureAction.h"
+#include "Actions/Action.h"
 
+#include <Windows.h>
+#include "MMSystem.h"
 //Constructor
 ApplicationManager::ApplicationManager() :
 	FigCount(0), SelectedFig(NULL), Clipboard(NULL), pIn(NULL), pOut(NULL) {
@@ -59,7 +64,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DRAW_CIRC:
 			pAct = new AddCircleAction(this);
 			break;
-
+		case DEL:
+			pAct = new DeleteAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
@@ -120,6 +127,65 @@ Input *ApplicationManager::GetInput() const
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
+
+void ApplicationManager::Delete(CFigure* pFig)
+{
+
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i] == pFig)
+		{
+			FigList[i] = FigList[FigCount - 1];
+
+			FigCount--;
+			break;
+		}
+	}
+	UpdateInterface();
+}
+
+CFigure* ApplicationManager::DeleteLastFigure()
+{
+	if (FigCount > 0)
+	{
+		CFigure* DeletedFig = FigList[FigCount - 1];
+		FigList[FigCount - 1] = FigList[MaxFigCount - 1];
+		FigList[MaxFigCount - 1] = NULL;
+		FigCount--;
+		pOut->ClearDrawArea();
+		UpdateInterface();
+		return DeletedFig;
+	}
+	return nullptr;
+}
+
+void ApplicationManager::AddtoUndo(Action* action)
+{
+	if (action) //if there is  action done 
+	{
+		if (UndoCount < MaxUndoRedoCount) //if there is less than 5 actions in undoarr
+		{
+			Undoarr[UndoCount++] = action; //add the last action to the array
+		}
+		else //else if the UndoCount is max, delete the first action in the array
+		{
+			for (int i = 0; i < MaxUndoRedoCount - 1; i++)
+			{
+				Undoarr[i] = Undoarr[i + 1];
+			}
+			UndoCount = 4;
+			Undoarr[UndoCount++] = action;
+		}
+	}
+}
+
+void ApplicationManager::RemovefromUndo()
+{
+	if (UndoCount > 0) //if there is an action in the array
+	{
+		UndoCount--;
+	}
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////

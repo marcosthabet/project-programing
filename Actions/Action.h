@@ -4,14 +4,14 @@
 #include "..\DefS.h"
 
 class ApplicationManager; //forward class declaration
-
+class CFigure;
 
 //Base class for all possible actions
 class Action
 {
 protected:
 	ApplicationManager *pManager;	//Actions needs AppMngr to do their job
-
+	CFigure* DeletedFigure; //insted of icluding in every figure
 public:
 
 	Action(ApplicationManager *pApp) { pManager = pApp; }	//constructor

@@ -56,4 +56,13 @@ void AddRectAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+	//Add the action to Undo list
+	pManager->AddtoUndo(this);
+
+	
 }
+void AddRectAction::Undo()
+	{
+		DeletedFigure = pManager->DeleteLastFigure();
+		pManager->RemovefromUndo();
+	}

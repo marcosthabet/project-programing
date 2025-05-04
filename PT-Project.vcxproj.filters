@@ -172,6 +172,7 @@
     <ClCompile Include="Actions\AddCircleAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\DeleteAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -283,6 +284,7 @@
     <ClInclude Include="Actions\AddCircleAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="DeleteAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
