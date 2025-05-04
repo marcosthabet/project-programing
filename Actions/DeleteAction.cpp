@@ -1,5 +1,5 @@
-#include "..\DeleteAction.h"
-
+#include "../Actions/DeleteAction.h"
+#include "../Actions/SelectFigureAction.h"
 #include "..\ApplicationManager.h"
 #include "..\GUI\Input.h"
 #include "..\GUI\Output.h"

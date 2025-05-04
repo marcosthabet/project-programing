@@ -7,7 +7,7 @@
 #include "Actions/AddTriangleAction.h"
 #include "Actions/AddHexagonAction.h"
 #include "Actions/AddCircleAction.h"
-#include "DeleteAction.h"
+#include "../phase 2/Actions/DeleteAction.h"
 #include "Actions/SelectFigureAction.h"
 #include "Actions/Action.h"
 

@@ -1,7 +1,7 @@
 
 #ifndef DELETE_H  
 #define DELETE_H  
-#include "Actions/Action.h"  
+#include "../Actions/Action.h"  
 //#include "Actions/SelectFigureAction.h"   
 
 class DeleteAction : public Action  
