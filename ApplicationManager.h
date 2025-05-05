@@ -83,13 +83,7 @@ public:
 	void RemovefromUndo();                  //removes action from undoarr 
 	Action* GetLastActiontoUndo();          //returns last action in redoarr
 
-	//--REDO 
-	void AddtoRedo(Action* action); // Adds action to redoarr
-	void RemovefromRedo(); // Removes action from redoarr
-	Action* GetLastFiguretoRedo(); // Returns last action in redoarr
-
-
-	//redo functions
+	//--REDO functions
 	void AddtoRedo(Action* action);         //adds action to redoarr
 	void RemovefromRedo();                  //removes action from redoarr
 	Action* GetLastActiontoRedo();          //returns last action in redoarr

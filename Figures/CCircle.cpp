@@ -6,6 +6,10 @@ CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
     radius = R;
 }
 
+CCircle::CCircle()
+{
+}
+
 void CCircle::Draw(Output* pOut) const {
     pOut->DrawCircle(center, radius, FigGfxInfo, Selected);
 }
