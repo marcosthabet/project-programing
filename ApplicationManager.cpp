@@ -7,7 +7,7 @@
 #include "Actions/AddTriangleAction.h"
 #include "Actions/AddHexagonAction.h"
 #include "Actions/AddCircleAction.h"
-#include "../phase 2/Actions/DeleteAction.h"
+#include "Actions/DeleteAction.h"
 #include "Actions/SelectFigureAction.h"
 #include "Actions/Action.h"
 #include "Actions/UndoAction.h"
@@ -17,7 +17,7 @@
 
 //Constructor
 ApplicationManager::ApplicationManager() :
-	FigCount(0), SelectedCount(0),LastSelectedFig(NULL), Clipboard(NULL), pIn(NULL), pOut(NULL),UndoCount(0) 
+	FigCount(0), SelectedCount(0),LastSelectedFig(NULL), Clipboard(NULL), pIn(NULL), pOut(NULL),UndoCount(0), RedoCount(0), RedoStatus(true)
 {
 
 //Create an array of figure pointers and set them to NULL		
@@ -121,8 +121,9 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 }
 
 //SELECT FIGURE STUFF
-CFigure* ApplicationManager::GetSelectedFig() const {
-	return SelectedFig;
+CFigure** ApplicationManager::GetSelectedFigs() const
+{
+	return SelectedFigsArr;
 }
 
 int ApplicationManager::GetSelectedCount() const
@@ -130,31 +131,65 @@ int ApplicationManager::GetSelectedCount() const
 	return SelectedCount;
 }
 
-
-void ApplicationManager::SetSelectedFig(CFigure* pFig) {
-	if (SelectedFig != pFig) {
-		if (SelectedFig) {
-			SelectedFig->SetSelected(false); //deselect if theres a previous figure
+void ApplicationManager::AddSelectedFig(CFigure* pFig)  
+{
+	if (SelectedCount < MaxSelectedCount && pFig != NULL) {
+		for (int i = 0; i < SelectedCount; i++) {
+			if (SelectedFigsArr[i] == pFig) {
+				return; // Already selected
+			}
 		}
-		SelectedFig = pFig;
-		if (SelectedFig) {
-			SelectedFig->SetSelected(true); //select new figure
-		}
-	}
-}
-void ApplicationManager::UnSelect() {
-	if (SelectedFig) {
-		SelectedFig->SetSelected(false); //deselect current figure
-		SelectedFig = NULL;
+		SelectedFigsArr[SelectedCount++] = pFig;
+		pFig->SetSelected(true);
 	}
 }
 
-void ApplicationManager::PrintTotalInfo() const {
+void ApplicationManager::RemoveSelectedFig(CFigure* pFig)
+{
+	for (int i = 0; i < SelectedCount; i++) {
+		if (SelectedFigsArr[i] == pFig) {
+			SelectedFigsArr[i] = SelectedFigsArr[SelectedCount - 1];
+			SelectedFigsArr[SelectedCount - 1] = NULL;
+			SelectedCount--;
+			pFig->SetSelected(false);
+			break;
+		}
+	}
+}
+
+void ApplicationManager::UnSelect()
+{
+	for (int i = 0; i < SelectedCount; i++) {
+		if (SelectedFigsArr[i]) {
+			SelectedFigsArr[i]->SetSelected(false);
+			SelectedFigsArr[i] = NULL;
+		}
+	}
+	SelectedCount = 0;
+}
+
+void ApplicationManager::PrintTotalInfo() const
+{
 	string info = "Total Figures: " + to_string(FigCount);
 	pOut->PrintMessage(info);
 }
 
-
+void ApplicationManager::PrintSelectedInfo() const
+{
+	if (SelectedCount == 0) {
+		pOut->PrintMessage("No figures selected");
+	}
+	else {
+		string msg = "Selected Figures (" + to_string(SelectedCount) + "): ";
+		for (int i = 0; i < SelectedCount; i++) {
+			if (SelectedFigsArr[i]) {
+				msg += SelectedFigsArr[i]->GetFigureInfo();
+				if (i < SelectedCount - 1) msg += ", ";
+			}
+		}
+		pOut->PrintMessage(msg);
+	}
+}
 
 //==================================================================================//
 //							Interface Management Functions							//
