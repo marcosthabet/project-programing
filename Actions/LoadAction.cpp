@@ -20,7 +20,7 @@ LoadAction::LoadAction(ApplicationManager* pApp) : Action(pApp)
 
 void LoadAction::ReadActionParameters()
 {
-	Get a Pointer to the Input / Output Interfaces
+	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Loading...., enter the name of your saved file: ");
