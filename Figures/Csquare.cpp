@@ -1,9 +1,19 @@
 #include "Csquare.h"
+#include <fstream>
 
 //constructor 
 Csquare::Csquare(Point p, int l, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
 	center = p;
 	length = l;
+}
+
+Csquare::Csquare()
+{
+	Type = "Square";
+}
+string Csquare::getType()
+{
+	return Type;
 }
 
 void Csquare::Draw(Output* pOut) const 
@@ -34,4 +44,11 @@ string Csquare::GetFigureInfo() const {
 		", Center = (" + to_string(center.x) +
 		", " + to_string(center.y) +
 		"), Length = " + to_string(length);
+}
+
+void Csquare::Load(ifstream& Infile)  
+{  
+	Infile >> ID >> center.x >> center.y >> DrawColor >> FillColor;  
+	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
+	FigGfxInfo.FillClr = stringtoclr(FillColor);
 }

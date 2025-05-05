@@ -1,10 +1,21 @@
 #include "CRectangle.h"
 #include "..\GUI\Output.h"
+#include <fstream>
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
 	Corner1 = P1;
 	Corner2 = P2;
+}
+
+CRectangle::CRectangle()
+{
+	Type = "Rectangle";
+}
+
+string CRectangle::getType()
+{
+	return Type;
 }
 	
 
@@ -40,3 +51,11 @@ string CRectangle::GetFigureInfo() const
 		"), Corner2 = (" + to_string(Corner2.x) +
 		", " + to_string(Corner2.y) + ")";
 }     
+}
+
+void CRectangle::Load(ifstream& Infile)
+{
+	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> DrawColor >> FillColor;
+	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
+	FigGfxInfo.FillClr = stringtoclr(FillColor);
+}
