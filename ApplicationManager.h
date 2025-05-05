@@ -83,7 +83,6 @@ public:
 	// -- UNDO functions
 	void AddtoUndo(Action* action);         //adds action to undoarr
 	void RemovefromUndo();                  //removes action from undoarr 
-
 	Action* GetLastActiontoUndo();          //returns last action in redoarr
 
 	//redo functions

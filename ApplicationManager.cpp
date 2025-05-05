@@ -11,6 +11,7 @@
 #include "Actions/SelectFigureAction.h"
 #include "Actions/Action.h"
 #include "Actions/UndoAction.h"
+#include "Actions/LoadAction.h"
 
 #include <Windows.h>
 #include "MMSystem.h"
@@ -319,8 +320,7 @@ void ApplicationManager::RemovefromRedo()
 	RedoStatus = true;
 }
 
-
-Action* ApplicationManager::GetLastFiguretoRedo()
+Action* ApplicationManager::GetLastActiontoRedo()
 {
 
 	if (RedoCount > 0 && RedoStatus)
@@ -329,6 +329,7 @@ Action* ApplicationManager::GetLastFiguretoRedo()
 	}
 	return NULL;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor to clean up figures
