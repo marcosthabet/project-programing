@@ -20,7 +20,7 @@ LoadAction::LoadAction(ApplicationManager* pApp) : Action(pApp)
 
 void LoadAction::ReadActionParameters()
 {
-	Get a Pointer to the Input / Output Interfaces
+	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Loading...., enter the name of your saved file: ");
@@ -45,13 +45,13 @@ void LoadAction::Execute()
 		fin >> ReadFigCount;
 		for (int i = 0; i < ReadFigCount; i++)
 		{
-			fin >> ReadType;
+			/*fin >> ReadType;
 			if (ReadType == "Square") CurrentFigure = new Csquare;
 			else if (ReadType == "Hexagon") CurrentFigure = new CHexagon;
 			else if (ReadType == "Circle") CurrentFigure = new CCircle;
 			else if (ReadType == "Rectangle") CurrentFigure = new CRectangle;
 			else if (ReadType == "Triangle") CurrentFigure = new CTriangle;
-			else break;
+			else break;*/
 
 			CurrentFigure->Load(fin);
 			pManager->AddFigure(CurrentFigure);

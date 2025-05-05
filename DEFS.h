@@ -42,8 +42,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	SELECT_COLOR_GREEN,  // Green color selection
 	SELECT_COLOR_BLUE,   // Blue color selection
 	TOGGLE_FILL,         // Toggle fill/unfill
-	SELECT_FILL_COLOR,   // Select fill color
-
+	
 	///TODO: Add the other action types of the two modes
 };
 

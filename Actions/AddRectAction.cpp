@@ -35,12 +35,20 @@ void AddRectAction::ReadActionParameters()
 	//Read 2nd corner and store in point P2
 	pIn->GetPointClicked(P2.x, P2.y);
 
-	//get drawing, filling colors and pen width from the interface
-	RectGfxInfo.DrawClr = UI.DrawColor;
-	RectGfxInfo.FillClr = UI.FillColor;
+	//ask user for draw color
+	pOut->PrintMessage("Select a draw color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+	RectGfxInfo.DrawClr = pIn->GetUserColor();
+	//check if fill toggle is on
 	RectGfxInfo.isFilled = UI.IsFilled;
-	RectGfxInfo.BorderWdth = UI.PenWidth;
-
+	//if filled, ask user for fill color
+	if (RectGfxInfo.isFilled) {
+		pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+		RectGfxInfo.FillClr = pIn->GetUserColor();
+	}
+	else {
+		RectGfxInfo.FillClr = RectGfxInfo.DrawClr; // Default to draw color if not filled
+	}
+	RectGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	pOut->ClearStatusBar();
 
 }

@@ -46,22 +46,21 @@ color Input::GetUserColor() const {
 	int x, y;
 	pWind->WaitMouseClick(x, y);
 
-	if (y >= 0 && y < UI.ToolBarHeight) {
-
+	if (y >= 0 && y < UI.ToolBarHeight)
+	{
 		int ClickedItemOrder = (x / UI.MenuItemWidth);
 		switch (ClickedItemOrder)
 		{
-		case 5: return BLACK;  
-		case 6: return YELLOW;
-		case 7: return ORANGE;
-		case 8: return RED;
-		case 9: return GREEN;
-		case 10: return BLUE;
-
-		default: return BLUE; 
+		case ITM_BLACK: return BLACK;
+		case ITM_YELLOW: return YELLOW;
+		case ITM_ORANGE: return ORANGE;
+		case ITM_RED: return RED;
+		case ITM_GREEN: return GREEN;
+		case ITM_BLUE: return BLUE;
+		default: return BLUE; // Default color
 		}
 	}
-	return BLUE; //default if no click on toolbar
+	return BLUE; // Default if clicked outside toolbar
 }
 
 
@@ -120,7 +119,7 @@ ActionType Input::GetUserAction() const
 			case ITM_GREEN: return SELECT_COLOR_GREEN;
 			case ITM_BLUE: return SELECT_COLOR_BLUE;
 			case ITM_FILL: return TOGGLE_FILL;
-			case ITM_FILL_COLOR: return SELECT_FILL_COLOR;
+			
 
 
 			case ITM_EXIT: return EXIT;
