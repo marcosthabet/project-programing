@@ -166,15 +166,27 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 
 color Output::getCrntDrawColor() const	//get current drawing color
 {	return UI.DrawColor;	}
+void Output::setCrntDrawColor(color newcolor)
+{
+	UI.FillColor = newcolor;
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 
 color Output::getCrntFillColor() const	//get current filling color
 {	return UI.FillColor;	}
+void Output::setCrntFillColor(color newcolor)
+{
+	UI.FillColor = newcolor;
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 	
 int Output::getCrntPenWidth() const		//get current pen width
 {	return UI.PenWidth;	}
 
+void Output::SetFilled(bool f)
+{
+	UI.IsFilled = f;
+}
 //======================================================================================//
 //								Figures Drawing Functions								//
 //======================================================================================//

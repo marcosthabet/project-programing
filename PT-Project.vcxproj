@@ -180,6 +180,7 @@
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Actions\UndoAction.cpp" />
   </ItemGroup>
@@ -224,6 +225,7 @@
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="Actions\UndoAction.h" />
+    <ClInclude Include="Actions\LoadAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

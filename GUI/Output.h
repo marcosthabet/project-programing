@@ -29,9 +29,11 @@ public:
 	void PrintMessage(string msg) const;	//Print a message on Status bar
 
 	color getCrntDrawColor() const;	//get current drawing color
+	void setCrntDrawColor(color newcolor); //sets the Draw color
 	color getCrntFillColor() const;	//get current filling color
+	void setCrntFillColor(color newcolor); //sets the Fill color
 	int getCrntPenWidth() const;		//get current pen width
-
+	void SetFilled(bool f);
 	
 	~Output();
 };

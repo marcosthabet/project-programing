@@ -10,6 +10,7 @@ private:
 	int radius;
 public:
 	CCircle(Point c, int r, GfxInfo FigureGfxInfo);
+	CCircle();
 	virtual void Draw(Output* pOut) const;
 	
 };
