@@ -34,11 +34,11 @@ private:
 	CFigure* SelectedFig; //Pointer to the selected figure
 
 	Action* Undoarr[5];
-=======
+
 	Action* Undoarr[5]; //list of all actions to undo
 	Action* Redoarr[5]; //list of all actions to redo
 	Action* LastAction; //pointer to the last action done
->>>>>>> 210a51b88af9d663c4903ff12d4df8035e2b16dd
+
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -66,9 +66,8 @@ public:
 	// -- UNDO functions
 	void AddtoUndo(Action* action);         //adds action to undoarr
 	void RemovefromUndo();                  //removes action from undoarr 
-<<<<<<< HEAD
 	Action* GetLastActiontoUndo();          //returns last action in redoarr
-	void ClearUndoList();
+
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
