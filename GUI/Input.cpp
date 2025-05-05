@@ -35,9 +35,17 @@ string Input::GetSrting(Output *pO) const
 	}
 }
 
+void Input::ResetSelectMode()
+{
+	selectmode = false;
+}
+
+
 //This function reads the position where the user clicks to determine the desired action
 ActionType Input::GetUserAction() const
 {
+	selectmode = false; //to check if were in select mode or not
+
 	int x, y;
 	pWind->WaitMouseClick(x, y);	//Get the coordinates of the user click
 
@@ -59,7 +67,7 @@ ActionType Input::GetUserAction() const
 			case ITM_CIRC: return DRAW_CIRC;
 			case ITM_TRI: return DRAW_TRI;
 			case ITM_HEX: return DRAW_HEX;
-			case ITM_SQU: return DRAW_SQU;
+			case ITM_SQU:  return DRAW_SQU;
 
 				//features cases
 			case ITM_CLRALL: return CLRALL; 	//Clear all figures
@@ -75,7 +83,12 @@ ActionType Input::GetUserAction() const
 			case ITM_SAVE: return SAVE;	//Save the file
 			case ITM_DEL: return DEL;	//Delete a figure
 			case ITM_TO_PLAY: return TO_PLAY;	//Switch to Play mode
-			case ITM_SELECT: return SELECT;	//Select a figure
+
+			case ITM_SELECT:
+				selectmode = true; 
+				return SELECT;	//returning select action activates selectfigureaction
+
+
 			case ITM_EXIT: return EXIT;
 
 				
@@ -88,6 +101,11 @@ ActionType Input::GetUserAction() const
 		//[2] User clicks on the drawing area
 		if (y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
 		{
+			//if select mode is on, we need to check if the click is on a figure
+			if (selectmode)
+			{
+				return SELECT_FIGURE; //we'll be in select mode
+			}
 			return DRAWING_AREA;
 		}
 

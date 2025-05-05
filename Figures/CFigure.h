@@ -11,7 +11,7 @@ protected:
 	int ID;		//Each figure has an ID
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
-	
+
 	/// Add more parameters if needed.
 
 public:
@@ -21,10 +21,16 @@ public:
 	bool IsSelected() const;	//check whether fig is selected
 	void SetID(int id); //set the ID of the figure
 
-	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
-	
+	virtual void Draw(Output* pOut) const = 0;		//Draw the figure
+
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
+
+	//SELECT FIGURE STUFF
+	virtual bool IsPointInside(int x, int y) const = 0; //check if a point is inside the figure
+	virtual void PrintInfo(Output* pOut) const = 0;     //print all figure info on the status bar
+	virtual string GetFigureInfo() const = 0;           //getting figure info back as a string
+
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
@@ -37,5 +43,4 @@ public:
 
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };
-
 #endif
