@@ -58,48 +58,28 @@ void SelectFigureAction::Execute()
     pIn->ResetSelectMode(); //reset select mode after action
 }
 
-//to be checked!!!!
-void SelectFigureAction::Undo()
-{
-    // Undo logic: Reverse the selection state
-    if (figure == NULL) {
-        // If no figure was selected, undoing means re-selecting previously selected figures
-        // This is a simplification; you might need to store previous state
-        return;
-    }
-    else {
-        bool isselected = false;
-        for (int i = 0; i < pManager->GetSelectedCount(); i++) {
-            if (pManager->GetSelectedFigs()[i] == figure) {
-                isselected = true;
-                pManager->RemoveSelectedFig(figure); // Unselect if it was selected
-                break;
-            }
-        }
-        if (!isselected) {
-            pManager->AddSelectedFig(figure); // Re-select if it was unselected
-        }
-    }
-    pManager->UpdateInterface();
-}
-void SelectFigureAction::Redo()
-{
-    //reselect figure if it was unselected, or unselect if it was selected
-    if (figure == NULL) {
-        pManager->UnSelect();
-    }
-    else {
-        bool isselected = false;
-        for (int i = 0; i < pManager->GetSelectedCount(); i++) {
-            if (pManager->GetSelectedFigs()[i] == figure) {
-                isselected = true;
-                pManager->RemoveSelectedFig(figure);
-                break;
-            }
-        }
-        if (!isselected) {
-            pManager->AddSelectedFig(figure);
-        }
-    }
-    pManager->UpdateInterface();
-}
+void SelectFigureAction::Undo() {}
+void SelectFigureAction::Redo() {}
+
+//void SelectFigureAction::Redo()
+//{
+//    //reselect figure if it was unselected, or unselect if it was selected
+//    if (figure == NULL) {
+//        pManager->UnSelect();
+//    }
+//    else {
+//        bool isselected = false;
+//        for (int i = 0; i < pManager->GetSelectedCount(); i++) {
+//            if (pManager->GetSelectedFigs()[i] == figure) {
+//                isselected = true;
+//                pManager->RemoveSelectedFig(figure);
+//                break;
+//            }
+//        }
+//        if (!isselected) {
+//            pManager->AddSelectedFig(figure);
+//        }
+//    }
+//    pManager->UpdateInterface();
+//}
+
