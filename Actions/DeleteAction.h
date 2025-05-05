@@ -6,7 +6,7 @@
 
 class DeleteAction : public Action  
 {
-		CFigure* ToBeDeleted;
+		CFigure** ToBeDeleted;
 	public:
 		DeleteAction(ApplicationManager * pApp);
 		virtual void ReadActionParameters();

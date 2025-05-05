@@ -12,6 +12,7 @@
 #include <string>
 using namespace std;
 
+
 LoadAction::LoadAction(ApplicationManager* pApp) : Action(pApp)
 {
 	CurrentFigure = NULL;
@@ -29,69 +30,38 @@ void LoadAction::ReadActionParameters()
 void LoadAction::Execute()
 {
 	Output* pOut = pManager->GetOutput();
-	ReadActionParameters();
-	pOut->ClearDrawArea();
-	pManager->ClearAll();
-	ifstream InFile(FileName);
-	if (InFile.is_open())
+	Input* pIn = pManager->GetInput();
+
+	ifstream fin;
+
+	fin.open(FileName + ".txt", ios::in);
+	if (fin.fail())
 	{
-		//set the drawing color
-		InFile >> ReadDrawColor; pOut->setCrntDrawColor(StringToColor(ReadDrawColor));
-		//set the fill color
-		InFile >> ReadFillColor;
-		if (ReadFillColor == "NO_FILL")
-		{
-			UI.IsFilled = false;
-			UI.FillColor = UI.BkGrndColor;
-		}
-		else
-		{
-			pOut->setCrntFillColor(StringToColor(ReadFillColor));
-			pOut->SetFilled(true);
-		}
+		pOut->PrintMessage(FileName + ".txt" + "doesn't exist");
+	}
+	else {
+		pManager->ClearAll();
 
-		InFile >> ReadFigCount;
-
-		//Loop to read the type of each figure and set the CurrentFigure pointer to it
+		fin >> ReadFigCount;
 		for (int i = 0; i < ReadFigCount; i++)
 		{
-			InFile >> ReadType;
-			if (ReadType == "Rectangle")
-			{
-				CurrentFigure = new CRectangle();
-			}
-			else if (ReadType == "Triangle")
-			{
-				CurrentFigure = new CTriangle();
-			}
-			else if (ReadType == "Hexagon")
-			{
-				CurrentFigure = new CHexagon();
-			}
-			else if (ReadType == "Square")
-			{
-				CurrentFigure = new Csquare();
-			}
-			else if (ReadType == "Circle")
-			{
-				CurrentFigure = new CCircle();
-			}
-			//if the read type matches any of the available shapes 
-			if (CurrentFigure)
-			{
-				CurrentFigure->Load(InFile);
-				pManager->AddFigure(CurrentFigure, false);
-			}
+			/*fin >> ReadType;
+			if (ReadType == "Square") CurrentFigure = new Csquare;
+			else if (ReadType == "Hexagon") CurrentFigure = new CHexagon;
+			else if (ReadType == "Circle") CurrentFigure = new CCircle;
+			else if (ReadType == "Rectangle") CurrentFigure = new CRectangle;
+			else if (ReadType == "Triangle") CurrentFigure = new CTriangle;
+			else break;*/
+
+			CurrentFigure->Load(fin);
+			pManager->AddFigure(CurrentFigure);
 		}
 		pManager->UpdateInterface();
-		InFile.close();
-	}
-	else
-	{
-		pOut->PrintMessage("File not found, it may have been moved or deleted, try again");
+		pManager->UnSelect();
+		fin.close();
+		pOut->PrintMessage("File loaded");
 	}
 }
-
 
 
 void LoadAction::Undo() {}

@@ -46,7 +46,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_GREEN,      // Green color selection
 	ITM_BLUE,       // Blue color selection
 	ITM_FILL,       // Toggle fill/unfill
-	ITM_FILL_COLOR, // Select fill color
+	
 
 	//TODO: Add more items names here
 

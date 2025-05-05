@@ -7,10 +7,15 @@
 #include "..\ApplicationManager.h"
 #include "..\Figures/CFigure.h"
 #include "..\ColorFiles.h"
+#include <fstream>
 
 CHexagon::CHexagon(Point c, GfxInfo FigureGfxInfo) :
 	CFigure(FigureGfxInfo) {
 	center = c;
+}
+CHexagon::CHexagon()
+{
+	Type = "Hexagon";
 }
 void CHexagon::Draw(Output* pOut) const {
 	pOut->DrawHexagon(center, FigGfxInfo, Selected);
@@ -52,4 +57,17 @@ void CHexagon::SaveAll(ofstream& File)
 	{
 		File << "NoFill" << "\t";
 	}
+}
+}
+
+string CHexagon::getType()
+{
+	return Type;
+}
+
+void CHexagon::Load(ifstream& Infile)  
+{  
+   Infile >> ID >> center.x >> center.y >> DrawColor >> FillColor;  
+   FigGfxInfo.DrawClr = stringtoclr(DrawColor);  
+   FigGfxInfo.FillClr = stringtoclr(FillColor);  
 }

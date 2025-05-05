@@ -14,10 +14,14 @@ private:
 
 public:
     SelectFigureAction(ApplicationManager* pApp);
+
     virtual void ReadActionParameters();
+
     virtual void Execute();
-    virtual void Undo(); // Virtual method for undo functionality
-    virtual void Redo();
+
+    void Undo(); 
+
+    void Redo();
 };
 
 #endif

@@ -8,6 +8,8 @@
 #include "..\ApplicationManager.h"
 #include "..\Figures/CFigure.h"
 #include "..\ColorFiles.h"
+#include "..\GUI\Output.h"
+#include <fstream>
 
 
 
@@ -16,6 +18,16 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 {
 	Corner1 = P1;
 	Corner2 = P2;
+}
+
+CRectangle::CRectangle()
+{
+	Type = "Rectangle";
+}
+
+string CRectangle::getType()
+{
+	return Type;
 }
 	
 
@@ -68,4 +80,13 @@ void CRectangle::SaveAll(ofstream& File)
 		File << "NoFill" << "\t";
 	}
 
+}
+}     
+
+
+void CRectangle::Load(ifstream& Infile)
+{
+	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> DrawColor >> FillColor;
+	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
+	FigGfxInfo.FillClr = stringtoclr(FillColor);
 }

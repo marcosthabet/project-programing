@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <fstream>
 #include "CCircle.h"
 #include "..\Actions/Action.h"
 #include "..\ApplicationManager.h"
@@ -11,6 +12,19 @@
 CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
     center = C;
     radius = R;
+}
+
+CCircle::CCircle()
+{
+	Type = "Circle";
+}
+CFigure* CCircle::Clone() const {
+    return new CCircle(*this); // Calls the copy constructor to create an identical copy
+}
+
+
+string CCircle::getType() {
+	return Type;
 }
 
 void CCircle::Draw(Output* pOut) const {
@@ -40,6 +54,15 @@ string CCircle::GetFigureInfo() const {
 		", Center = (" + to_string(center.x) +
 		", " + to_string(center.y) +
 		"), Radius = " + to_string(radius);
+}
+
+void CCircle::Load(ifstream& Infile)
+{
+	Infile >> ID >> center.x >> center.y >> radius >> DrawColor >> FillColor;
+
+	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
+	FigGfxInfo.FillClr = stringtoclr(FillColor);
+}
 }
 
 void CCircle::SaveAll(ofstream& File)

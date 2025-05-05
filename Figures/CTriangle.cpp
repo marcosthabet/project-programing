@@ -7,12 +7,23 @@
 #include "..\ApplicationManager.h"
 #include "..\Figures/CFigure.h"
 #include "..\ColorFiles.h"
+#include <fstream>
 
 
 CTriangle::CTriangle(Point p1, Point p2, Point p3, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
 	point1 = p1;
 	point2 = p2;
 	point3 = p3;
+}
+
+CTriangle::CTriangle()
+{
+	Type = "Triangle";
+}
+
+string CTriangle::getType()
+{
+	return Type;
 }
 
 void CTriangle::Draw(Output* pOut) const {
@@ -72,4 +83,13 @@ void CTriangle::SaveAll(ofstream& File)
 	{
 		File << "NoFill" << "\t";
 	}
+}
+}
+
+void CTriangle::Load(ifstream& Infile)
+{
+	Infile >> ID >> point1.x >> point1.y >> point2.x >> point2.y >> point3.x >> point3.y >> DrawColor >> FillColor;
+
+	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
+	FigGfxInfo.FillClr = stringtoclr(FillColor);
 }

@@ -25,11 +25,25 @@ void AddTriangleAction::ReadActionParameters() {
 	pOut->PrintMessage("New Triangle: Click at third point");
 	pIn->GetPointClicked(point3.x, point3.y);
 
-	TriangleGfxInfo.DrawClr = UI.DrawColor;
-	TriangleGfxInfo.FillClr = UI.FillColor;
-	TriangleGfxInfo.isFilled = UI.IsFilled;
-	TriangleGfxInfo.BorderWdth = UI.PenWidth;
 
+
+	//ask user for draw color
+	pOut->PrintMessage("Select a draw color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+	TriangleGfxInfo.DrawClr = pIn->GetUserColor();
+
+	//check if fill toggle is on
+	TriangleGfxInfo.isFilled = UI.IsFilled;
+
+	//if filled, ask user for fill color
+	if (TriangleGfxInfo.isFilled) {
+		pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+		TriangleGfxInfo.FillClr = pIn->GetUserColor();
+	}
+	else {
+		TriangleGfxInfo.FillClr = TriangleGfxInfo.DrawClr; //default to draw color if not filled
+	}
+
+	TriangleGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	pOut->ClearStatusBar();
 }
 

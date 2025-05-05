@@ -70,9 +70,10 @@ public:
 	void UnSelect(); // Clear all selected figures
 	void PrintTotalInfo() const; // Print total info (e.g., figure count)
 	void PrintSelectedInfo() const; // Print info about selected figures
+	void SetLastSelected(CFigure* pFig); // Set the last selected figure
+	CFigure* GetLastSelected() const; // Get the last selected figure
 
-	void Delete(CFigure* pFig); // Deletes a specific figure
-	CFigure* DeleteLastFigure(); // Deletes last figure from figlist
+
 
 	// -- SAVE functions
 	void SaveAll(ofstream& File); // Saves all figures to a file
@@ -86,12 +87,6 @@ public:
 	void AddtoUndo(Action* action);         //adds action to undoarr
 	void RemovefromUndo();                  //removes action from undoarr 
 	Action* GetLastActiontoUndo();          //returns last action in redoarr
-
-	//--REDO 
-	void AddtoRedo(Action* action); // Adds action to redoarr
-	void RemovefromRedo(); // Removes action from redoarr
-	Action* GetLastFiguretoRedo(); // Returns last action in redoarr
-
 
 	//redo functions
 	void AddtoRedo(Action* action);         //adds action to redoarr

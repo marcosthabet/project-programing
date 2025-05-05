@@ -26,6 +26,7 @@ public:
 	ActionType GetUserAction() const; //Read the user click and map to an action
 
 	void ResetSelectMode() { selectmode = false; } //reset select mode to false
+	void ResetSelectMode(); //reset select mode to false
 	color GetUserColor() const;
 
 

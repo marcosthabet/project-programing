@@ -25,13 +25,20 @@ void AddCircleAction::ReadActionParameters() {
 	radius = sqrt(pow(edge.x - center.x, 2) + pow(edge.y - center.y, 2));
 
 
-	
-	CircleGfxInfo.DrawClr = UI.DrawColor;
-	CircleGfxInfo.FillClr = UI.FillColor;
+	//ask user for draw color
+	pOut->PrintMessage("Select a draw color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+	CircleGfxInfo.DrawClr = pIn->GetUserColor();
+	//check if fill toggle is on
 	CircleGfxInfo.isFilled = UI.IsFilled;
-	CircleGfxInfo.BorderWdth = UI.PenWidth;
-	
-
+	//if filled, ask user for fill color
+	if (CircleGfxInfo.isFilled) {
+		pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+		CircleGfxInfo.FillClr = pIn->GetUserColor();
+	}
+	else {
+		CircleGfxInfo.FillClr = CircleGfxInfo.DrawClr; // Default to draw color if not filled
+	}
+	CircleGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	pOut->ClearStatusBar();
 }
 

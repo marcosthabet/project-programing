@@ -7,11 +7,21 @@
 #include "..\ApplicationManager.h"
 #include "..\Figures/CFigure.h"
 #include "..\ColorFiles.h"
+#include <fstream>
 
 //constructor 
 Csquare::Csquare(Point p, int l, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
 	center = p;
 	length = l;
+}
+
+Csquare::Csquare()
+{
+	Type = "Square";
+}
+string Csquare::getType()
+{
+	return Type;
 }
 
 void Csquare::Draw(Output* pOut) const 
@@ -58,4 +68,11 @@ void Csquare::SaveAll(ofstream& File)
 	{
 		File << "NoFill" << "\t";
 	}
+}
+
+void Csquare::Load(ifstream& Infile)  
+{  
+	Infile >> ID >> center.x >> center.y >> DrawColor >> FillColor;  
+	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
+	FigGfxInfo.FillClr = stringtoclr(FillColor);
 }
