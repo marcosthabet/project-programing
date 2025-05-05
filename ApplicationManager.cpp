@@ -131,7 +131,7 @@ int ApplicationManager::GetSelectedCount() const
 	return SelectedCount;
 }
 
-void ApplicationManager::AddSelectedFig(CFigure* pFig)
+void ApplicationManager::AddSelectedFig(CFigure* pFig)  
 {
 	if (SelectedCount < MaxSelectedCount && pFig != NULL) {
 		for (int i = 0; i < SelectedCount; i++) {
