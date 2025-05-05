@@ -32,7 +32,17 @@ enum ActionType //The actions supported (you can add more if needed)
 	MATCH,
 	EMPTY,			//A click on empty place in the toolbar
 	DRAWING_AREA,	//A click on the drawing area
-	STATUS			//A click on the status bar
+	STATUS,			//A click on the status bar
+
+	//new actions for color and fill
+	SELECT_COLOR_BLACK,  // Black color selection
+	SELECT_COLOR_YELLOW, // Yellow color selection
+	SELECT_COLOR_ORANGE, // Orange color selection
+	SELECT_COLOR_RED,    // Red color selection
+	SELECT_COLOR_GREEN,  // Green color selection
+	SELECT_COLOR_BLUE,   // Blue color selection
+	TOGGLE_FILL,         // Toggle fill/unfill
+	SELECT_FILL_COLOR,   // Select fill color
 
 	///TODO: Add the other action types of the two modes
 };

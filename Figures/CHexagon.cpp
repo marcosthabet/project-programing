@@ -14,7 +14,7 @@ bool CHexagon::IsPointInside(int x, int y) const {
 	int dy = y - center.y;
 	int distance = sqrt(dx * dx + dy * dy);
 	if (distance <= 130) {
-		return true; //point is inside the circle, should be selected
+		return true; //point is inside the hex, should be selected
 	}
 	else {
 		return false;

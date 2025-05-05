@@ -72,6 +72,45 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DEL:
 			pAct = new DeleteAction(this);
 			break;
+		case SELECT:
+			pAct = new SelectFigureAction(this);
+			break;
+			//colours
+		case SELECT_COLOR_BLACK:
+			UI.DrawColor = BLACK;
+			pOut->PrintMessage("Draw color set to Black");
+			return;
+		case SELECT_COLOR_YELLOW:
+			UI.DrawColor = YELLOW;
+			pOut->PrintMessage("Draw color set to Yellow");
+			return;
+		case SELECT_COLOR_ORANGE:
+			UI.DrawColor = ORANGE;
+			pOut->PrintMessage("Draw color set to Orange");
+			return;
+		case SELECT_COLOR_RED:
+			UI.DrawColor = RED;
+			pOut->PrintMessage("Draw color set to Red");
+			return;
+		case SELECT_COLOR_GREEN:
+			UI.DrawColor = GREEN;
+			pOut->PrintMessage("Draw color set to Green");
+			return;
+		case SELECT_COLOR_BLUE:
+			UI.DrawColor = BLUE;
+			pOut->PrintMessage("Draw color set to Blue");
+			return;
+		case TOGGLE_FILL:
+			UI.IsFilled = !UI.IsFilled;
+			pOut->PrintMessage(UI.IsFilled ? "Figures will be filled" : "Figures will not be filled");
+			return;
+		case SELECT_FILL_COLOR:
+			pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+			UI.FillColor = pIn->GetUserColor();
+			pOut->PrintMessage("Fill color set");
+			return;
+
+
 		case EXIT:
 			///create ExitAction here
 			
@@ -124,7 +163,7 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 //SELECT FIGURE STUFF
 CFigure** ApplicationManager::GetSelectedFigs() const
 {
-	return SelectedFigsArr;
+	return (CFigure**)SelectedFigsArr; //returns address of array
 }
 
 int ApplicationManager::GetSelectedCount() const
@@ -137,7 +176,7 @@ void ApplicationManager::AddSelectedFig(CFigure* pFig)
 	if (SelectedCount < MaxSelectedCount && pFig != NULL) {
 		for (int i = 0; i < SelectedCount; i++) {
 			if (SelectedFigsArr[i] == pFig) {
-				return; // Already selected
+				return; //fig already selected
 			}
 		}
 		SelectedFigsArr[SelectedCount++] = pFig;
@@ -180,15 +219,14 @@ void ApplicationManager::PrintSelectedInfo() const
 	if (SelectedCount == 0) {
 		pOut->PrintMessage("No figures selected");
 	}
+	else if (SelectedCount == 1) {
+		// For single selection, print detailed info
+		pOut->PrintMessage(SelectedFigsArr[0]->GetFigureInfo());
+	}
 	else {
-		string msg = "Selected Figures (" + to_string(SelectedCount) + "): ";
-		for (int i = 0; i < SelectedCount; i++) {
-			if (SelectedFigsArr[i]) {
-				msg += SelectedFigsArr[i]->GetFigureInfo();
-				if (i < SelectedCount - 1) msg += ", ";
-			}
-		}
-		pOut->PrintMessage(msg);
+		// For multiple selections, just print the count until GetType is added
+		string info = "Selected Figures: " + to_string(SelectedCount);
+		pOut->PrintMessage(info);
 	}
 }
 
@@ -198,9 +236,9 @@ void ApplicationManager::PrintSelectedInfo() const
 
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
-{	
-	for(int i=0; i<FigCount; i++)
-		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+{
+	for (int i = 0; i < FigCount; i++)
+		if (FigList[i]) FigList[i]->Draw(pOut); //call draw function
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

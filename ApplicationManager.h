@@ -31,13 +31,11 @@ private:
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	CFigure* LastSelectedFig; //Pointer to the selected figure
 
-	CFigure* SelectedFig; //Pointer to the selected figure
+
 	CFigure* SelectedFigsArr[MaxSelectedCount]; //array of selected figures
 	
 	int SelectedCount;
 
-
-	Action* Undoarr[5];
 
 	Action* Undoarr[5]; //list of all actions to undo
 	Action* Redoarr[5]; //list of all actions to redo
@@ -84,6 +82,12 @@ public:
 	void AddtoUndo(Action* action);         //adds action to undoarr
 	void RemovefromUndo();                  //removes action from undoarr 
 	Action* GetLastActiontoUndo();          //returns last action in redoarr
+
+	//--REDO 
+	void AddtoRedo(Action* action); // Adds action to redoarr
+	void RemovefromRedo(); // Removes action from redoarr
+	Action* GetLastFiguretoRedo(); // Returns last action in redoarr
+
 
 	//redo functions
 	void AddtoRedo(Action* action);         //adds action to redoarr

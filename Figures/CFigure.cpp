@@ -8,10 +8,17 @@ CFigure::CFigure(GfxInfo FigureGfxInfo):
 
 void CFigure::SetID(int id) {
 	ID = id;
+
 }
 
 void CFigure::SetSelected(bool s)
-{	Selected = s; }
+{
+	Selected = s;
+	if (s) {
+		FigGfxInfo.DrawClr = UI.HighlightColor; //highlight in magenta if selected
+	}
+	else FigGfxInfo.DrawClr = UI.DrawColor; //default
+}
 
 bool CFigure::IsSelected() const
 {	return Selected; }

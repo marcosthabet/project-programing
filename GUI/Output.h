@@ -24,7 +24,7 @@ public:
 	void DrawTriangle(Point P1, Point P2, Point P3, GfxInfo gfx, bool selected = false) const;
 	void DrawHexagon(Point P1, GfxInfo HexaGfxInfo, bool selected = false) const;
 	void DrawCircle(Point center, int radius, GfxInfo gfxInfo, bool selected = false) const;
-	///Make similar functions for drawing all other figure types.
+	
 	
 	void PrintMessage(string msg) const;	//Print a message on Status bar
 
