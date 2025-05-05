@@ -12,6 +12,7 @@
 #include "Actions/Action.h"
 #include "Actions/UndoAction.h"
 #include "Actions/LoadAction.h"
+#include "Actions/Copy.h"
 
 
 
