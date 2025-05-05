@@ -17,8 +17,15 @@ void AddCircleAction::ReadActionParameters() {
 
 	pOut->PrintMessage("New Circle: Click center point");
 	pIn->GetPointClicked(center.x, center.y);
+	pIn->Point_Validation(center, pOut);
+
 	pOut->PrintMessage("New Circle: Click edge point");
 	pIn->GetPointClicked(edge.x, edge.y);
+	pIn->Circle_Validation(center, edge, CircleGfxInfo, pOut);
+	
+
+	
+
 
 	// calculate the radius based on the distance from center to edge
 	//since drawcircle function needs radius explicitly

@@ -96,6 +96,9 @@ struct UI_Info	//User Interface Info.
 	bool IsFilled;		//is the shape filled?
 	int PenWidth;			//width of the pen that draws shapes
 
+	const int HEXAGON_LENGTH = 130; 
+	const int SQUARE_LENGTH = 200;
+
 	/// Add more members if needed
 	
 }UI;	//create a global object UI

@@ -20,10 +20,21 @@ void AddTriangleAction::ReadActionParameters() {
 	//reads coordinates of the 3 triangle vertices
 	pOut->PrintMessage("New Triangle: Click at first point");
 	pIn->GetPointClicked(point1.x, point1.y);
+
+	pIn->Point_Validation(point1, pOut);
+
 	pOut->PrintMessage("New Triangle: Click at second point");
 	pIn->GetPointClicked(point2.x, point2.y);
+
+	pIn->Point_Validation(point2, pOut);
+	pIn->Repeatability_Validation(point1, point2, pOut); //check if the two points are the same
+
 	pOut->PrintMessage("New Triangle: Click at third point");
 	pIn->GetPointClicked(point3.x, point3.y);
+
+	pIn->Point_Validation(point3, pOut);
+	pIn->Repeatability_Validation(point1, point3, pOut);
+	pIn->Repeatability_Validation(point2, point3, pOut); 
 
 
 

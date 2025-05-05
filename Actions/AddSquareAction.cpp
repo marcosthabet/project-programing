@@ -24,6 +24,9 @@ void AddSquareAction::ReadActionParameters()
 	pOut->PrintMessage("New Square: Click at center point");
 	pIn->GetPointClicked(Center.x, Center.y);
 
+	//for validation
+	pIn->Square_Validation(Center, pOut);
+
 	//ask user for draw color
 	pOut->PrintMessage("Select a draw color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
 	SquareGfxInfo.DrawClr = pIn->GetUserColor();

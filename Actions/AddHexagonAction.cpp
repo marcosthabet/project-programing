@@ -19,6 +19,8 @@ void AddHexagonAction::ReadActionParameters() {
     pOut->PrintMessage("Add Hexagon: Click center point");
     pIn->GetPointClicked(Center.x, Center.y);
 
+	pIn->Point_Validation(Center, pOut);
+
 
 	//ask user for draw color
 	pOut->PrintMessage("Select a draw color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");

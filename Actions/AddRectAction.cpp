@@ -30,6 +30,11 @@ void AddRectAction::ReadActionParameters()
 	pIn->GetPointClicked(P1.x, P1.y);
 
 
+	//for validation
+	pIn->Point_Validation(P2, pOut);
+	pIn->Repeatability_Validation(P1, P2, pOut);
+
+
 	pOut->PrintMessage("New Rectangle: Click at second corner");
 
 	//Read 2nd corner and store in point P2
