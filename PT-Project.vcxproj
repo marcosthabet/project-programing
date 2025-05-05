@@ -128,7 +128,6 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\project-programing-main\Actions\Copy.cpp" />
     <ClCompile Include="Actions\AddCircleAction.cpp" />
     <ClCompile Include="Actions\AddHexagonAction.cpp" />
     <ClCompile Include="Actions\AddSquareAction.cpp" />
@@ -187,7 +186,6 @@
     <ClCompile Include="Actions\UndoAction.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\project-programing-main\Actions\Copy.h" />
     <ClInclude Include="Actions\AddCircleAction.h" />
     <ClInclude Include="Actions\AddHexagonAction.h" />
     <ClInclude Include="Actions\AddSquareAction.h" />
