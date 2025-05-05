@@ -128,7 +128,6 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\project-programing-main\Actions\Copy.cpp" />
     <ClCompile Include="Actions\AddCircleAction.cpp" />
     <ClCompile Include="Actions\AddHexagonAction.cpp" />
     <ClCompile Include="Actions\AddSquareAction.cpp" />
@@ -172,6 +171,7 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
     <ClCompile Include="Actions\DeleteAction.cpp" />
+    <ClCompile Include="Actions\Copy.cpp" />
     <ClCompile Include="Figures\CCircle.cpp" />
     <ClCompile Include="Figures\CFigure.cpp" />
     <ClCompile Include="Figures\CHexagon.cpp" />
@@ -187,7 +187,6 @@
     <ClCompile Include="Actions\UndoAction.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\project-programing-main\Actions\Copy.h" />
     <ClInclude Include="Actions\AddCircleAction.h" />
     <ClInclude Include="Actions\AddHexagonAction.h" />
     <ClInclude Include="Actions\AddSquareAction.h" />
@@ -215,6 +214,7 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jpeglib.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
     <ClInclude Include="Actions\DeleteAction.h" />
+    <ClInclude Include="Actions\Copy.h" />
     <ClInclude Include="Figures\CCircle.h" />
     <ClInclude Include="Figures\CFigure.h" />
     <ClInclude Include="Figures\CHexagon.h" />
