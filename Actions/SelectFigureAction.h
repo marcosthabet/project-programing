@@ -1,17 +1,22 @@
 #pragma once
-#ifndef SELECTFIGUREACTION_H
-#define SELECTFIGUREACTION_H
+#ifndef SELECT_FIGURE_ACTION_H
+#define SELECT_FIGURE_ACTION_H
+
 #include "Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures\CFigure.h"
 
 class SelectFigureAction : public Action
 {
 private:
-	Point P; //point where user clicked
-	CFigure* figure; //pointer to selected figure
+    Point P; // Point where the user clicked
+    CFigure* figure; // Pointer to the selected figure
+
 public:
-	SelectFigureAction(ApplicationManager* pApp);
-	virtual void ReadActionParameters();
-	virtual void Execute();
+    SelectFigureAction(ApplicationManager* pApp);
+    virtual void ReadActionParameters();
+    virtual void Execute();
+    virtual void Undo(); // Virtual method for undo functionality
 };
 
 #endif

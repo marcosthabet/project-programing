@@ -32,13 +32,17 @@ private:
 	CFigure* LastSelectedFig; //Pointer to the selected figure
 
 	CFigure* SelectedFig; //Pointer to the selected figure
+	CFigure* SelectedFigsArr[MaxSelectedCount]; //array of selected figures
+	
+	int SelectedCount;
+
 
 	Action* Undoarr[5];
-=======
+
 	Action* Undoarr[5]; //list of all actions to undo
 	Action* Redoarr[5]; //list of all actions to redo
 	Action* LastAction; //pointer to the last action done
->>>>>>> 210a51b88af9d663c4903ff12d4df8035e2b16dd
+
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -60,15 +64,28 @@ public:
 	void Delete(CFigure* pFig);             //Deletes the selected -if any- firure
 	CFigure* DeleteLastFigure();                //deletes last figure from figlist 
 	
+	// Select figure stuff
+	CFigure** GetSelectedFigs() const; // Get the array of selected figures
+	int GetSelectedCount() const; // Get the number of selected figures
+	void AddSelectedFig(CFigure* pFig); // Add a figure to the selected list
+	void RemoveSelectedFig(CFigure* pFig); // Remove a figure from the selected list
+	void UnSelect(); // Clear all selected figures
+	void PrintTotalInfo() const; // Print total info (e.g., figure count)
+	void PrintSelectedInfo() const; // Print info about selected figures
+
+	void Delete(CFigure* pFig); // Deletes a specific figure
+	CFigure* DeleteLastFigure(); // Deletes last figure from figlist
+
+
 	// -- CLRALL functions
 	void ClearAll();                        //deletes all the drawn figures from the array
 	
 	// -- UNDO functions
 	void AddtoUndo(Action* action);         //adds action to undoarr
 	void RemovefromUndo();                  //removes action from undoarr 
-<<<<<<< HEAD
+
 	Action* GetLastActiontoUndo();          //returns last action in redoarr
-	void ClearUndoList();
+	
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
