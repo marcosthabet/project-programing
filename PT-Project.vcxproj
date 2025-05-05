@@ -132,7 +132,11 @@
     <ClCompile Include="Actions\AddHexagonAction.cpp" />
     <ClCompile Include="Actions\AddSquareAction.cpp" />
     <ClCompile Include="Actions\AddTriangleAction.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="Actions\SelectFigureAction.cpp" />
+=======
     <ClCompile Include="Actions\ClearAction.cpp" />
+>>>>>>> 210a51b88af9d663c4903ff12d4df8035e2b16dd
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -188,7 +192,11 @@
     <ClInclude Include="Actions\AddHexagonAction.h" />
     <ClInclude Include="Actions\AddSquareAction.h" />
     <ClInclude Include="Actions\AddTriangleAction.h" />
+<<<<<<< HEAD
+    <ClInclude Include="Actions\SelectFigureAction.h" />
+=======
     <ClInclude Include="Actions\ClearAction.h" />
+>>>>>>> 210a51b88af9d663c4903ff12d4df8035e2b16dd
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />

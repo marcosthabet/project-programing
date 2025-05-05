@@ -174,7 +174,11 @@
     </ClCompile>
     <ClCompile Include="Actions\DeleteAction.cpp" />
     <ClCompile Include="Actions\UndoAction.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="Actions\SelectFigureAction.cpp" />
+=======
     <ClCompile Include="Actions\ClearAction.cpp" />
+>>>>>>> 210a51b88af9d663c4903ff12d4df8035e2b16dd
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -288,7 +292,11 @@
     </ClInclude>
     <ClInclude Include="Actions\DeleteAction.h" />
     <ClInclude Include="Actions\UndoAction.h" />
+<<<<<<< HEAD
+    <ClInclude Include="Actions\SelectFigureAction.h" />
+=======
     <ClInclude Include="Actions\ClearAction.h" />
+>>>>>>> 210a51b88af9d663c4903ff12d4df8035e2b16dd
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

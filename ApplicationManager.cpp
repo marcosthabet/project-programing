@@ -7,7 +7,10 @@
 #include "Actions/AddTriangleAction.h"
 #include "Actions/AddHexagonAction.h"
 #include "Actions/AddCircleAction.h"
+<<<<<<< HEAD
+=======
 #include "Actions\ClearAction.h" 
+>>>>>>> 210a51b88af9d663c4903ff12d4df8035e2b16dd
 #include "Actions/DeleteAction.h"
 #include "Actions/SelectFigureAction.h"
 #include "Actions/Action.h"
@@ -15,23 +18,26 @@
 
 #include <Windows.h>
 #include "MMSystem.h"
+
 //Constructor
 ApplicationManager::ApplicationManager() :
-	FigCount(0), SelectedFig(NULL), Clipboard(NULL), pIn(NULL), pOut(NULL) {
+	FigCount(0), SelectedCount(0),LastSelectedFig(NULL), Clipboard(NULL), pIn(NULL), pOut(NULL),UndoCount(0) 
+{
 
 //Create an array of figure pointers and set them to NULL		
 	for (int i = 0; i < MaxFigCount; i++) {
 		FigList[i] = NULL;
 	}
+	for (int i = 0; i < MaxSelectedCount; i++) {
+		SelectedFigsArr[i] = NULL;
+	}
+
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	
 	FigCount = 0;
 
-	//Create an array of figure pointers and set them to NULL		
-	for(int i=0; i<MaxFigCount; i++)
-		FigList[i] = NULL;	
 }
 
 //==================================================================================//
@@ -69,12 +75,19 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DEL:
 			pAct = new DeleteAction(this);
 			break;
+<<<<<<< HEAD
+
+		case SELECT:
+			pAct = new SelectFigureAction(this);
+			break;
+=======
 		case UNDO:
 			pAct = new UndoAction(this);
 			break;
 		case CLRALL:
 
 
+>>>>>>> 210a51b88af9d663c4903ff12d4df8035e2b16dd
 
 		case EXIT:
 			///create ExitAction here
@@ -114,9 +127,53 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if (FigList[i] && FigList[i]->IsPointInside(x, y))
+		{
+			return FigList[i];
+		}
+	}
 
 	return NULL;
 }
+
+//SELECT FIGURE STUFF
+CFigure* ApplicationManager::GetSelectedFig() const {
+	return SelectedFig;
+}
+
+int ApplicationManager::GetSelectedCount() const
+{
+	return SelectedCount;
+}
+
+
+void ApplicationManager::SetSelectedFig(CFigure* pFig) {
+	if (SelectedFig != pFig) {
+		if (SelectedFig) {
+			SelectedFig->SetSelected(false); //deselect if theres a previous figure
+		}
+		SelectedFig = pFig;
+		if (SelectedFig) {
+			SelectedFig->SetSelected(true); //select new figure
+		}
+	}
+}
+void ApplicationManager::UnSelect() {
+	if (SelectedFig) {
+		SelectedFig->SetSelected(false); //deselect current figure
+		SelectedFig = NULL;
+	}
+}
+
+void ApplicationManager::PrintTotalInfo() const {
+	string info = "Total Figures: " + to_string(FigCount);
+	pOut->PrintMessage(info);
+}
+
+
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
