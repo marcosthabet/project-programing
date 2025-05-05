@@ -12,10 +12,11 @@ public:
 	CCircle(Point c, int r, GfxInfo FigureGfxInfo);
 	CCircle();
 	virtual void Draw(Output* pOut) const;
-
+	string getType();
 	virtual bool IsPointInside(int x, int y) const; 
 	virtual void PrintInfo(Output* pOut) const;
 	virtual string GetFigureInfo() const; 
+	virtual void Load(ifstream& Infile);
 	
 };
 

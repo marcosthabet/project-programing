@@ -1,5 +1,6 @@
 #include "CCircle.h"
 #include <cmath>
+#include <fstream>
 
 CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
     center = C;
@@ -8,6 +9,11 @@ CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 
 CCircle::CCircle()
 {
+	Type = "Circle";
+}
+
+string CCircle::getType() {
+	return Type;
 }
 
 void CCircle::Draw(Output* pOut) const {
@@ -37,4 +43,12 @@ string CCircle::GetFigureInfo() const {
 		", Center = (" + to_string(center.x) +
 		", " + to_string(center.y) +
 		"), Radius = " + to_string(radius);
+}
+
+void CCircle::Load(ifstream& Infile)
+{
+	Infile >> ID >> center.x >> center.y >> radius >> DrawColor >> FillColor;
+
+	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
+	FigGfxInfo.FillClr = stringtoclr(FillColor);
 }
