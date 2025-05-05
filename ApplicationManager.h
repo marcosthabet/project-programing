@@ -68,6 +68,11 @@ public:
 	void RemovefromUndo();                  //removes action from undoarr 
 	Action* GetLastActiontoUndo();          //returns last action in redoarr
 
+	//redo functions
+	void AddtoRedo(Action* action);         //adds action to redoarr
+	void RemovefromRedo();                  //removes action from redoarr
+	Action* GetLastActiontoRedo();          //returns last action in redoarr
+
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
