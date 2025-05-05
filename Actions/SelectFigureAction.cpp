@@ -57,3 +57,25 @@ void SelectFigureAction::Execute()
     pManager->UpdateInterface();
     pIn->ResetSelectMode(); //reset select mode after action
 }
+
+void SelectFigureAction::Redo()
+{
+    //reselect figure if it was unselected, or unselect if it was selected
+    if (figure == NULL) {
+        pManager->UnSelect();
+    }
+    else {
+        bool isselected = false;
+        for (int i = 0; i < pManager->GetSelectedCount(); i++) {
+            if (pManager->GetSelectedFigs()[i] == figure) {
+                isselected = true;
+                pManager->RemoveSelectedFig(figure);
+                break;
+            }
+        }
+        if (!isselected) {
+            pManager->AddSelectedFig(figure);
+        }
+    }
+    pManager->UpdateInterface();
+}

@@ -40,6 +40,28 @@ void Input::ResetSelectMode()
 	selectmode = false;
 }
 
+color Input::GetUserColor() const {
+	int x, y;
+	pWind->WaitMouseClick(x, y);
+
+	if (y >= 0 && y < UI.ToolBarHeight) {
+
+		int ClickedItemOrder = (x / UI.MenuItemWidth);
+		switch (ClickedItemOrder)
+		{
+		case 5: return BLACK;  
+		case 6: return YELLOW;
+		case 7: return ORANGE;
+		case 8: return RED;
+		case 9: return GREEN;
+		case 10: return BLUE;
+
+		default: return BLUE; 
+		}
+	}
+	return BLUE; //default if no click on toolbar
+}
+
 
 //This function reads the position where the user clicks to determine the desired action
 ActionType Input::GetUserAction() const
@@ -55,7 +77,7 @@ ActionType Input::GetUserAction() const
 		if (y >= 0 && y < UI.ToolBarHeight)
 		{
 			//Check which Menu item was clicked
-			//==> This assumes that menu items are lined up horizontally <==
+			//assuming that menu items are lined up horizontally
 			int ClickedItemOrder = (x / UI.MenuItemWidth);
 			//Divide x coord of the point clicked by the menu item width (int division)
 			//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
@@ -88,11 +110,19 @@ ActionType Input::GetUserAction() const
 				selectmode = true; 
 				return SELECT;	//returning select action activates selectfigureaction
 
+				//color selection cases
+			case ITM_BLACK: return SELECT_COLOR_BLACK;
+			case ITM_YELLOW: return SELECT_COLOR_YELLOW;
+			case ITM_ORANGE: return SELECT_COLOR_ORANGE;
+			case ITM_RED: return SELECT_COLOR_RED;
+			case ITM_GREEN: return SELECT_COLOR_GREEN;
+			case ITM_BLUE: return SELECT_COLOR_BLUE;
+			case ITM_FILL: return TOGGLE_FILL;
+			case ITM_FILL_COLOR: return SELECT_FILL_COLOR;
+
 
 			case ITM_EXIT: return EXIT;
 
-				
-			
 
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
@@ -143,6 +173,5 @@ ActionType Input::GetUserAction() const
 }
 /////////////////////////////////
 	
-	Input::~Input()
-{
-}
+	Input::~Input(){
+	}

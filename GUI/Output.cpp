@@ -25,6 +25,8 @@ Output::Output()
 	UI.HighlightColor = MAGENTA;	//This color should NOT be used to draw figures. use if for highlight only
 	UI.StatusBarColor = TURQUOISE;
 	UI.PenWidth = 3;	//width of the figures frames
+
+	UI.IsFilled = false;
 	
 
 	
@@ -104,6 +106,16 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_REDO] = "images\\MenuItems\\Menu_Redo.jpg";
 	MenuItemImages[ITM_UNDO] = "images\\MenuItems\\Menu_Undo.jpg";
 	MenuItemImages[ITM_TO_PLAY] = "images\\MenuItems\\Menu_Play.jpg";
+	//new color and fill images
+	MenuItemImages[ITM_BLACK] = "images\\MenuItems\\Menu_Black.jpg";
+	MenuItemImages[ITM_YELLOW] = "images\\MenuItems\\Menu_Yellow.jpg";
+	MenuItemImages[ITM_ORANGE] = "images\\MenuItems\\Menu_Orange.jpg";
+	MenuItemImages[ITM_RED] = "images\\MenuItems\\Menu_Red.jpg";
+	MenuItemImages[ITM_GREEN] = "images\\MenuItems\\Menu_Green.jpg";
+	MenuItemImages[ITM_BLUE] = "images\\MenuItems\\Menu_Blue.jpg";
+	MenuItemImages[ITM_FILL] = "images\\MenuItems\\Menu_Fill.jpg";
+	MenuItemImages[ITM_FILL_COLOR] = "images\\MenuItems\\Menu_FillColor.jpg";
+
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
@@ -183,10 +195,7 @@ void Output::setCrntFillColor(color newcolor)
 int Output::getCrntPenWidth() const		//get current pen width
 {	return UI.PenWidth;	}
 
-void Output::SetFilled(bool f)
-{
-	UI.IsFilled = f;
-}
+
 //======================================================================================//
 //								Figures Drawing Functions								//
 //======================================================================================//

@@ -25,10 +25,10 @@ void AddTriangleAction::ReadActionParameters() {
 	pOut->PrintMessage("New Triangle: Click at third point");
 	pIn->GetPointClicked(point3.x, point3.y);
 
-	TriangleGfxInfo.isFilled = false;
-	TriangleGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	TriangleGfxInfo.FillClr = pOut->getCrntFillColor();
-	TriangleGfxInfo.BorderWdth = pOut->getCrntPenWidth();
+	TriangleGfxInfo.DrawClr = UI.DrawColor;
+	TriangleGfxInfo.FillClr = UI.FillColor;
+	TriangleGfxInfo.isFilled = UI.IsFilled;
+	TriangleGfxInfo.BorderWdth = UI.PenWidth;
 
 	pOut->ClearStatusBar();
 }

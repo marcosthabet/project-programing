@@ -38,6 +38,16 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_SELECT,		//Select item in menu
 	ITM_TO_PLAY,	//Switch to Play mode item
 
+	//new color and fill items
+	ITM_BLACK,      // Black color selection
+	ITM_YELLOW,     // Yellow color selection
+	ITM_ORANGE,     // Orange color selection
+	ITM_RED,        // Red color selection
+	ITM_GREEN,      // Green color selection
+	ITM_BLUE,       // Blue color selection
+	ITM_FILL,       // Toggle fill/unfill
+	ITM_FILL_COLOR, // Select fill color
+
 	//TODO: Add more items names here
 
 	ITM_EXIT,		//Exit item

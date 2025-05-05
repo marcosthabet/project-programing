@@ -24,10 +24,10 @@ void AddSquareAction::ReadActionParameters()
 	pOut->PrintMessage("New Square: Click at center point");
 	pIn->GetPointClicked(Center.x, Center.y);
 
-	SquareGfxInfo.isFilled = false; 
-	SquareGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	SquareGfxInfo.FillClr = pOut->getCrntFillColor();
-	SquareGfxInfo.BorderWdth = pOut->getCrntPenWidth();
+	SquareGfxInfo.DrawClr = UI.DrawColor;
+	SquareGfxInfo.FillClr = UI.FillColor;
+	SquareGfxInfo.isFilled = UI.IsFilled;
+	SquareGfxInfo.BorderWdth = UI.PenWidth;
 
 	pOut->ClearStatusBar();
 }

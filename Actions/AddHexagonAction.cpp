@@ -19,10 +19,10 @@ void AddHexagonAction::ReadActionParameters() {
     pOut->PrintMessage("Add Hexagon: Click center point");
     pIn->GetPointClicked(Center.x, Center.y);
 
-    HexagonGfxInfo.isFilled = false;
-    HexagonGfxInfo.DrawClr = pOut->getCrntDrawColor();
-    HexagonGfxInfo.FillClr = pOut->getCrntFillColor();
-    HexagonGfxInfo.BorderWdth = pOut->getCrntPenWidth();
+    HexagonGfxInfo.DrawClr = UI.DrawColor;
+    HexagonGfxInfo.FillClr = UI.FillColor;
+    HexagonGfxInfo.isFilled = UI.IsFilled;
+    HexagonGfxInfo.BorderWdth = UI.PenWidth;
 
     pOut->ClearStatusBar();
 }

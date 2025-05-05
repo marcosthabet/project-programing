@@ -24,10 +24,13 @@ void AddCircleAction::ReadActionParameters() {
 	//since drawcircle function needs radius explicitly
 	radius = sqrt(pow(edge.x - center.x, 2) + pow(edge.y - center.y, 2));
 
-	CircleGfxInfo.isFilled = false;
-	CircleGfxInfo.DrawClr = pOut->getCrntDrawColor();
-	CircleGfxInfo.FillClr = pOut->getCrntFillColor();
-	CircleGfxInfo.BorderWdth = pOut->getCrntPenWidth();
+
+	
+	CircleGfxInfo.DrawClr = UI.DrawColor;
+	CircleGfxInfo.FillClr = UI.FillColor;
+	CircleGfxInfo.isFilled = UI.IsFilled;
+	CircleGfxInfo.BorderWdth = UI.PenWidth;
+	
 
 	pOut->ClearStatusBar();
 }
