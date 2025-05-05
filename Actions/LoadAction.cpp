@@ -19,7 +19,7 @@ LoadAction::LoadAction(ApplicationManager* pApp) : Action(pApp)
 
 void LoadAction::ReadActionParameters()
 {
-	//Get a Pointer to the Input / Output Interfaces
+	Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Loading...., enter the name of your saved file: ");
@@ -35,9 +35,9 @@ void LoadAction::Execute()
 	ifstream InFile(FileName);
 	if (InFile.is_open())
 	{
-		//set the drawing color
+		set the drawing color
 		InFile >> ReadDrawColor; pOut->setCrntDrawColor(StringToColor(ReadDrawColor));
-		//set the fill color
+		set the fill color
 		InFile >> ReadFillColor;
 		if (ReadFillColor == "NO_FILL")
 		{
@@ -52,7 +52,7 @@ void LoadAction::Execute()
 
 		InFile >> ReadFigCount;
 
-		//Loop to read the type of each figure and set the CurrentFigure pointer to it
+		Loop to read the type of each figure and set the CurrentFigure pointer to it
 		for (int i = 0; i < ReadFigCount; i++)
 		{
 			InFile >> ReadType;
@@ -76,7 +76,7 @@ void LoadAction::Execute()
 			{
 				CurrentFigure = new CCircle();
 			}
-			//if the read type matches any of the available shapes 
+			if the read type matches any of the available shapes 
 			if (CurrentFigure)
 			{
 				CurrentFigure->Load(InFile);

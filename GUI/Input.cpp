@@ -2,6 +2,8 @@
 #include "Output.h"
 #include "UI_Info.h"
 
+bool Input::selectmode = false; //initialize select mode to false
+
 Input::Input(window* pW) 
 {
 	pWind = pW; //point to the passed window

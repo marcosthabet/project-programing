@@ -69,9 +69,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DRAW_CIRC:
 			pAct = new AddCircleAction(this);
 			break;
-		case DEL:
+		/*case DEL:
 			pAct = new DeleteAction(this);
-			break;
+			break;*/
 		case SELECT:
 			pAct = new SelectFigureAction(this);
 			break;
