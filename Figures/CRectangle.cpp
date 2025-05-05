@@ -50,7 +50,8 @@ string CRectangle::GetFigureInfo() const
 		", " + to_string(Corner1.y) +
 		"), Corner2 = (" + to_string(Corner2.x) +
 		", " + to_string(Corner2.y) + ")";
-}
+}     
+
 
 void CRectangle::Load(ifstream& Infile)
 {

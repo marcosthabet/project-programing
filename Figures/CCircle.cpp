@@ -11,6 +11,10 @@ CCircle::CCircle()
 {
 	Type = "Circle";
 }
+CFigure* CCircle::Clone() const {
+    return new CCircle(*this); // Calls the copy constructor to create an identical copy
+}
+
 
 string CCircle::getType() {
 	return Type;
