@@ -176,6 +176,11 @@
     <ClCompile Include="Actions\UndoAction.cpp" />
     <ClCompile Include="Actions\ClearAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
+    <ClCompile Include="Actions\SelectFigureAction.cpp" />
+    <ClCompile Include="Actions\SwapAction.cpp" />
+    <ClCompile Include="Actions\RotateAction.cpp" />
+    <ClCompile Include="Actions\SaveAction.cpp" />
+    <ClCompile Include="ColorFiles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -292,6 +297,10 @@
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\SelectFigureAction.h" />
     <ClInclude Include="Actions\ClearAction.h" />
+    <ClInclude Include="Actions\SwapAction.h" />
+    <ClInclude Include="Actions\RotateAction.h" />
+    <ClInclude Include="Actions\SaveAction.h" />
+    <ClInclude Include="ColorFiles.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

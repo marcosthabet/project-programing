@@ -1,6 +1,8 @@
 #include "Input.h"
 #include "Output.h"
 #include "UI_Info.h"
+#include "..\ApplicationManager.h"
+#include <string>
 
 Input::Input(window* pW) 
 {
@@ -33,6 +35,20 @@ string Input::GetSrting(Output *pO) const
 		if (pO)
 			pO->PrintMessage(Label);
 	}
+}
+
+string Input::GetFileName(Output* pOut)  
+{  
+   pOut->PrintMessage("Please enter file name: ");    
+   return GetFileName(pOut);
+}
+
+char Input::GetChar(Output* pOut)
+{
+	pOut->PrintMessage("Press a key (Y/N): ");
+	char c;
+	pWind->WaitKeyPress(c);
+	return c;
 }
 
 void Input::ResetSelectMode()
@@ -171,7 +187,11 @@ ActionType Input::GetUserAction() const
 
 	}
 }
+
+
 /////////////////////////////////
 	
 	Input::~Input(){
 	}
+
+

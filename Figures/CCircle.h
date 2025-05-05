@@ -2,6 +2,7 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 #include "CFigure.h"
+#include "..\defs.h"
 
 class CCircle : public CFigure
 {
@@ -17,6 +18,7 @@ public:
 	virtual void PrintInfo(Output* pOut) const;
 	virtual string GetFigureInfo() const; 
 	
+	void SaveAll(ofstream& File);
 };
 
 #endif

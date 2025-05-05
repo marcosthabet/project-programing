@@ -2,16 +2,19 @@
 #include "Figures/CFigure.h"
 #include "GUI/Input.h"
 #include "GUI/Output.h"
+#include "Actions/Action.h"
 #include "Actions/AddRectAction.h"
 #include "Actions/AddSquareAction.h"
 #include "Actions/AddTriangleAction.h"
 #include "Actions/AddHexagonAction.h"
 #include "Actions/AddCircleAction.h"
 #include "Actions/DeleteAction.h"
-#include "Actions/SelectFigureAction.h"
-#include "Actions/Action.h"
-#include "Actions/UndoAction.h"
 #include "Actions/LoadAction.h"
+#include "Actions/RotateAction.h"
+#include "Actions/SelectFigureAction.h"
+#include "Actions/SwapAction.h"
+#include "Actions/UndoAction.h"
+#include "Actions/SaveAction.h"
 
 #include <Windows.h>
 #include "MMSystem.h"
@@ -109,7 +112,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			UI.FillColor = pIn->GetUserColor();
 			pOut->PrintMessage("Fill color set");
 			return;
-
+		case SWAP:
+			pAct = new SwapAction(this);
+			break;
+		case ROTATE:
+			pAct = new RotateAction(this);
+			break;
+		case SAVE:
+			pAct = new SaveAction(this);
+			break;
 
 		case EXIT:
 			///create ExitAction here
@@ -380,4 +391,22 @@ ApplicationManager::~ApplicationManager()
 	delete pOut;
 	delete Clipboard; //if not NULL
 	
+}
+
+void ApplicationManager::SaveAll(ofstream& File)
+{
+}
+
+int ApplicationManager::GetFigCount() const
+{
+	return FigCount;
+}
+
+CFigure* ApplicationManager::GetFigure(int index) const
+{
+	if (index >= 0 && index < FigCount)
+	{
+		return FigList[index];
+	}
+	return nullptr;
 }

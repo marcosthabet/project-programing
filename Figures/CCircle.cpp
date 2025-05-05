@@ -1,5 +1,12 @@
-#include "CCircle.h"
+#include <fstream>
+#include <iostream>
+#include <string>
 #include <cmath>
+#include "CCircle.h"
+#include "..\Actions/Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures/CFigure.h"
+#include "..\ColorFiles.h"
 
 CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
     center = C;
@@ -33,4 +40,22 @@ string CCircle::GetFigureInfo() const {
 		", Center = (" + to_string(center.x) +
 		", " + to_string(center.y) +
 		"), Radius = " + to_string(radius);
+}
+
+void CCircle::SaveAll(ofstream& File)
+{
+	File << "Circle" << "\t" << ID << "\t";
+	File << center.x << "\t" << center.y << "\t";
+	File << radius << "\t";
+	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+
+	if (FigGfxInfo.isFilled)
+	{
+		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+	}
+	else
+	{
+		File << "NoFill" << "\t";
+	}
+	
 }
