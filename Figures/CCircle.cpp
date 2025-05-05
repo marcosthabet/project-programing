@@ -10,6 +10,7 @@ CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 CCircle::CCircle()
 {
 	Type = "Circle";
+}
 CFigure* CCircle::Clone() const {
     return new CCircle(*this); // Calls the copy constructor to create an identical copy
 }
