@@ -7,9 +7,10 @@
 #include "Actions/AddTriangleAction.h"
 #include "Actions/AddHexagonAction.h"
 #include "Actions/AddCircleAction.h"
-#include "Actions/DeleteAction.h"
+#include "../phase 2/Actions/DeleteAction.h"
 #include "Actions/SelectFigureAction.h"
 #include "Actions/Action.h"
+#include "Actions/UndoAction.h"
 
 #include <Windows.h>
 #include "MMSystem.h"
@@ -70,11 +71,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DEL:
 			pAct = new DeleteAction(this);
 			break;
-
-		case SELECT:
-			pAct = new SelectFigureAction(this);
-			break;
-
 		case EXIT:
 			///create ExitAction here
 			
@@ -211,6 +207,19 @@ CFigure* ApplicationManager::DeleteLastFigure()
 	return nullptr;
 }
 
+void ApplicationManager::ClearAll()
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		delete FigList[i];
+		FigList[i] = NULL;
+	}
+	FigCount = 0;
+	
+}
+
+
+
 void ApplicationManager::AddtoUndo(Action* action)
 {
 	if (action) //if there is  action done 
@@ -238,7 +247,53 @@ void ApplicationManager::RemovefromUndo()
 		UndoCount--;
 	}
 }
+Action* ApplicationManager::GetLastActiontoUndo()
+{
+	if (UndoCount > 0)  // Last action is the Undo 
+	{
+		LastAction = Undoarr[UndoCount - 1];
+		return LastAction;
+	}
+	return NULL;
+}
 
+void ApplicationManager::AddtoRedo(Action* action)
+{
+	if (action) //if there is  action to redo 
+	{
+		if (RedoCount >= MaxUndoRedoCount) //if there is less than 5 actions in redoarr
+		{
+			for (int i = 0; i < MaxUndoRedoCount - 1; i++)
+			{
+				Redoarr[i] = Redoarr[i + 1];
+			}
+			RedoCount = 4;
+		}
+		Redoarr[RedoCount++] = action; //add the last action to the array
+	}
+}
+
+void ApplicationManager::RemovefromRedo()
+{
+	if (RedoCount > 0)
+	{
+		RedoCount--;
+	}
+	else
+		RedoCount = 0;
+	RedoStatus = true;
+}
+
+
+Action* ApplicationManager::GetLastFiguretoRedo()
+{
+
+	if (RedoCount > 0 && RedoStatus)
+	{
+		return Redoarr[RedoCount - 1];
+	}
+	return NULL;
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor to clean up figures

@@ -21,5 +21,6 @@ public:
 
 	//if AddRectAction is the last action delete this rectangle
 	void Undo();
+	void Redo();
 };
 #endif

@@ -38,4 +38,20 @@ void AddSquareAction::Execute()
 	const int fixedlength = 200; // fixed side length
 	Csquare* square = new Csquare(Center, fixedlength, SquareGfxInfo);
 	pManager->AddFigure(square);
+
+	//Add the action to Undo list
+	pManager->AddtoUndo(this);
+
+}
+void AddSquareAction::Undo()
+{
+	pManager->AddtoRedo(this);
+	DeletedFigure = pManager->DeleteLastFigure();
+	pManager->RemovefromUndo();
+}
+void AddSquareAction::Redo()
+{
+	pManager->AddFigure(DeletedFigure);
+	pManager->AddtoUndo(this);
+	pManager->RemovefromRedo();
 }
