@@ -6,9 +6,10 @@ CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
     radius = R;
 }
 
-CCircle::CCircle()
-{
+CFigure* CCircle::Clone() const {
+    return new CCircle(*this); // Calls the copy constructor to create an identical copy
 }
+
 
 void CCircle::Draw(Output* pOut) const {
     pOut->DrawCircle(center, radius, FigGfxInfo, Selected);
