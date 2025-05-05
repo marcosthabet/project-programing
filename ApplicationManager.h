@@ -70,9 +70,10 @@ public:
 	void UnSelect(); // Clear all selected figures
 	void PrintTotalInfo() const; // Print total info (e.g., figure count)
 	void PrintSelectedInfo() const; // Print info about selected figures
+	void SetLastSelected(CFigure* pFig); // Set the last selected figure
+	CFigure* GetLastSelected() const; // Get the last selected figure
 
-	void Delete(CFigure* pFig); // Deletes a specific figure
-	CFigure* DeleteLastFigure(); // Deletes last figure from figlist
+
 
 
 	// -- CLRALL functions
@@ -86,13 +87,8 @@ public:
 	//--REDO 
 	void AddtoRedo(Action* action); // Adds action to redoarr
 	void RemovefromRedo(); // Removes action from redoarr
-	Action* GetLastFiguretoRedo(); // Returns last action in redoarr
-
-
-	//redo functions
-	void AddtoRedo(Action* action);         //adds action to redoarr
-	void RemovefromRedo();                  //removes action from redoarr
-	Action* GetLastActiontoRedo();          //returns last action in redoarr
+	
+	Action* GetLastActiontoRedo();// Returns last action in redoarr
 
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
