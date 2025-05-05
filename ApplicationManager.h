@@ -6,6 +6,7 @@
 #include "Figures\CFigure.h"
 #include "GUI\input.h"
 #include "GUI\output.h"
+#include "Actions\Action.h"
 #include"Figures/CRectangle.h"
 #include"Figures/CCircle.h"
 #include"Figures/CHexagon.h"
@@ -17,6 +18,8 @@ class ApplicationManager
 {
 	enum { MaxFigCount = 200 };	//Max no of figures
 	enum { MaxUndoRedoCount = 5 }; //Max no to undo/redo actions
+	enum { MaxSelectedCount = 50 };//max no of selected figures
+
 
 private:
 	int FigCount;		//Actual number of figures
@@ -30,9 +33,12 @@ private:
 
 	CFigure* SelectedFig; //Pointer to the selected figure
 
+	Action* Undoarr[5];
+=======
 	Action* Undoarr[5]; //list of all actions to undo
 	Action* Redoarr[5]; //list of all actions to redo
 	Action* LastAction; //pointer to the last action done
+>>>>>>> 210a51b88af9d663c4903ff12d4df8035e2b16dd
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -51,8 +57,6 @@ public:
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
-	
-	// -- DEL functions
 	void Delete(CFigure* pFig);             //Deletes the selected -if any- firure
 	CFigure* DeleteLastFigure();                //deletes last figure from figlist 
 	
@@ -62,13 +66,9 @@ public:
 	// -- UNDO functions
 	void AddtoUndo(Action* action);         //adds action to undoarr
 	void RemovefromUndo();                  //removes action from undoarr 
-	Action* GetLastActiontoUndo();          //returns last action in undoarr
-	
-	// -- REDO functions
-	void AddtoRedo(Action* action);         //adds action to redoarr
-	void RemovefromRedo();                  //removes action from redoarr
-	Action* GetLastFiguretoRedo();         //returns last action in redoarr
-   
+<<<<<<< HEAD
+	Action* GetLastActiontoUndo();          //returns last action in redoarr
+	void ClearUndoList();
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

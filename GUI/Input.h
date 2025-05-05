@@ -11,6 +11,7 @@ class Input		//The application manager should have a pointer to this class
 {
 private:
 	window *pWind;	//Pointer to the Graphics Window
+	static bool selectmode; 
 
 public:
 	Input(window *pW);		//Consturctor
@@ -18,6 +19,7 @@ public:
 	string GetSrting(Output* pO) const ;	 //Returns a string entered by the user
 
 	ActionType GetUserAction() const; //Read the user click and map to an action
+	void ResetSelectMode() { selectmode = false; } //reset select mode to false
 
 	~Input();
 };

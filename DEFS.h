@@ -23,7 +23,8 @@ enum ActionType //The actions supported (you can add more if needed)
 	LOAD,	        //load a saved file
 	ROTATE,		    //Rotate a figure
 	CLRALL,	        //clear all figures 
-	SELECT,		    //Select a figure
+	SELECT,		    //Select icon in toolbar
+	SELECT_FIGURE,	//Select a figure on the draw area
 	EXIT,			//Exit
 	TO_DRAW,		//Switch interface to Draw mode
 	TO_PLAY,		//Switch interface to Play mode
