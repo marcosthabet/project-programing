@@ -1,10 +1,21 @@
 #include "CTriangle.h"
 #include <cmath>
+#include <fstream>
 
 CTriangle::CTriangle(Point p1, Point p2, Point p3, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
 	point1 = p1;
 	point2 = p2;
 	point3 = p3;
+}
+
+CTriangle::CTriangle()
+{
+	Type = "Triangle";
+}
+
+string CTriangle::getType()
+{
+	return Type;
 }
 
 void CTriangle::Draw(Output* pOut) const {
@@ -47,4 +58,12 @@ string CTriangle::GetFigureInfo() const {
 		", " + to_string(point2.y) +
 		"), Point3 = (" + to_string(point3.x) +
 		", " + to_string(point3.y) + ")";
+}
+
+void CTriangle::Load(ifstream& Infile)
+{
+	Infile >> ID >> point1.x >> point1.y >> point2.x >> point2.y >> point3.x >> point3.y >> DrawColor >> FillColor;
+
+	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
+	FigGfxInfo.FillClr = stringtoclr(FillColor);
 }

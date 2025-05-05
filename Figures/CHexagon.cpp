@@ -1,8 +1,13 @@
 #include "CHexagon.h"
+#include <fstream>
 
 CHexagon::CHexagon(Point c, GfxInfo FigureGfxInfo) :
 	CFigure(FigureGfxInfo) {
 	center = c;
+}
+CHexagon::CHexagon()
+{
+	Type = "Hexagon";
 }
 void CHexagon::Draw(Output* pOut) const {
 	pOut->DrawHexagon(center, FigGfxInfo, Selected);
@@ -29,4 +34,16 @@ string CHexagon::GetFigureInfo() const {
 	return "Hexagon: ID = " + to_string(ID) +
 		", Center = (" + to_string(center.x) +
 		", " + to_string(center.y) + ")";
+}
+
+string CHexagon::getType()
+{
+	return Type;
+}
+
+void CHexagon::Load(ifstream& Infile)  
+{  
+   Infile >> ID >> center.x >> center.y >> DrawColor >> FillColor;  
+   FigGfxInfo.DrawClr = stringtoclr(DrawColor);  
+   FigGfxInfo.FillClr = stringtoclr(FillColor);  
 }

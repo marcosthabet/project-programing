@@ -10,10 +10,15 @@ private:
 	Point center;
 public:
 	CHexagon(Point, GfxInfo FigureGfxInfo);
+	CHexagon();
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsPointInside(int x, int y) const;
 	virtual void PrintInfo(Output* pOut) const;
 	virtual string GetFigureInfo() const;
+	virtual CFigure* Clone() const = 0;
+	string getType();
+	virtual void Load(ifstream& Infile);
+
 };
 #endif
 
