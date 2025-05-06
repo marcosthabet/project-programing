@@ -304,6 +304,11 @@ CFigure* ApplicationManager::DeleteLastFigure()
 	return nullptr;
 }
 
+int ApplicationManager::Get_FigCount() const
+{
+	return FigCount;
+}
+
 void ApplicationManager::ClearAll()
 {
 	for (int i = 0; i < FigCount; i++)
