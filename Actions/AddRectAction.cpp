@@ -43,15 +43,19 @@ void AddRectAction::ReadActionParameters()
 	//ask user for draw color
 	pOut->PrintMessage("Select a draw color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
 	RectGfxInfo.DrawClr = pIn->GetUserColor();
+	pOut->setCrntDrawColor(RectGfxInfo.DrawClr);
+
 	//check if fill toggle is on
 	RectGfxInfo.isFilled = UI.IsFilled;
 	//if filled, ask user for fill color
 	if (RectGfxInfo.isFilled) {
 		pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
 		RectGfxInfo.FillClr = pIn->GetUserColor();
+		pOut->setCrntFillColor(RectGfxInfo.FillClr);
 	}
 	else {
 		RectGfxInfo.FillClr = RectGfxInfo.DrawClr; // Default to draw color if not filled
+		pOut->setCrntFillColor(RectGfxInfo.FillClr);
 	}
 	RectGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 	pOut->ClearStatusBar();
@@ -69,6 +73,7 @@ void AddRectAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+	R->SetSelected(false);
 	//Add the action to Undo list
 	pManager->AddtoUndo(this);
 

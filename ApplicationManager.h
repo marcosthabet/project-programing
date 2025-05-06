@@ -33,7 +33,6 @@ private:
 
 
 	CFigure* SelectedFigsArr[MaxSelectedCount]; //array of selected figures
-	
 	int SelectedCount;
 
 
@@ -70,10 +69,9 @@ public:
 	void UnSelect(); // Clear all selected figures
 	void PrintTotalInfo() const; // Print total info (e.g., figure count)
 	void PrintSelectedInfo() const; // Print info about selected figures
-	void SetLastSelected(CFigure* pFig); // Set the last selected figure
-	CFigure* GetLastSelected() const; // Get the last selected figure
+	
 
-
+	int Get_FigCount() const;               //Returns the number of figures
 
 	// -- SAVE functions
 	void SaveAll(ofstream& File); // Saves all figures to a file
@@ -88,7 +86,7 @@ public:
 	void RemovefromUndo();                  //removes action from undoarr 
 	Action* GetLastActiontoUndo();          //returns last action in redoarr
 
-	//redo functions
+	// -- REDO functions
 	void AddtoRedo(Action* action);         //adds action to redoarr
 	void RemovefromRedo();                  //removes action from redoarr
 	Action* GetLastActiontoRedo();          //returns last action in redoarr

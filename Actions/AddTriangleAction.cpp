@@ -41,17 +41,22 @@ void AddTriangleAction::ReadActionParameters() {
 	//ask user for draw color
 	pOut->PrintMessage("Select a draw color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
 	TriangleGfxInfo.DrawClr = pIn->GetUserColor();
+	pOut->setCrntDrawColor(TriangleGfxInfo.DrawClr);
+
 
 	//check if fill toggle is on
 	TriangleGfxInfo.isFilled = UI.IsFilled;
+
 
 	//if filled, ask user for fill color
 	if (TriangleGfxInfo.isFilled) {
 		pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
 		TriangleGfxInfo.FillClr = pIn->GetUserColor();
+		pOut->setCrntFillColor(TriangleGfxInfo.FillClr);
 	}
 	else {
 		TriangleGfxInfo.FillClr = TriangleGfxInfo.DrawClr; //default to draw color if not filled
+		pOut->setCrntFillColor(TriangleGfxInfo.FillClr);
 	}
 
 	TriangleGfxInfo.BorderWdth = pOut->getCrntPenWidth();
@@ -62,6 +67,7 @@ void AddTriangleAction::Execute() {
 	ReadActionParameters();
 	CTriangle* triangle = new CTriangle(point1, point2, point3, TriangleGfxInfo);
 	pManager->AddFigure(triangle);
+	triangle->SetSelected(false);
 
 	//Add the action to Undo list
 	pManager->AddtoUndo(this);
