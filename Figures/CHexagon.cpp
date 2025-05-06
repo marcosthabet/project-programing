@@ -45,18 +45,18 @@ string CHexagon::GetFigureInfo() const {
 		", " + to_string(center.y) + ")";
 }
 
-void CHexagon::Save(ofstream& File)
+void CHexagon::Save(ofstream& OutFile)
 {
-	File << "Hexagon" << "\t" << ID << "\t";
-	File << center.x << "\t" << center.y << "\t";
-	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	OutFile << "Hexagon" << "\t" << ID << "\t";
+	OutFile << center.x << "\t" << center.y << "\t";
+	OutFile << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
 	if (FigGfxInfo.isFilled)
 	{
-		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+		OutFile << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
 	}
 	else
 	{
-		File << "NoFill" << "\t";
+		OutFile << "NoFill" << "\t";
 	}
 }
 
@@ -72,3 +72,20 @@ void CHexagon::Load(ifstream& Infile)
    FigGfxInfo.DrawClr = stringtoclr(DrawColor);  
    FigGfxInfo.FillClr = stringtoclr(FillColor);  
 }
+
+Point CHexagon::GetCenter() const
+{
+	return center;
+}
+
+void CHexagon::SetPosition(int x, int y)
+{
+	center.x = x;
+	center.y = y;
+}
+
+void CHexagon::Rotate()
+{
+}
+
+

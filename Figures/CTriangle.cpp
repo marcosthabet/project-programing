@@ -67,21 +67,47 @@ string CTriangle::GetFigureInfo() const {
 		", " + to_string(point3.y) + ")";
 }
 
-void CTriangle::Save(ofstream& File)
+void CTriangle::Save(ofstream& OutFile)
 {
-	File << "Triangle" << "\t" << ID << "\t";
-	File << point1.x << "\t" << point1.y << "\t";
-	File << point2.x << "\t" << point2.y << "\t";
-	File << point3.x << "\t" << point3.y << "\t";
-	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	OutFile << "Triangle" << "\t" << ID << "\t";
+	OutFile << point1.x << "\t" << point1.y << "\t";
+	OutFile << point2.x << "\t" << point2.y << "\t";
+	OutFile << point3.x << "\t" << point3.y << "\t";
+	OutFile << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
 	if (FigGfxInfo.isFilled)
 	{
-		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+		OutFile << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
 	}
 	else
 	{
-		File << "NoFill" << "\t";
+		OutFile << "NoFill" << "\t";
 	}
+}
+
+void CTriangle::SetPosition(int x, int y)
+{
+	point1.x += x;
+	point1.y += y;
+	point2.x += x;
+	point2.y += y;
+	point3.x += x;
+	point3.y += y;
+}
+
+Point CTriangle::GetCenter() const
+{
+	Point center;
+	center.x = (point1.x + point2.x + point3.x) / 3;
+	center.y = (point1.y + point2.y + point3.y) / 3;
+	return center;
+}
+
+void CTriangle::Rotate()
+{
+	Point temp = point1;
+	point1 = point2;
+	point2 = point3;
+	point3 = temp;
 }
 
 

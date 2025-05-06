@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CFIGURE_H
 #define CFIGURE_H
 
@@ -18,7 +19,7 @@ protected:
 
 public:
 	CFigure(GfxInfo FigureGfxInfo);
-	CFigure();
+	CFigure(); //default constructor
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 	void SetID(int id); //set the ID of the figure
