@@ -190,7 +190,7 @@
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
-    <ClCompile Include="Actions\SwitchTODrawAction.cpp" />
+    <ClCompile Include="Actions\SwitchToDrawAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircleAction.h" />
@@ -241,7 +241,7 @@
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\RedoAction.h" />
     <ClInclude Include="Actions\SwitchToPlayAction.h" />
-    <ClInclude Include="Actions\SwitchTODrawAction.h" />
+    <ClInclude Include="Actions\SwitchToDrawAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
