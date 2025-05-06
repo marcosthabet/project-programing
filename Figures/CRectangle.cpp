@@ -1,4 +1,4 @@
-#pragma once
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -88,4 +88,36 @@ void CRectangle::Load(ifstream& Infile)
 	Infile >> ID >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y >> DrawColor >> FillColor;
 	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
 	FigGfxInfo.FillClr = stringtoclr(FillColor);
+}
+
+
+Point CRectangle::GetCenter() const
+{
+	// Return the center point of the rectangle (average of corners)
+	return Point{ (Corner1.x + Corner2.x) / 2, (Corner1.y + Corner2.y) / 2 };
+}
+
+void CRectangle::SetPosition(int x, int y)
+{
+	// Move the rectangle by adjusting both corners (simplified)
+	int dx = x - GetCenter().x;
+	int dy = y - GetCenter().y;
+	Corner1.x += dx;
+	Corner1.y += dy;
+	Corner2.x += dx;
+	Corner2.y += dy;
+}
+
+void CRectangle::Rotate()
+{
+	// Dummy rotation (e.g., swap corners, no actual rotation logic yet)
+	Point temp = Corner1;
+	Corner1 = Corner2;
+	Corner2 = temp;
+}
+
+void CRectangle::Save(ofstream& OutFile)
+{
+	// Use SaveAll logic for now
+	SaveAll(OutFile);
 }
