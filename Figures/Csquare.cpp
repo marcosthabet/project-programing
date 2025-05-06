@@ -55,7 +55,7 @@ string Csquare::GetFigureInfo() const {
 		"), Length = " + to_string(length);
 }
 
-void Csquare::SaveAll(ofstream& File)
+void Csquare::Save(ofstream& File)
 {
 	File << "Square" << "\t" << ID << "\t";
 	File << center.x << "\t" << center.y << "\t";

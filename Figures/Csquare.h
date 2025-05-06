@@ -19,7 +19,7 @@ public:
 	virtual void PrintInfo(Output* pOut) const;
 	virtual string GetFigureInfo() const;
 
-	void SaveAll(ofstream& File);
+	void Save(ofstream& File);
 	
 	virtual void Load(ifstream& Infile) ;
 };

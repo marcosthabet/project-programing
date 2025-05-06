@@ -16,9 +16,8 @@ public:
 	virtual void PrintInfo(Output* pOut) const;
 	virtual string GetFigureInfo() const;
 
-	void SaveAll(ofstream& File);
-	virtual CFigure* Clone() const=0;
-	
+	void Save(ofstream& File);
+
 
 	string getType();
 	virtual void Load(ifstream& Infile);
