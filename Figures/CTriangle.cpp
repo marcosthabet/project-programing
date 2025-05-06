@@ -7,7 +7,6 @@
 #include "..\ApplicationManager.h"
 #include "..\Figures/CFigure.h"
 #include "..\ColorFiles.h"
-#include <fstream>
 
 
 CTriangle::CTriangle(Point p1, Point p2, Point p3, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
