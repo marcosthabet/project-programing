@@ -14,8 +14,21 @@ CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
     radius = R;
 }
 
+void CCircle::Move(int x, int y)
+{
+	Center.x = x;
+	Center.y = y;
+	OuterPoint.x = x + Radius;
+	OuterPoint.y = y;
+	FitInsideDrawArea();
+}
+
 CCircle::CCircle()
 {
+	Type = "Circle";}
+CFigure* CCircle::Clone() const 
+{
+    return new CCircle(*this); 
 	Type = "Circle";
 }
 
@@ -93,4 +106,12 @@ void CCircle::Save(ofstream& OutFile)
 		OutFile << "NoFill" << "\t";
 	}
 	
+}
+void CCircle::MoveFigure(int x, int y)
+{
+	Center.x = x;
+	Center.y = y;
+	OuterPoint.x = x + Radius;
+	OuterPoint.y = y;
+	FitInsideDrawArea();
 }

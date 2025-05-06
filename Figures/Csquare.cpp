@@ -8,7 +8,7 @@
 #include "..\Figures/CFigure.h"
 #include "..\ColorFiles.h"
 #include <fstream>
-
+#include "..\GUI\Output.h"
 //constructor 
 Csquare::Csquare(Point p, int l, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
 	center = p;
@@ -19,6 +19,12 @@ Csquare::Csquare()
 {
 	Type = "Square";
 }
+
+CFigure* Csquare::Clone() const
+{
+	return new Csquare(*this);
+}
+
 
 string Csquare::getType()
 {
@@ -64,8 +70,7 @@ Point Csquare::GetCenter() const {
 	return center;
 }
 void Csquare::Rotate() {
-	// Rotation logic for square (if needed)
-	// For a square, rotation doesn't change its shape or position
+
 }
 
 void Csquare::Save(ofstream& OutFile)

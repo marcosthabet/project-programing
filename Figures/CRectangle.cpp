@@ -25,6 +25,11 @@ CRectangle::CRectangle()
 	Type = "Rectangle";
 }
 
+CFigure* CRectangle::Clone() const
+{
+	return new CRectangle(*this);
+}
+
 string CRectangle::getType()
 {
 	return Type;

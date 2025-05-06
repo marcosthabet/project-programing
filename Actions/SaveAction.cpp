@@ -22,7 +22,7 @@ void SaveAction::ReadActionParameters()
 
 	// Get the filename from the user
 	pOut->PrintMessage("Enter the filename:");
-	FileName = pIn->GetFileName(pOut) + ".txt";
+	FileName = pIn->GetFileName(pOut);          // Get the filename from the user
 
 }
 

@@ -427,7 +427,9 @@ Action* ApplicationManager::GetLastActiontoRedo()
 	return NULL;
 }
 
-
+CFigure* ApplicationManager::GetClipboard() const {
+	return Clipboard;
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor to clean up figures
 ApplicationManager::~ApplicationManager()
@@ -457,4 +459,101 @@ CFigure* ApplicationManager::GetFigure(int index) const
 		return FigList[index];
 	}
 	return nullptr;
+}
+CFigure* ApplicationManager::GetFigureByID(int ID)const
+{
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if (FigList[i]->GetID() == ID)
+			return FigList[i];
+	}
+	return NULL;
+}
+
+int ApplicationManager::GetCutFigureID() {
+	return CutFigureID;
+}
+
+void ApplicationManager::SetCutFigureID(int i) {
+	CutFigureID = i;
+}
+
+void ApplicationManager::UpdateFigureData()
+{
+	SelectedRects = 0, SelectedSqrs = 0, SelectedHexes = 0, SelectedTris = 0, SelectedCircs = 0;
+	NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0; SelectedFigCount = 0;
+	SelectedFigure = NULL;
+
+	//Reset all figure numbers and count them again
+
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i] != NULL)
+		{
+			switch (FigList[i]->GetFigType())
+			{
+			case HEXAGON:
+				NumOfHex++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedHexes++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case CIRCLE:
+				NumOfCirc++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedCircs++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case TRIANGLE:
+				NumOfTri++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedTris++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case SQUARE:
+				NumOfSqr++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedSqrs++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case RECTANGLE:
+				NumOfRect++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedRects++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			}
+		}
+	}
+}
+
+// Clipboard functions
+void ApplicationManager::SetClipboard(CFigure* CF) {
+	Clipboard = CF;
+}
+
+void ApplicationManager::ClearClipboard() 
+{
+	delete Clipboard;
+	Clipboard = NULL;
+	CutFigureID = -1;//sets cutfigure ID by a value that cannot equal any ID
+}
+
+CFigure* ApplicationManager::GetClipboard() {
+	return Clipboard;
 }

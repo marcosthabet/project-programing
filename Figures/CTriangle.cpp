@@ -1,4 +1,5 @@
 #include <fstream>
+#include "..\GUI\Output.h"
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -27,6 +28,10 @@ string CTriangle::getType()
 
 void CTriangle::Draw(Output* pOut) const {
 	pOut->DrawTriangle(point1, point2, point3, FigGfxInfo, Selected);
+}
+CFigure* CTriangle::Clone() const
+{
+	return new CTriangle(*this);
 }
 
 bool CTriangle::IsPointInside(int x, int y) const { //p
@@ -86,12 +91,21 @@ void CTriangle::Save(ofstream& OutFile)
 
 void CTriangle::SetPosition(int x, int y)
 {
-	point1.x += x;
-	point1.y += y;
-	point2.x += x;
-	point2.y += y;
-	point3.x += x;
-	point3.y += y;
+	// Calculate the center of the triangle
+	int cx = (point1.x + point2.x + point3.x) / 3;
+	int cy = (point1.y + point2.y + point3.y) / 3;
+
+	// Move the triangle to the new position
+	int dx = x - cx;
+	int dy = y - cy;
+
+	// Update the points of the triangle
+	point1.x += dx;
+	point1.y += dy;
+	point2.x += dx;
+	point2.y += dy;
+	point3.x += dx;
+	point3.y += dy;
 }
 
 Point CTriangle::GetCenter() const
@@ -102,12 +116,24 @@ Point CTriangle::GetCenter() const
 	return center;
 }
 
+Point Rotate90(Point P, Point C) {
+	int dx = P.x - C.x;
+	int dy = P.y - C.y;
+	///*P.x = C.x + (dx * cos(90) - dy * sin(90));
+	/*P.y = C.y + (dx * sin(90) + dy * cos(90));*/
+	P.x = C.x + dy;
+	P.y = C.y + dx;
+	return P;
+}
 void CTriangle::Rotate()
 {
-	Point temp = point1;
-	point1 = point2;
-	point2 = point3;
-	point3 = temp;
+	Point center;
+	center.x = (point1.x + point2.x + point3.x) / 3;
+	center.y = (point1.y + point2.y + point3.y) / 3;
+	// Rotate each point around the center
+	point1 = Rotate90(point1, center);
+	point2 = Rotate90(point2, center);
+	point3 = Rotate90(point3, center);
 }
 
 

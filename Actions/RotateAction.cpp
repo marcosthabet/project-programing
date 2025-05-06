@@ -29,10 +29,17 @@ void RotateAction::Execute()
 		return;
 	}
 
+	if (dynamic_cast<CCircle*>(selectedFig) || dynamic_cast<CHexagon*>(selectedFig) || dynamic_cast<Csquare*>(selectedFig))
+	{
+		pOut->PrintMessage("Rotation has no effect on this figure!");
+		return;
+	}
+
 	// Rotate the selected figure
 		selectedFig->Rotate();
 	
-	pManager->UpdateInterface();
+	pManager->Delete(selectedFig);
+	pManager->AddFigure(selectedFig);
 	pOut->PrintMessage("The selected figures have been rotated!!");
 }
 

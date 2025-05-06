@@ -3,8 +3,7 @@
 #define CFIGURE_H
 
 #include "..\defs.h"
-#include "..\GUI\Output.h"
-
+class Output;
 //Base class for all figures
 class CFigure
 {
@@ -23,15 +22,20 @@ public:
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 	void SetID(int id); //set the ID of the figure
+	int GetID();
 
 	virtual void Draw(Output* pOut) const = 0;		//Draw the figure
 	color stringtoclr(string);
+	color GetDrawClr();
+	color GetFillClr();
 
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
+	void UnFill();
 
 	//SELECT FIGURE STUFF
 	virtual bool IsPointInside(int x, int y) const = 0; //check if a point is inside the figure
+	bool IsFilled();
 	virtual void PrintInfo(Output* pOut) const = 0;     //print all figure info on the status bar
 	virtual string GetFigureInfo() const = 0;           //getting figure info back as a string               
 
@@ -41,6 +45,8 @@ public:
 	virtual void Rotate() = 0; //rotate the figure
 
 	virtual void Save(ofstream& OutFile) = 0;	//Save the figure parameters to the file
+
+	virtual FigureType GetFigType() const = 0; //Returns  figure type
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure

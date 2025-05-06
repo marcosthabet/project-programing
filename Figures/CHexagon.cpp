@@ -8,7 +8,7 @@
 #include "..\Figures/CFigure.h"
 #include "..\ColorFiles.h"
 #include <fstream>
-
+#include "..\GUI\Output.h"
 CHexagon::CHexagon(Point c, GfxInfo FigureGfxInfo) :
 	CFigure(FigureGfxInfo) {
 	center = c;
@@ -16,6 +16,11 @@ CHexagon::CHexagon(Point c, GfxInfo FigureGfxInfo) :
 CHexagon::CHexagon()
 {
 	Type = "Hexagon";
+}
+
+CFigure* CHexagon::Clone() const
+{
+	return new CHexagon(*this);
 }
 
 void CHexagon::Draw(Output* pOut) const {
