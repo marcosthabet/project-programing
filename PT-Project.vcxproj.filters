@@ -181,6 +181,12 @@
     <ClCompile Include="Actions\RotateAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="ColorFiles.cpp" />
+    <ClCompile Include="Actions\SwapAction.cpp" />
+    <ClCompile Include="Actions\RotateAction.cpp" />
+    <ClCompile Include="Actions\SaveAction.cpp" />
+    <ClCompile Include="Actions\Copy.cpp" />
+    <ClCompile Include="Actions\Cut.cpp" />
+    <ClCompile Include="Actions\Paste.cpp" />
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
     <ClCompile Include="Actions\SwitchToDrawAction.cpp" />
@@ -300,6 +306,12 @@
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\SelectFigureAction.h" />
     <ClInclude Include="Actions\ClearAction.h" />
+    <ClInclude Include="Actions\SwapAction.h" />
+    <ClInclude Include="Actions\RotateAction.h" />
+    <ClInclude Include="Actions\SaveAction.h" />
+    <ClInclude Include="Actions\Copy.h" />
+    <ClInclude Include="Actions\Cut.h" />
+    <ClInclude Include="Actions\Paste.h" />
     <ClInclude Include="Actions\SwapAction.h" />
     <ClInclude Include="Actions\RotateAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />

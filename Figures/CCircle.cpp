@@ -94,3 +94,11 @@ void CCircle::Save(ofstream& OutFile)
 	}
 	
 }
+void CCircle::MoveFigure(int x, int y)
+{
+	Center.x = x;
+	Center.y = y;
+	OuterPoint.x = x + Radius;
+	OuterPoint.y = y;
+	FitInsideDrawArea();
+}

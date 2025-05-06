@@ -173,6 +173,8 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
     <ClCompile Include="Actions\DeleteAction.cpp" />
     <ClCompile Include="ColorFiles.cpp" />
+    <ClCompile Include="Actions\Copy.cpp" />
+    <ClCompile Include="Actions\Cut.cpp" />
     <ClCompile Include="Figures\CCircle.cpp" />
     <ClCompile Include="Figures\CFigure.cpp" />
     <ClCompile Include="Figures\CHexagon.cpp" />
@@ -189,6 +191,7 @@
     <ClCompile Include="Actions\SwapAction.cpp" />
     <ClCompile Include="Actions\RotateAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
+    <ClCompile Include="Actions\Paste.cpp" />
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
     <ClCompile Include="Actions\SwitchToDrawAction.cpp" />
@@ -223,6 +226,8 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
     <ClInclude Include="Actions\DeleteAction.h" />
     <ClInclude Include="ColorFiles.h" />
+    <ClInclude Include="Actions\Copy.h" />
+    <ClInclude Include="Actions\Cut.h" />
     <ClInclude Include="Figures\CCircle.h" />
     <ClInclude Include="Figures\CFigure.h" />
     <ClInclude Include="Figures\CHexagon.h" />
@@ -244,6 +249,7 @@
     <ClInclude Include="Actions\RedoAction.h" />
     <ClInclude Include="Actions\SwitchToPlayAction.h" />
     <ClInclude Include="Actions\SwitchToDrawAction.h" />
+    <ClInclude Include="Actions\Paste.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

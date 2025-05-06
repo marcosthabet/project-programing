@@ -16,6 +16,10 @@ void CFigure::SetID(int id) {
 	ID = id;
 }
 
+int CFigure::GetID() {
+	return ID;
+}
+
 void CFigure::SetSelected(bool s)
 {
 	Selected = s;
@@ -28,6 +32,24 @@ void CFigure::SetSelected(bool s)
 bool CFigure::IsSelected() const
 {	return Selected; }
 
+color CFigure::GetDrawClr()
+{
+	return FigGfxInfo.DrawClr;
+}
+bool CFigure::IsFilled()
+{
+	return FigGfxInfo.isFilled;
+}
+void CFigure::UnFill()
+{
+	FigGfxInfo.isFilled = false;
+}
+color CFigure::GetFillClr()
+{
+	if (IsFilled())
+		return FigGfxInfo.FillClr;
+	return WHITE;
+}
 
 void CFigure::ChngDrawClr(color Dclr)
 {

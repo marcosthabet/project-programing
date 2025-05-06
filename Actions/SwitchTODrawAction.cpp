@@ -5,7 +5,7 @@
 #include "..\GUI\Output.h"
 
 
-SwitchToDrawAction::SwitchToDrawAction(ApplicationManager* pApp, bool muted) : Action(pApp)
+SwitchToDrawAction::SwitchToDrawAction(ApplicationManager* pApp) : Action(pApp)
 {
 }
 
