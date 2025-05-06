@@ -7,7 +7,7 @@ Output::Output()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1300;
+	UI.width = 1250;
 	UI.height = 650;
 	UI.wx = 5;
 	UI.wy =5;
@@ -180,7 +180,7 @@ color Output::getCrntDrawColor() const	//get current drawing color
 {	return UI.DrawColor;	}
 void Output::setCrntDrawColor(color newcolor)
 {
-	UI.FillColor = newcolor;
+	UI.DrawColor = newcolor;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -258,6 +258,7 @@ void Output::DrawSquare(Point center, int length, GfxInfo gfx, bool selected) co
 
 	// Draw the square as a rectangle with equal sides
 	pWind->DrawRectangle(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y, style);
+
 }
 
 

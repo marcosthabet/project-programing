@@ -92,26 +92,32 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			//colours
 		case SELECT_COLOR_BLACK:
 			UI.DrawColor = BLACK;
+			pOut->setCrntDrawColor(BLACK);
 			pOut->PrintMessage("Draw color set to Black");
 			return;
 		case SELECT_COLOR_YELLOW:
 			UI.DrawColor = YELLOW;
+			pOut->setCrntDrawColor(YELLOW);
 			pOut->PrintMessage("Draw color set to Yellow");
 			return;
 		case SELECT_COLOR_ORANGE:
 			UI.DrawColor = ORANGE;
+			pOut->setCrntDrawColor(ORANGE);
 			pOut->PrintMessage("Draw color set to Orange");
 			return;
 		case SELECT_COLOR_RED:
 			UI.DrawColor = RED;
+			pOut->setCrntDrawColor(RED);
 			pOut->PrintMessage("Draw color set to Red");
 			return;
 		case SELECT_COLOR_GREEN:
 			UI.DrawColor = GREEN;
+			pOut->setCrntDrawColor(GREEN);
 			pOut->PrintMessage("Draw color set to Green");
 			return;
 		case SELECT_COLOR_BLUE:
 			UI.DrawColor = BLUE;
+			pOut->setCrntDrawColor(BLUE);
 			pOut->PrintMessage("Draw color set to Blue");
 			return;
 		case TOGGLE_FILL:
