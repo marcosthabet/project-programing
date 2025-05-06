@@ -124,7 +124,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			UI.IsFilled = !UI.IsFilled;
 			pOut->PrintMessage(UI.IsFilled ? "Figures will be filled" : "Figures will not be filled");
 			return;
-		
+		//case SELECT_FILL_COLOR:
+		//	pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+		//	UI.FillColor = pIn->GetUserColor();
+		//	pOut->PrintMessage("Fill color set");
+		//	return;
 		case SWAP:
 			pAct = new SwapAction(this);
 			break;
