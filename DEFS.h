@@ -42,8 +42,7 @@ enum ActionType //The actions supported (you can add more if needed)
 	SELECT_COLOR_GREEN,  // Green color selection
 	SELECT_COLOR_BLUE,   // Blue color selection
 	TOGGLE_FILL,         // Toggle fill/unfill
-	SELECT_FILL_COLOR,   // Select fill color
-
+	
 	///TODO: Add the other action types of the two modes
 };
 
@@ -56,6 +55,7 @@ struct GfxInfo	//Graphical info of each figure (you may add more members)
 	color FillClr;	//Fill color of the figure
 	bool isFilled;	//Figure Filled or not
 	int BorderWdth;	//Width of figure borders
+	int CircleRadius; //radius of circle for validation
 
 };
 

@@ -2,6 +2,7 @@
 #ifndef CSQUARE_H
 #define CSQUARE_H
 #include "CFigure.h"
+#include "..\defs.h"
 
 
 class Csquare : public CFigure {
@@ -11,8 +12,14 @@ private:
 public:
 	Csquare(Point, int, GfxInfo FigureGfxInfo);
 	Csquare();
+	string getType();
 	virtual void Draw(Output* pOut) const;
 
+	virtual bool IsPointInside(int x, int y) const;
+	virtual void PrintInfo(Output* pOut) const;
+	virtual string GetFigureInfo() const;
+
+	void SaveAll(ofstream& File);
 	virtual bool IsPointInside(int x, int y) const ;
 	virtual void PrintInfo(Output* pOut) const ;
 	virtual string GetFigureInfo() const ;

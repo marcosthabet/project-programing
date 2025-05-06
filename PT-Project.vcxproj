@@ -184,6 +184,9 @@
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Actions\UndoAction.cpp" />
+    <ClCompile Include="Actions\SwapAction.cpp" />
+    <ClCompile Include="Actions\RotateAction.cpp" />
+    <ClCompile Include="Actions\SaveAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircleAction.h" />
@@ -228,6 +231,9 @@
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
+    <ClInclude Include="Actions\SwapAction.h" />
+    <ClInclude Include="Actions\RotateAction.h" />
+    <ClInclude Include="Actions\SaveAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -1,6 +1,14 @@
-#include "CTriangle.h"
-#include <cmath>
 #include <fstream>
+#include <iostream>
+#include <string>
+#include <cmath>
+#include "CTriangle.h"
+#include "..\Actions/Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures/CFigure.h"
+#include "..\ColorFiles.h"
+#include <fstream>
+
 
 CTriangle::CTriangle(Point p1, Point p2, Point p3, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
 	point1 = p1;
@@ -58,6 +66,24 @@ string CTriangle::GetFigureInfo() const {
 		", " + to_string(point2.y) +
 		"), Point3 = (" + to_string(point3.x) +
 		", " + to_string(point3.y) + ")";
+}
+
+void CTriangle::SaveAll(ofstream& File)
+{
+	File << "Triangle" << "\t" << ID << "\t";
+	File << point1.x << "\t" << point1.y << "\t";
+	File << point2.x << "\t" << point2.y << "\t";
+	File << point3.x << "\t" << point3.y << "\t";
+	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	if (FigGfxInfo.isFilled)
+	{
+		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+	}
+	else
+	{
+		File << "NoFill" << "\t";
+	}
+}
 }
 
 void CTriangle::Load(ifstream& Infile)

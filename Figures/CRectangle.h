@@ -20,6 +20,7 @@ public:
 	virtual string GetFigureInfo() const ;
 	virtual void Load(ifstream& Infile) ;
 
+	void SaveAll(ofstream& File);
 };
 
 #endif

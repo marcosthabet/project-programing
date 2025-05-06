@@ -2,6 +2,7 @@
 #ifndef CHEXAGON_H
 #define CHEXAGON_H
 #include "CFigure.h"
+#include "..\defs.h"
 
 
 class CHexagon : public CFigure

@@ -46,7 +46,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_GREEN,      // Green color selection
 	ITM_BLUE,       // Blue color selection
 	ITM_FILL,       // Toggle fill/unfill
-	ITM_FILL_COLOR, // Select fill color
+	
 
 	//TODO: Add more items names here
 
@@ -95,6 +95,9 @@ struct UI_Info	//User Interface Info.
 	color StatusBarColor;	//Status bar color
 	bool IsFilled;		//is the shape filled?
 	int PenWidth;			//width of the pen that draws shapes
+
+	const int HEXAGON_LENGTH = 130; 
+	const int SQUARE_LENGTH = 200;
 
 	/// Add more members if needed
 	

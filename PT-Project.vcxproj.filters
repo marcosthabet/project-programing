@@ -293,6 +293,7 @@
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\SelectFigureAction.h" />
     <ClInclude Include="Actions\ClearAction.h" />
+    <ClInclude Include="Actions\Copy.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

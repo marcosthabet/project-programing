@@ -7,16 +7,16 @@ Output::Output()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1500;
+	UI.width = 1300;
 	UI.height = 650;
 	UI.wx = 5;
 	UI.wy =5;
 
 	
 	UI.StatusBarHeight = 50;
-	UI.ToolBarHeight = 50;
+	UI.ToolBarHeight = 55;
 	UI.LineUnderTBWidth = 2;
-	UI.MenuItemWidth = 60;
+	UI.MenuItemWidth = 46;
 	
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
@@ -114,7 +114,7 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_GREEN] = "images\\MenuItems\\Menu_Green.jpg";
 	MenuItemImages[ITM_BLUE] = "images\\MenuItems\\Menu_Blue.jpg";
 	MenuItemImages[ITM_FILL] = "images\\MenuItems\\Menu_Fill.jpg";
-	MenuItemImages[ITM_FILL_COLOR] = "images\\MenuItems\\Menu_FillColor.jpg";
+	
 
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 

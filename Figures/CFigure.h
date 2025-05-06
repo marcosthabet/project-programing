@@ -34,6 +34,12 @@ public:
 	virtual void PrintInfo(Output* pOut) const = 0;     //print all figure info on the status bar
 	virtual string GetFigureInfo() const = 0;           //getting figure info back as a string               
 
+	virtual Point GetCenter() const = 0; //get the center of the figure
+	virtual void SetPosition(int x, int y) = 0; //set the position of the figure
+
+	virtual void Rotate() = 0; //rotate the figure
+
+	virtual void Save(ofstream& OutFile) = 0;	//Save the figure parameters to the file
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure

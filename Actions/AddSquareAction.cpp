@@ -24,10 +24,23 @@ void AddSquareAction::ReadActionParameters()
 	pOut->PrintMessage("New Square: Click at center point");
 	pIn->GetPointClicked(Center.x, Center.y);
 
-	SquareGfxInfo.DrawClr = UI.DrawColor;
-	SquareGfxInfo.FillClr = UI.FillColor;
+	//for validation
+	pIn->Square_Validation(Center, pOut);
+
+	//ask user for draw color
+	pOut->PrintMessage("Select a draw color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+	SquareGfxInfo.DrawClr = pIn->GetUserColor();
+	//check if fill toggle is on
 	SquareGfxInfo.isFilled = UI.IsFilled;
-	SquareGfxInfo.BorderWdth = UI.PenWidth;
+	//if filled, ask user for fill color
+	if (SquareGfxInfo.isFilled) {
+		pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+		SquareGfxInfo.FillClr = pIn->GetUserColor();
+	}
+	else {
+		SquareGfxInfo.FillClr = SquareGfxInfo.DrawClr; // Default to draw color if not filled
+	}
+	SquareGfxInfo.BorderWdth = pOut->getCrntPenWidth();
 
 	pOut->ClearStatusBar();
 }
