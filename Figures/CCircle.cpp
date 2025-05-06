@@ -1,6 +1,14 @@
-#include "CCircle.h"
+#include <fstream>
+#include <iostream>
+#include <string>
 #include <cmath>
 #include <fstream>
+#include "CCircle.h"
+#include "..\Actions/Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures/CFigure.h"
+#include "..\ColorFiles.h"
+
 CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
     center = C;
     radius = R;
@@ -21,6 +29,7 @@ CCircle::CCircle()
 CFigure* CCircle::Clone() const 
 {
     return new CCircle(*this); 
+	Type = "Circle";
 }
 
 
@@ -63,4 +72,46 @@ void CCircle:: Load(ifstream& Infile)
 
 	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
 	FigGfxInfo.FillClr = stringtoclr(FillColor);
+}
+
+Point CCircle::GetCenter() const
+{
+	return center;
+}
+
+void CCircle::SetPosition(int x, int y)
+{
+	center.x = x;
+	center.y = y;
+}
+
+void CCircle::Rotate()
+{
+}
+
+
+void CCircle::Save(ofstream& OutFile)
+{
+	OutFile << "Circle" << "\t" << ID << "\t";
+	OutFile << center.x << "\t" << center.y << "\t";
+	OutFile << radius << "\t";
+	OutFile << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+
+	if (FigGfxInfo.isFilled)
+	{
+		OutFile << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+	}
+	else
+	{
+		OutFile << "NoFill" << "\t";
+	}
+	
+}
+void CCircle::MoveFigure(int x, int y)
+{
+	Center.x = x;
+	Center.y = y;
+	OuterPoint.x = x + Radius;
+	OuterPoint.y = y;
+	FitInsideDrawArea();
 }

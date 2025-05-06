@@ -7,6 +7,6 @@ class Paste :
 public:
     Paste(ApplicationManager* pAap);
     virtual void ReadActionParameter();
-    virtual void Execute();
+	virtual void Execute();
 };
 

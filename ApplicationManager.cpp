@@ -1,4 +1,25 @@
 #include "ApplicationManager.h"
+#include "Figures/CFigure.h"
+#include "GUI/Input.h"
+#include "GUI/Output.h"
+#include "Actions/Action.h"
+#include "Actions/AddRectAction.h"
+#include "Actions/AddSquareAction.h"
+#include "Actions/AddTriangleAction.h"
+#include "Actions/AddHexagonAction.h"
+#include "Actions/AddCircleAction.h"
+#include "Actions/DeleteAction.h"
+#include "Actions/LoadAction.h"
+#include "Actions/RotateAction.h"
+#include "Actions/SelectFigureAction.h"
+#include "Actions/SwapAction.h"
+#include "Actions/UndoAction.h"
+#include "Actions/SaveAction.h"
+#include "Actions/LoadAction.h"
+#include "Actions/ExitAction.h"
+#include "Actions/SwitchToPlayAction.h"
+#include "Actions/SwitchToDrawAction.h"
+#include "Actions/RedoAction.h"
 
 
 #include <Windows.h>
@@ -76,42 +97,66 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			//colours
 		case SELECT_COLOR_BLACK:
 			UI.DrawColor = BLACK;
+			pOut->setCrntDrawColor(BLACK);
 			pOut->PrintMessage("Draw color set to Black");
 			return;
 		case SELECT_COLOR_YELLOW:
 			UI.DrawColor = YELLOW;
+			pOut->setCrntDrawColor(YELLOW);
 			pOut->PrintMessage("Draw color set to Yellow");
 			return;
 		case SELECT_COLOR_ORANGE:
 			UI.DrawColor = ORANGE;
+			pOut->setCrntDrawColor(ORANGE);
 			pOut->PrintMessage("Draw color set to Orange");
 			return;
 		case SELECT_COLOR_RED:
 			UI.DrawColor = RED;
+			pOut->setCrntDrawColor(RED);
 			pOut->PrintMessage("Draw color set to Red");
 			return;
 		case SELECT_COLOR_GREEN:
 			UI.DrawColor = GREEN;
+			pOut->setCrntDrawColor(GREEN);
 			pOut->PrintMessage("Draw color set to Green");
 			return;
 		case SELECT_COLOR_BLUE:
 			UI.DrawColor = BLUE;
+			pOut->setCrntDrawColor(BLUE);
 			pOut->PrintMessage("Draw color set to Blue");
 			return;
 		case TOGGLE_FILL:
 			UI.IsFilled = !UI.IsFilled;
 			pOut->PrintMessage(UI.IsFilled ? "Figures will be filled" : "Figures will not be filled");
 			return;
-		case SELECT_FILL_COLOR:
-			pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
-			UI.FillColor = pIn->GetUserColor();
-			pOut->PrintMessage("Fill color set");
-			return;
+		//case SELECT_FILL_COLOR:
+		//	pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+		//	UI.FillColor = pIn->GetUserColor();
+		//	pOut->PrintMessage("Fill color set");
+		//	return;
+		case SWAP:
+			pAct = new SwapAction(this);
+			break;
+		case ROTATE:
+			pAct = new RotateAction(this);
+			break;
+		case SAVE:
+			pAct = new SaveAction(this);
+			break;
+		case TO_PLAY:
+			pAct = new SwitchToPlayAction(this);
+			break;
+		case REDO:
+			pAct = new SwitchToPlayAction(this);
+			break;
+		case TO_DRAW:
+			pAct = new SwitchToDrawAction(this);
+			break;
+
 
 
 		case EXIT:
-			///create ExitAction here
-			
+			pAct = new ExitAction(this);
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -279,6 +324,11 @@ CFigure* ApplicationManager::DeleteLastFigure()
 	return nullptr;
 }
 
+int ApplicationManager::Get_FigCount() const
+{
+	return FigCount;
+}
+
 void ApplicationManager::ClearAll()
 {
 	for (int i = 0; i < FigCount; i++)
@@ -288,6 +338,11 @@ void ApplicationManager::ClearAll()
 	}
 	FigCount = 0;
 	
+
+	//default draw/color mode for the shapes
+	pOut->setCrntDrawColor(BLUE);
+	pOut->setCrntFillColor(UI.BkGrndColor);
+	pOut->SetFilled(false);
 }
 
 
@@ -309,6 +364,7 @@ void ApplicationManager::AddtoUndo(Action* action)
 			UndoCount = 4;
 			Undoarr[UndoCount++] = action;
 		}
+		RedoStatus = false;
 	}
 }
 
@@ -318,7 +374,11 @@ void ApplicationManager::RemovefromUndo()
 	{
 		UndoCount--;
 	}
+	else
+		UndoCount = 0;
+	RedoStatus = true;
 }
+
 Action* ApplicationManager::GetLastActiontoUndo()
 {
 	if (UndoCount > 0)  // Last action is the Undo 
@@ -380,4 +440,119 @@ ApplicationManager::~ApplicationManager()
 	delete pOut;
 	delete Clipboard; //if not NULL
 	
+}
+
+void ApplicationManager::SaveAll(ofstream& File)
+{
+}
+
+int ApplicationManager::GetFigCount() const
+{
+	return FigCount;
+}
+
+CFigure* ApplicationManager::GetFigure(int index) const
+{
+	if (index >= 0 && index < FigCount)
+	{
+		return FigList[index];
+	}
+	return nullptr;
+}
+CFigure* ApplicationManager::GetFigureByID(int ID)const
+{
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if (FigList[i]->GetID() == ID)
+			return FigList[i];
+	}
+	return NULL;
+}
+
+int ApplicationManager::GetCutFigureID() {
+	return CutFigureID;
+}
+
+void ApplicationManager::SetCutFigureID(int i) {
+	CutFigureID = i;
+}
+
+void ApplicationManager::UpdateFigureData()
+{
+	SelectedRects = 0, SelectedSqrs = 0, SelectedHexes = 0, SelectedTris = 0, SelectedCircs = 0;
+	NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0; SelectedFigCount = 0;
+	SelectedFigure = NULL;
+
+	//Reset all figure numbers and count them again
+
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i] != NULL)
+		{
+			switch (FigList[i]->GetFigType())
+			{
+			case HEXAGON:
+				NumOfHex++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedHexes++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case CIRCLE:
+				NumOfCirc++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedCircs++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case TRIANGLE:
+				NumOfTri++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedTris++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case SQUARE:
+				NumOfSqr++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedSqrs++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case RECTANGLE:
+				NumOfRect++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedRects++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			}
+		}
+	}
+}
+
+// Clipboard functions
+void ApplicationManager::SetClipboard(CFigure* CF) {
+	Clipboard = CF;
+}
+
+void ApplicationManager::ClearClipboard() 
+{
+	delete Clipboard;
+	Clipboard = NULL;
+	CutFigureID = -1;//sets cutfigure ID by a value that cannot equal any ID
+}
+
+CFigure* ApplicationManager::GetClipboard() {
+	return Clipboard;
 }

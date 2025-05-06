@@ -1,4 +1,12 @@
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <cmath>
 #include "Csquare.h"
+#include "..\Actions/Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures/CFigure.h"
+#include "..\ColorFiles.h"
 #include <fstream>
 #include "..\GUI\Output.h"
 //constructor 
@@ -16,6 +24,7 @@ CFigure* Csquare::Clone() const
 {
 	return new Csquare(*this);
 }
+
 
 string Csquare::getType()
 {
@@ -50,6 +59,34 @@ string Csquare::GetFigureInfo() const {
 		", Center = (" + to_string(center.x) +
 		", " + to_string(center.y) +
 		"), Length = " + to_string(length);
+}
+
+void Csquare::SetPosition(int x, int y) {
+	center.x = x;
+	center.y = y;
+}
+
+Point Csquare::GetCenter() const {
+	return center;
+}
+void Csquare::Rotate() {
+
+}
+
+void Csquare::Save(ofstream& OutFile)
+{
+	OutFile << "Square" << "\t" << ID << "\t";
+	OutFile << center.x << "\t" << center.y << "\t";
+	OutFile << length << "\t";
+	OutFile << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	if (FigGfxInfo.isFilled)
+	{
+		OutFile << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+	}
+	else
+	{
+		OutFile << "NoFill" << "\t";
+	}
 }
 
 void Csquare::Load(ifstream& Infile)  

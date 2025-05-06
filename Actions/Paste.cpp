@@ -10,17 +10,21 @@
 #include "../Figures/CTriangle.h"
 
 
+Paste::Paste(ApplicationManager* pApp) :Action(pApp)
+{
+	ClipboardFigure = pManager->GetClipboard();
+}
 
 
 Paste::Paste(ApplicationManager* pApp) :Action(pApp) {}
 
 void Paste::ReadActionParameter() {  
-   Output* pOut = pManager->GetOutput();  
-   Input* pIn = pManager->GetInput();  
+	Output* pOut = pManager->GetOutput();
+	Input* pIn = pManager->GetInput();
    if (pManager->GetClipboard() == nullptr) {  
        pOut->PrintMessage("Clipboard is empty. Please copy a figure first.");  
-       return;  
-   }  
+		return;
+	}
    pOut->PrintMessage("Click paste location");  
    int x, y;  
    pIn->GetPointClicked(x, y);  

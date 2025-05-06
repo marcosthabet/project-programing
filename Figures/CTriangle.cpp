@@ -1,7 +1,15 @@
-#include "CTriangle.h"
-#include <cmath>
 #include <fstream>
 #include "..\GUI\Output.h"
+#include <iostream>
+#include <string>
+#include <cmath>
+#include "CTriangle.h"
+#include "..\Actions/Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures/CFigure.h"
+#include "..\ColorFiles.h"
+
+
 CTriangle::CTriangle(Point p1, Point p2, Point p3, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
 	point1 = p1;
 	point2 = p2;
@@ -63,6 +71,71 @@ string CTriangle::GetFigureInfo() const {
 		"), Point3 = (" + to_string(point3.x) +
 		", " + to_string(point3.y) + ")";
 }
+
+void CTriangle::Save(ofstream& OutFile)
+{
+	OutFile << "Triangle" << "\t" << ID << "\t";
+	OutFile << point1.x << "\t" << point1.y << "\t";
+	OutFile << point2.x << "\t" << point2.y << "\t";
+	OutFile << point3.x << "\t" << point3.y << "\t";
+	OutFile << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	if (FigGfxInfo.isFilled)
+	{
+		OutFile << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+	}
+	else
+	{
+		OutFile << "NoFill" << "\t";
+	}
+}
+
+void CTriangle::SetPosition(int x, int y)
+{
+	// Calculate the center of the triangle
+	int cx = (point1.x + point2.x + point3.x) / 3;
+	int cy = (point1.y + point2.y + point3.y) / 3;
+
+	// Move the triangle to the new position
+	int dx = x - cx;
+	int dy = y - cy;
+
+	// Update the points of the triangle
+	point1.x += dx;
+	point1.y += dy;
+	point2.x += dx;
+	point2.y += dy;
+	point3.x += dx;
+	point3.y += dy;
+}
+
+Point CTriangle::GetCenter() const
+{
+	Point center;
+	center.x = (point1.x + point2.x + point3.x) / 3;
+	center.y = (point1.y + point2.y + point3.y) / 3;
+	return center;
+}
+
+Point Rotate90(Point P, Point C) {
+	int dx = P.x - C.x;
+	int dy = P.y - C.y;
+	///*P.x = C.x + (dx * cos(90) - dy * sin(90));
+	/*P.y = C.y + (dx * sin(90) + dy * cos(90));*/
+	P.x = C.x + dy;
+	P.y = C.y + dx;
+	return P;
+}
+void CTriangle::Rotate()
+{
+	Point center;
+	center.x = (point1.x + point2.x + point3.x) / 3;
+	center.y = (point1.y + point2.y + point3.y) / 3;
+	// Rotate each point around the center
+	point1 = Rotate90(point1, center);
+	point2 = Rotate90(point2, center);
+	point3 = Rotate90(point3, center);
+}
+
 
 void CTriangle::Load(ifstream& Infile)
 {

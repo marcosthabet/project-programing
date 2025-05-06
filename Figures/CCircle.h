@@ -3,6 +3,8 @@
 #define CIRCLE_H
 #include "CFigure.h"
 #include"../GUI/Output.h"
+#include "..\defs.h"
+
 class CCircle : public CFigure
 {
 private:

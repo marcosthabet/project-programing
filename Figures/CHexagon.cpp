@@ -1,4 +1,12 @@
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <cmath>
 #include "CHexagon.h"
+#include "..\Actions/Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures/CFigure.h"
+#include "..\ColorFiles.h"
 #include <fstream>
 #include "..\GUI\Output.h"
 CHexagon::CHexagon(Point c, GfxInfo FigureGfxInfo) :
@@ -9,6 +17,7 @@ CHexagon::CHexagon()
 {
 	Type = "Hexagon";
 }
+
 CFigure* CHexagon::Clone() const
 {
 	return new CHexagon(*this);
@@ -41,6 +50,22 @@ string CHexagon::GetFigureInfo() const {
 		", " + to_string(center.y) + ")";
 }
 
+void CHexagon::Save(ofstream& OutFile)
+{
+	OutFile << "Hexagon" << "\t" << ID << "\t";
+	OutFile << center.x << "\t" << center.y << "\t";
+	OutFile << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	if (FigGfxInfo.isFilled)
+	{
+		OutFile << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+	}
+	else
+	{
+		OutFile << "NoFill" << "\t";
+	}
+}
+
+
 string CHexagon::getType()
 {
 	return Type;
@@ -52,3 +77,20 @@ void CHexagon::Load(ifstream& Infile)
    FigGfxInfo.DrawClr = stringtoclr(DrawColor);  
    FigGfxInfo.FillClr = stringtoclr(FillColor);  
 }
+
+Point CHexagon::GetCenter() const
+{
+	return center;
+}
+
+void CHexagon::SetPosition(int x, int y)
+{
+	center.x = x;
+	center.y = y;
+}
+
+void CHexagon::Rotate()
+{
+}
+
+

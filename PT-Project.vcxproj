@@ -133,6 +133,7 @@
     <ClCompile Include="Actions\AddSquareAction.cpp" />
     <ClCompile Include="Actions\AddTriangleAction.cpp" />
     <ClCompile Include="Actions\ClearAction.cpp" />
+    <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Actions\SelectFigureAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
@@ -171,7 +172,9 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
     <ClCompile Include="Actions\DeleteAction.cpp" />
+    <ClCompile Include="ColorFiles.cpp" />
     <ClCompile Include="Actions\Copy.cpp" />
+    <ClCompile Include="Actions\Cut.cpp" />
     <ClCompile Include="Figures\CCircle.cpp" />
     <ClCompile Include="Figures\CFigure.cpp" />
     <ClCompile Include="Figures\CHexagon.cpp" />
@@ -186,6 +189,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Actions\UndoAction.cpp" />
     <ClCompile Include="Actions\Paste.cpp" />
+    <ClCompile Include="Actions\SwapAction.cpp" />
+    <ClCompile Include="Actions\RotateAction.cpp" />
+    <ClCompile Include="Actions\SaveAction.cpp" />
+    <ClCompile Include="Actions\Paste.cpp" />
+    <ClCompile Include="Actions\RedoAction.cpp" />
+    <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
+    <ClCompile Include="Actions\SwitchToDrawAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircleAction.h" />
@@ -193,6 +203,7 @@
     <ClInclude Include="Actions\AddSquareAction.h" />
     <ClInclude Include="Actions\AddTriangleAction.h" />
     <ClInclude Include="Actions\ClearAction.h" />
+    <ClInclude Include="Actions\ExitAction.h" />
     <ClInclude Include="Actions\SelectFigureAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
@@ -215,7 +226,9 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jpeglib.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
     <ClInclude Include="Actions\DeleteAction.h" />
+    <ClInclude Include="ColorFiles.h" />
     <ClInclude Include="Actions\Copy.h" />
+    <ClInclude Include="Actions\Cut.h" />
     <ClInclude Include="Figures\CCircle.h" />
     <ClInclude Include="Figures\CFigure.h" />
     <ClInclude Include="Figures\CHexagon.h" />
@@ -232,9 +245,19 @@
     <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\Paste.h" />
+    <ClInclude Include="Actions\SwapAction.h" />
+    <ClInclude Include="Actions\RotateAction.h" />
+    <ClInclude Include="Actions\SaveAction.h" />
+    <ClInclude Include="Actions\RedoAction.h" />
+    <ClInclude Include="Actions\SwitchToPlayAction.h" />
+    <ClInclude Include="Actions\SwitchToDrawAction.h" />
+    <ClInclude Include="Actions\Paste.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="names and IDs.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

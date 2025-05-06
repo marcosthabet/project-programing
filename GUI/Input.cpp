@@ -1,12 +1,15 @@
 #include "Input.h"
 #include "Output.h"
 #include "UI_Info.h"
+#include "..\ApplicationManager.h"
+#include <string>
 
 bool Input::selectmode = false; //initialize select mode to false
 
 Input::Input(window* pW) 
 {
 	pWind = pW; //point to the passed window
+	selectmode = false;
 }
 
 void Input::GetPointClicked(int &x, int &y) const
@@ -37,31 +40,54 @@ string Input::GetSrting(Output *pO) const
 	}
 }
 
+string Input::GetFileName(Output* pOut)  
+{  
+   pOut->PrintMessage("Please enter file name: ");    
+   return GetFileName(pOut);
+}
+
+char Input::GetChar(Output* pOut)
+{
+	pOut->PrintMessage("Press a key (Y/N): ");
+	char c;
+	pWind->WaitKeyPress(c);
+	return c;
+}
+
 void Input::ResetSelectMode()
 {
 	selectmode = false;
+}
+
+bool Input::getSelectmode() const
+{
+	return selectmode;
+}
+
+void Input::setSelectmode(bool s)
+{
+	selectmode = s;
 }
 
 color Input::GetUserColor() const {
 	int x, y;
 	pWind->WaitMouseClick(x, y);
 
-	if (y >= 0 && y < UI.ToolBarHeight) {
-
+	if (y >= 0 && y < UI.ToolBarHeight)
+	{
 		int ClickedItemOrder = (x / UI.MenuItemWidth);
 		switch (ClickedItemOrder)
 		{
-		case 5: return BLACK;  
-		case 6: return YELLOW;
-		case 7: return ORANGE;
-		case 8: return RED;
-		case 9: return GREEN;
-		case 10: return BLUE;
-
-		default: return BLUE; 
+		case ITM_BLACK: return BLACK;
+		case ITM_YELLOW: return YELLOW;
+		case ITM_ORANGE: return ORANGE;
+		case ITM_RED: return RED;
+		case ITM_GREEN: return GREEN;
+		case ITM_BLUE: return BLUE;
+		default: return BLUE; // Default color
 		}
 	}
-	return BLUE; //default if no click on toolbar
+	return BLUE; // Default if clicked outside toolbar
 }
 
 
@@ -120,7 +146,7 @@ ActionType Input::GetUserAction() const
 			case ITM_GREEN: return SELECT_COLOR_GREEN;
 			case ITM_BLUE: return SELECT_COLOR_BLUE;
 			case ITM_FILL: return TOGGLE_FILL;
-			case ITM_FILL_COLOR: return SELECT_FILL_COLOR;
+			
 
 
 			case ITM_EXIT: return EXIT;
@@ -173,7 +199,98 @@ ActionType Input::GetUserAction() const
 
 	}
 }
+
+
 /////////////////////////////////
+void Input::GetKeyPressed(char& key) const
+{
+	pWind->WaitKeyPress(key); // Pass the key by reference
+}
+
+///////////validation Functions////////////////
+
+void Input::Point_Validation(Point& P, Output* pOut)
+{
+	while (P.y < UI.ToolBarHeight || P.y > UI.height - UI.StatusBarHeight)
+	{
+		pOut->PrintMessage("Please pick a valid point");
+		GetPointClicked(P.x, P.y);
+	}
+
+	if (P.y > UI.ToolBarHeight || P.y < UI.height - UI.StatusBarHeight)
+	{
+		pOut->PrintMessage("You picked a valid point <3");
+	}
+}
+
+void Input::Hexagon_Validation(Point& P, Output* pOut)
+{
+	while (
+		P.y < UI.wy + UI.ToolBarHeight + sqrt(3) / 2 * UI.HEXAGON_LENGTH ||
+		UI.height - P.y < UI.HEXAGON_LENGTH + UI.StatusBarHeight + UI.wy ||
+		P.x < UI.wx + UI.HEXAGON_LENGTH ||
+		UI.width - P.x < UI.HEXAGON_LENGTH + 3 * UI.wx)
+	{
+		pOut->PrintMessage("Please pick a valid point");
+		GetPointClicked(P.x, P.y);
+	}
+}
+
+void Input::Circle_Validation(Point& P1, Point& P2, GfxInfo& gfxInfo, Output* pOut)
+{
+	gfxInfo.CircleRadius = sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
+
+	while (
+		abs(P1.x - UI.wx) < gfxInfo.CircleRadius ||
+		abs(P1.x - UI.width) < gfxInfo.CircleRadius ||
+		abs(P1.y - UI.ToolBarHeight) < gfxInfo.CircleRadius ||
+		abs(P1.y - (UI.height - UI.StatusBarHeight)) < gfxInfo.CircleRadius ||
+		(P1.x == P2.x && P1.y == P2.y))
+	{
+		if (P1.x == P2.x && P1.y == P2.y)
+			pOut->PrintMessage("You picked the same point, Please choose different points");
+		else
+			pOut->PrintMessage("Please pick another valid point");
+		GetPointClicked(P1.x, P1.y);
+		GetPointClicked(P2.x, P2.y);
+		gfxInfo.CircleRadius = sqrt(pow(P1.x - P2.x, 2) + pow(P1.y - P2.y, 2));
+	}
+}
+
+void Input::Square_Validation(Point& p1, Output* pOut)
+{
+	while (
+		p1.y < (UI.wy + UI.ToolBarHeight + UI.SQUARE_LENGTH / 2) ||
+		p1.y > UI.height - UI.StatusBarHeight - UI.wy ||
+		p1.y > UI.height - (UI.wy + UI.StatusBarHeight + UI.SQUARE_LENGTH / 2) ||
+		p1.x < (UI.wx + UI.SQUARE_LENGTH / 2) ||
+		p1.x > UI.width - UI.SQUARE_LENGTH / 2 - (3 * UI.wx))
+	{
+		pOut->PrintMessage("Please pick a valid point");
+		GetPointClicked(p1.x, p1.y);
+	}
+}
+
+void Input::Repeatability_Validation(Point& p1, Point& p2, Output* pOut)
+{
+	while (p1.x == p2.x && p1.y == p2.y)
+	{
+		pOut->PrintMessage("You picked the same point, Please choose different points");
+		GetPointClicked(p2.x, p2.y);
+	}
+	Point_Validation(p2, pOut);
+	if (p1.x != p2.x || p1.y != p2.y)
+	{
+		pOut->PrintMessage("You picked a valid point <3");
+	}
+}
+
+buttonstate Input::GetMouseState(const button btMouse, int& iX, int& iY)
+{
+	return pWind->GetButtonState(btMouse, iX, iY);
+}
 	
 	Input::~Input(){
 	}
+
+

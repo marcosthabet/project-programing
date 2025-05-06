@@ -9,16 +9,15 @@
 #include "../Figures/Csquare.h"
 #include "../Figures/CTriangle.h"
 
-
-
-Copy::Copy(ApplicationManager* pApp) : Action(pApp) {}
-void Copy::ReadActionParameters() {
+void Copy::ReadActionParameters()
+{
 	Output* pOut = pManager->GetOutput();
-	pOut->PrintMessage("Figure is copied");
+	pOut->PrintMessage("Selected Fig Copied");
 	SelectedFig = *pManager->GetSelectedFigs();
 }
 
-void Copy::Execute() {
+void Copy::Execute()
+{
 	ReadActionParameters();
 	CFigure* CopiedFig = SelectedFig->Clone();
 	pManager->SetClipboard(CopiedFig);
