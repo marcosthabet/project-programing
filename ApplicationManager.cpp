@@ -16,6 +16,8 @@
 #include "Actions/UndoAction.h"
 #include "Actions/SaveAction.h"
 #include "Actions/LoadAction.h"
+#include "Actions/ExitAction.h"
+
 
 #include <Windows.h>
 #include "MMSystem.h"
@@ -141,8 +143,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 		case EXIT:
-			///create ExitAction here
-			
+			pAct = new ExitAction(this);
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
