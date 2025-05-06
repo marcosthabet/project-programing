@@ -14,8 +14,8 @@ public:
 	AddSquareAction(ApplicationManager* pApp); //Reads square parameters
 	virtual void ReadActionParameters(); //Adds square to the ApplicationManager
 	virtual void Execute();
-	virtual void Undo();
-	virtual void Redo();
+	void Undo();
+	void Redo();
 };
 
 #endif
