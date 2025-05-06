@@ -9,10 +9,7 @@ CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 
 CCircle::CCircle()
 {
-	Type = "Circle";
-CFigure* CCircle::Clone() const {
-    return new CCircle(*this); // Calls the copy constructor to create an identical copy
-}
+	Type = "Circle";}
 
 
 string CCircle::getType() {
@@ -48,7 +45,7 @@ string CCircle::GetFigureInfo() const {
 		"), Radius = " + to_string(radius);
 }
 
-void CCircle::Load(ifstream& Infile)
+void CCircle:: Load(ifstream& Infile)
 {
 	Infile >> ID >> center.x >> center.y >> radius >> DrawColor >> FillColor;
 

@@ -9,6 +9,7 @@ CHexagon::CHexagon()
 {
 	Type = "Hexagon";
 }
+
 void CHexagon::Draw(Output* pOut) const {
 	pOut->DrawHexagon(center, FigGfxInfo, Selected);
 }

@@ -11,6 +11,7 @@ Csquare::Csquare()
 {
 	Type = "Square";
 }
+
 string Csquare::getType()
 {
 	return Type;

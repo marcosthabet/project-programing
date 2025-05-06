@@ -32,8 +32,7 @@ public:
 	//SELECT FIGURE STUFF
 	virtual bool IsPointInside(int x, int y) const = 0; //check if a point is inside the figure
 	virtual void PrintInfo(Output* pOut) const = 0;     //print all figure info on the status bar
-	virtual string GetFigureInfo() const = 0;           //getting figure info back as a string
-	virtual CFigure* Clone() const = 0;                 //Clone the figure
+	virtual string GetFigureInfo() const = 0;           //getting figure info back as a string               
 
 
 	///The following functions should be supported by the figure class
