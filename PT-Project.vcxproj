@@ -192,7 +192,7 @@
     <ClCompile Include="Actions\SwapAction.cpp" />
     <ClCompile Include="Actions\RotateAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
-    <ClCompile Include="Actions\Paste.cpp" />
+
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
     <ClCompile Include="Actions\SwitchToDrawAction.cpp" />
@@ -251,7 +251,7 @@
     <ClInclude Include="Actions\RedoAction.h" />
     <ClInclude Include="Actions\SwitchToPlayAction.h" />
     <ClInclude Include="Actions\SwitchToDrawAction.h" />
-    <ClInclude Include="Actions\Paste.h" />
+
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
