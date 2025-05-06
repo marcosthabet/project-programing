@@ -59,7 +59,7 @@ void CHexagon::SaveAll(ofstream& File)
 		File << "NoFill" << "\t";
 	}
 }
-}
+
 
 string CHexagon::getType()
 {

@@ -84,7 +84,7 @@ void CTriangle::SaveAll(ofstream& File)
 		File << "NoFill" << "\t";
 	}
 }
-}
+
 
 void CTriangle::Load(ifstream& Infile)
 {

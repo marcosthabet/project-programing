@@ -81,7 +81,6 @@ void CRectangle::SaveAll(ofstream& File)
 	}
 
 }
-}     
 
 
 void CRectangle::Load(ifstream& Infile)

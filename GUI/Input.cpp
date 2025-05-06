@@ -207,11 +207,6 @@ void Input::GetKeyPressed(char& key) const
 	pWind->WaitKeyPress(key); // Pass the key by reference
 }
 
-string Input::GetSrting(Output* pO) const
-{
-	return "";
-}
-
 ///////////validation Functions////////////////
 
 void Input::Point_Validation(Point& P, Output* pOut)

@@ -59,7 +59,7 @@ void CCircle:: Load(ifstream& Infile)
 	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
 	FigGfxInfo.FillClr = stringtoclr(FillColor);
 }
-}
+
 
 void CCircle::SaveAll(ofstream& File)
 {

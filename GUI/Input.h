@@ -23,12 +23,12 @@ public:
 	//Returns a string entered by the user
 	char GetChar(Output* pOut);
 
-	color GetUserColor() const;
+	
 	bool getSelectmode() const;
 	void setSelectmode(bool s);
 	ActionType GetUserAction() const; //Read the user click and map to an action
 
-	void ResetSelectMode() { selectmode = false; } //reset select mode to false
+	
 	void ResetSelectMode(); //reset select mode to false
 	color GetUserColor() const;
 	void GetKeyPressed(char& key) const;
