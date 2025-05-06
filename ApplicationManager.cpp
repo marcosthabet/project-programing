@@ -147,7 +147,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new SwitchToPlayAction(this);
 			break;
 		case REDO:
-			pAct = new RedoAction(this);
+			pAct = new SwitchToPlayAction(this);
+			break;
+		case TO_DRAW:
+			pAct = new SwitchToDrawAction(this);
 			break;
 
 

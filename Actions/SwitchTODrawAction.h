@@ -6,7 +6,7 @@ class SwitchToDrawAction :
 	public Action
 {
 public:
-	SwitchToDrawAction(ApplicationManager* pApp, bool muted);
+	SwitchToDrawAction(ApplicationManager* pApp);
 
 	//Read 
 	virtual void ReadActionParameters();
