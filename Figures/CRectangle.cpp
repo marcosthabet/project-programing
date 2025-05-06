@@ -1,4 +1,4 @@
-#pragma once
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -64,20 +64,20 @@ string CRectangle::GetFigureInfo() const
 		", " + to_string(Corner2.y) + ")";
 }     
 
-void CRectangle::SaveAll(ofstream& File)
+void CRectangle::Save(ofstream& OutFile)
 {
-	File << "Rectangle" << "\t" << ID << "\t";
-	File << Corner1.x << "\t" << Corner1.y << "\t";
-	File << Corner2.x << "\t" << Corner2.y << "\t";
-	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	OutFile << "Rectangle" << "\t" << ID << "\t";
+	OutFile << Corner1.x << "\t" << Corner1.y << "\t";
+	OutFile << Corner2.x << "\t" << Corner2.y << "\t";
+	OutFile << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
 
 	if (FigGfxInfo.isFilled)
 	{
-		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+		OutFile << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
 	}
 	else
 	{
-		File << "NoFill" << "\t";
+		OutFile << "NoFill" << "\t";
 	}
 
 }
@@ -89,3 +89,30 @@ void CRectangle::Load(ifstream& Infile)
 	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
 	FigGfxInfo.FillClr = stringtoclr(FillColor);
 }
+
+Point CRectangle::GetCenter() const
+{
+	return { (Corner1.x + Corner2.x) / 2, (Corner1.y + Corner2.y) / 2 };
+}
+
+void CRectangle::SetPosition(int x, int y)
+{
+	Corner1.x = x;
+	Corner1.y = y;
+	Corner2.x = x + 50; // Assuming a fixed width of 50 for the rectangle
+	Corner2.y = y + 30; // Assuming a fixed height of 30 for the rectangle
+}
+
+void CRectangle::Rotate()
+{
+	int width = abs(Corner2.x - Corner1.x);
+	int height = abs(Corner2.y - Corner1.y);
+	Point center = GetCenter();
+
+	Corner1.x = center.x - (height / 2);
+	Corner1.y = center.y - (width / 2);
+	Corner2.x = center.x + (height / 2);
+	Corner2.y = center.y + (width / 2);
+}
+
+

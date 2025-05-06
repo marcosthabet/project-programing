@@ -27,10 +27,14 @@ private:
 	int RedoCount;
 	bool RedoStatus;  //checks that redo is only done after redo/undo actions
 
+	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs;//Number of selected figures of each type
+	int NumOfRect, NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//Number of Figures of each type
+	int SelectedFigCount;//Number of Selected Figures
+
 	CFigure* DeletedFiguresArr[5];  //list of all deleted figures to undo
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	CFigure* LastSelectedFig; //Pointer to the selected figure
-
+	CFigure* SelectedFigure; //Pointer to the selected figure
 
 	CFigure* SelectedFigsArr[MaxSelectedCount]; //array of selected figures
 	
@@ -42,10 +46,6 @@ private:
 	Action* LastAction; //pointer to the last action done
 
 	CFigure* GetClipboard(); //returns pointer to figure in clipboard
-
-	int CutFigureID; //ID of the figure in clipboard if it was cut
-
-	int GetCutFigureID();	   //returns ID of Cut Figure in clipboard
 
 	//Pointers to Input and Output classes
 	Input *pIn;
@@ -64,11 +64,22 @@ public:
 	
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
+
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
+
 	void Delete(CFigure* pFig);             //Deletes the selected -if any- firure
+
 	CFigure* DeleteLastFigure();                //deletes last figure from figlist 
+
 	CFigure* GetFigureByID(int)const; //Search for a figure given its ID
-	
+
+	int GetCutFigureID();	   //returns ID of Cut Figure in clipboard
+
+	int CutFigureID; //ID of the figure in clipboard if it was cut
+
+	void UpdateFigureData();//Updates all Data in Application Manager
+
+	void SetCutFigureID(int);   //Setter for the figure's ID in clipboard
 	// Select figure stuff
 	CFigure** GetSelectedFigs() const; // Get the array of selected figures
 	int GetSelectedCount() const; // Get the number of selected figures
@@ -92,6 +103,7 @@ public:
 	// -- Clipboard functions
 	void ClearClipboard();//Clears any figures in clipboard
 	void SetClipboard(CFigure*);  //Adds a figure to the clipboard
+	CFigure* GetClipboard();	 //returns pointer to figure in clipboard
 
 
 

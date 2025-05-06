@@ -16,7 +16,10 @@ public:
 	virtual void PrintInfo(Output* pOut) const;
 	virtual string GetFigureInfo() const;
 	
-	void Save(ofstream& File);
+	virtual void Save(ofstream& OutFile);
+	virtual void SetPosition(int x, int y);
+	virtual Point GetCenter() const;
+	virtual void Rotate();
 
 	
 

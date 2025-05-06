@@ -16,9 +16,6 @@
 #include "Actions/UndoAction.h"
 #include "Actions/SaveAction.h"
 #include "Actions/LoadAction.h"
-#include "Actions/Copy.h"
-
-
 
 #include <Windows.h>
 #include "MMSystem.h"
@@ -120,11 +117,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TOGGLE_FILL:
 			UI.IsFilled = !UI.IsFilled;
 			pOut->PrintMessage(UI.IsFilled ? "Figures will be filled" : "Figures will not be filled");
-			return;
-		case SELECT_FILL_COLOR:
-			pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
-			UI.FillColor = pIn->GetUserColor();
-			pOut->PrintMessage("Fill color set");
 			return;
 		case SWAP:
 			pAct = new SwapAction(this);
@@ -437,6 +429,74 @@ CFigure* ApplicationManager::GetFigureByID(int ID)const
 
 int ApplicationManager::GetCutFigureID() {
 	return CutFigureID;
+}
+
+void ApplicationManager::SetCutFigureID(int i) {
+	CutFigureID = i;
+}
+
+void ApplicationManager::UpdateFigureData()
+{
+	SelectedRects = 0, SelectedSqrs = 0, SelectedHexes = 0, SelectedTris = 0, SelectedCircs = 0;
+	NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0; SelectedFigCount = 0;
+	SelectedFigure = NULL;
+
+	//Reset all figure numbers and count them again
+
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i] != NULL)
+		{
+			switch (FigList[i]->GetFigType())
+			{
+			case HEXAGON:
+				NumOfHex++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedHexes++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case CIRCLE:
+				NumOfCirc++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedCircs++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case TRIANGLE:
+				NumOfTri++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedTris++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case SQUARE:
+				NumOfSqr++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedSqrs++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case RECTANGLE:
+				NumOfRect++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedRects++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			}
+		}
+	}
 }
 
 // Clipboard functions

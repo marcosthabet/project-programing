@@ -16,7 +16,8 @@ CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo)
 
 CCircle::CCircle()
 {
-	Type = "Circle";}
+	Type = "Circle";
+}
 
 
 string CCircle::getType() {
@@ -60,21 +61,44 @@ void CCircle:: Load(ifstream& Infile)
 	FigGfxInfo.FillClr = stringtoclr(FillColor);
 }
 
-
-void CCircle::SaveAll(ofstream& File)
+Point CCircle::GetCenter() const
 {
-	File << "Circle" << "\t" << ID << "\t";
-	File << center.x << "\t" << center.y << "\t";
-	File << radius << "\t";
-	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	return center;
+}
+
+void CCircle::SetPosition(int x, int y)
+{
+	center.x = x;
+	center.y = y;
+}
+
+void CCircle::Rotate()
+{
+}
+
+
+void CCircle::Save(ofstream& OutFile)
+{
+	OutFile << "Circle" << "\t" << ID << "\t";
+	OutFile << center.x << "\t" << center.y << "\t";
+	OutFile << radius << "\t";
+	OutFile << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
 
 	if (FigGfxInfo.isFilled)
 	{
-		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+		OutFile << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
 	}
 	else
 	{
-		File << "NoFill" << "\t";
+		OutFile << "NoFill" << "\t";
 	}
 	
+}
+void CCircle::MoveFigure(int x, int y)
+{
+	Center.x = x;
+	Center.y = y;
+	OuterPoint.x = x + Radius;
+	OuterPoint.y = y;
+	FitInsideDrawArea();
 }

@@ -1,15 +1,19 @@
 #include "CFigure.h"
 #include "..\GUI\Output.h"
 
-CFigure::CFigure(GfxInfo FigureGfxInfo):
-	FigGfxInfo(FigureGfxInfo), ID(0),Selected(false)
-	{}//Default status is non-filled.
 
-CFigure::CFigure() {}
+CFigure::CFigure()
+{
+}
+//Default status is non-filled.
+
+CFigure::CFigure(GfxInfo FigureGfxInfo) 
+{
+	FigGfxInfo = FigureGfxInfo;
+}
 
 void CFigure::SetID(int id) {
 	ID = id;
-
 }
 
 int CFigure::GetID() {
@@ -28,6 +32,24 @@ void CFigure::SetSelected(bool s)
 bool CFigure::IsSelected() const
 {	return Selected; }
 
+color CFigure::GetDrawClr()
+{
+	return FigGfxInfo.DrawClr;
+}
+bool CFigure::IsFilled()
+{
+	return FigGfxInfo.isFilled;
+}
+void CFigure::UnFill()
+{
+	FigGfxInfo.isFilled = false;
+}
+color CFigure::GetFillClr()
+{
+	if (IsFilled())
+		return FigGfxInfo.FillClr;
+	return WHITE;
+}
 
 void CFigure::ChngDrawClr(color Dclr)
 {

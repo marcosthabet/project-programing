@@ -12,6 +12,7 @@ private:
 public:
 	CCircle(Point c, int r, GfxInfo FigureGfxInfo);
 	CCircle();
+	virtual void MoveFigure(int, int);
 	virtual void Draw(Output* pOut) const ;
 	string getType();
 	virtual bool IsPointInside(int x, int y) const ;
@@ -19,7 +20,11 @@ public:
 	virtual string GetFigureInfo() const ;
 	virtual void Load(ifstream& Infile) ;
 	
-	void SaveAll(ofstream& File);
+	virtual Point GetCenter() const;
+	virtual void SetPosition(int x, int y);
+	virtual void Rotate();
+	void Save(ofstream& OutFile);
+
 };
 
 #endif

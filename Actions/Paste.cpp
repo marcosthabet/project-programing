@@ -43,7 +43,7 @@ void Paste::Execute()
 	pManager->AddFigure(PastedFig);
 	if (pManager->GetCutFigureID() != -1)
 	{
-		pManager->RemoveFigure(pManager->GetCutFigureID());
+		pManager->DeleteLastFigure(pManager->GetCutFigureID());
 		pManager->SetCutFigureID(-1);
 	}
 }
