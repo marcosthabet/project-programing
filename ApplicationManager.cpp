@@ -16,6 +16,11 @@
 #include "Actions/UndoAction.h"
 #include "Actions/SaveAction.h"
 #include "Actions/LoadAction.h"
+#include "Actions/ExitAction.h"
+#include "Actions/SwitchToPlayAction.h"
+#include "Actions/SwitchToDrawAction.h"
+#include "Actions/RedoAction.h"
+
 
 #include <Windows.h>
 #include "MMSystem.h"
@@ -92,32 +97,43 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			//colours
 		case SELECT_COLOR_BLACK:
 			UI.DrawColor = BLACK;
+			pOut->setCrntDrawColor(BLACK);
 			pOut->PrintMessage("Draw color set to Black");
 			return;
 		case SELECT_COLOR_YELLOW:
 			UI.DrawColor = YELLOW;
+			pOut->setCrntDrawColor(YELLOW);
 			pOut->PrintMessage("Draw color set to Yellow");
 			return;
 		case SELECT_COLOR_ORANGE:
 			UI.DrawColor = ORANGE;
+			pOut->setCrntDrawColor(ORANGE);
 			pOut->PrintMessage("Draw color set to Orange");
 			return;
 		case SELECT_COLOR_RED:
 			UI.DrawColor = RED;
+			pOut->setCrntDrawColor(RED);
 			pOut->PrintMessage("Draw color set to Red");
 			return;
 		case SELECT_COLOR_GREEN:
 			UI.DrawColor = GREEN;
+			pOut->setCrntDrawColor(GREEN);
 			pOut->PrintMessage("Draw color set to Green");
 			return;
 		case SELECT_COLOR_BLUE:
 			UI.DrawColor = BLUE;
+			pOut->setCrntDrawColor(BLUE);
 			pOut->PrintMessage("Draw color set to Blue");
 			return;
 		case TOGGLE_FILL:
 			UI.IsFilled = !UI.IsFilled;
 			pOut->PrintMessage(UI.IsFilled ? "Figures will be filled" : "Figures will not be filled");
 			return;
+		//case SELECT_FILL_COLOR:
+		//	pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
+		//	UI.FillColor = pIn->GetUserColor();
+		//	pOut->PrintMessage("Fill color set");
+		//	return;
 		case SWAP:
 			pAct = new SwapAction(this);
 			break;
@@ -127,11 +143,20 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SAVE:
 			pAct = new SaveAction(this);
 			break;
+		case TO_PLAY:
+			pAct = new SwitchToPlayAction(this);
+			break;
+		case REDO:
+			pAct = new SwitchToPlayAction(this);
+			break;
+		case TO_DRAW:
+			pAct = new SwitchToDrawAction(this);
+			break;
+
 
 
 		case EXIT:
-			///create ExitAction here
-			
+			pAct = new ExitAction(this);
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -299,6 +324,11 @@ CFigure* ApplicationManager::DeleteLastFigure()
 	return nullptr;
 }
 
+int ApplicationManager::Get_FigCount() const
+{
+	return FigCount;
+}
+
 void ApplicationManager::ClearAll()
 {
 	for (int i = 0; i < FigCount; i++)
@@ -308,6 +338,11 @@ void ApplicationManager::ClearAll()
 	}
 	FigCount = 0;
 	
+
+	//default draw/color mode for the shapes
+	pOut->setCrntDrawColor(BLUE);
+	pOut->setCrntFillColor(UI.BkGrndColor);
+	pOut->SetFilled(false);
 }
 
 
@@ -329,6 +364,7 @@ void ApplicationManager::AddtoUndo(Action* action)
 			UndoCount = 4;
 			Undoarr[UndoCount++] = action;
 		}
+		RedoStatus = false;
 	}
 }
 
@@ -338,7 +374,11 @@ void ApplicationManager::RemovefromUndo()
 	{
 		UndoCount--;
 	}
+	else
+		UndoCount = 0;
+	RedoStatus = true;
 }
+
 Action* ApplicationManager::GetLastActiontoUndo()
 {
 	if (UndoCount > 0)  // Last action is the Undo 
