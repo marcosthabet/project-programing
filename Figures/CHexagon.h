@@ -18,6 +18,7 @@ public:
 	virtual string GetFigureInfo() const ;
 	string getType();
 	virtual void Load(ifstream& Infile) ;
+	void Save(ofstream& File);
 
 };
 #endif

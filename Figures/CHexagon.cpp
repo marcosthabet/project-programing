@@ -45,7 +45,7 @@ string CHexagon::GetFigureInfo() const {
 		", " + to_string(center.y) + ")";
 }
 
-void CHexagon::SaveAll(ofstream& File)
+void CHexagon::Save(ofstream& File)
 {
 	File << "Hexagon" << "\t" << ID << "\t";
 	File << center.x << "\t" << center.y << "\t";
