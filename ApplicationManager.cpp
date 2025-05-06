@@ -17,6 +17,9 @@
 #include "Actions/SaveAction.h"
 #include "Actions/LoadAction.h"
 #include "Actions/ExitAction.h"
+#include "Actions/SwitchToPlayAction.h"
+#include "Actions/SwitchToDrawAction.h"
+#include "Actions/RedoAction.h"
 
 
 #include <Windows.h>
@@ -140,6 +143,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SAVE:
 			pAct = new SaveAction(this);
 			break;
+		case TO_PLAY:
+			pAct = new SwitchToPlayAction(this);
+			break;
+		case REDO:
+			pAct = new RedoAction(this);
+			break;
+
 
 
 		case EXIT:
