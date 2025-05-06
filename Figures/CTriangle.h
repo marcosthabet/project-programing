@@ -15,9 +15,9 @@ public:
 	virtual bool IsPointInside(int x, int y) const;
 	virtual void PrintInfo(Output* pOut) const;
 	virtual string GetFigureInfo() const;
+	
+	void Save(ofstream& File);
 
-	void SaveAll(ofstream& File);
-	virtual CFigure* Clone() const=0;
 	
 
 	string getType();

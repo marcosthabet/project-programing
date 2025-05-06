@@ -7,7 +7,6 @@
 #include "..\ApplicationManager.h"
 #include "..\Figures/CFigure.h"
 #include "..\ColorFiles.h"
-#include <fstream>
 
 
 CTriangle::CTriangle(Point p1, Point p2, Point p3, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
@@ -68,7 +67,7 @@ string CTriangle::GetFigureInfo() const {
 		", " + to_string(point3.y) + ")";
 }
 
-void CTriangle::SaveAll(ofstream& File)
+void CTriangle::Save(ofstream& File)
 {
 	File << "Triangle" << "\t" << ID << "\t";
 	File << point1.x << "\t" << point1.y << "\t";
