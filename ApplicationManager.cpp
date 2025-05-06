@@ -16,6 +16,11 @@
 #include "Actions/UndoAction.h"
 #include "Actions/SaveAction.h"
 #include "Actions/LoadAction.h"
+#include "Actions/ExitAction.h"
+#include "Actions/SwitchToPlayAction.h"
+#include "Actions/SwitchToDrawAction.h"
+#include "Actions/RedoAction.h"
+
 
 #include <Windows.h>
 #include "MMSystem.h"
@@ -138,11 +143,17 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SAVE:
 			pAct = new SaveAction(this);
 			break;
+		case TO_PLAY:
+			pAct = new SwitchToPlayAction(this);
+			break;
+		case REDO:
+			pAct = new RedoAction(this);
+			break;
+
 
 
 		case EXIT:
-			///create ExitAction here
-			
+			pAct = new ExitAction(this);
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
