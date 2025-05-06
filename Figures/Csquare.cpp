@@ -64,8 +64,7 @@ Point Csquare::GetCenter() const {
 	return center;
 }
 void Csquare::Rotate() {
-	// Rotation logic for square (if needed)
-	// For a square, rotation doesn't change its shape or position
+
 }
 
 void Csquare::Save(ofstream& OutFile)
