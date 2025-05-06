@@ -21,6 +21,7 @@ public:
 	virtual CFigure* Clone() const = 0;
 	virtual void Load(ifstream& Infile);
 
+	void SaveAll(ofstream& File);
 };
 
 #endif

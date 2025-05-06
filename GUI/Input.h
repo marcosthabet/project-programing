@@ -1,9 +1,11 @@
 #ifndef INPUT_H
 #define INPUT_H
-
+#pragma once
+#include <string>
 #include "..\DEFS.h"
 #include "UI_Info.h" 
 #include "..\CMUgraphicsLib\CMUgraphics.h"
+using namespace std;
 
 class Output;   // forward declaration
 
@@ -16,12 +18,17 @@ private:
 public:
 	Input(window *pW);		//Consturctor
 	void GetPointClicked(int &x, int &y) const;//Get coordinate where user clicks
-	string GetSrting(Output* pO) const ;	 //Returns a string entered by the user
+	string GetSrting(Output* pO) const ;
+	string GetFileName(Output* pOut);
+	//Returns a string entered by the user
+	char GetChar(Output* pOut);
 
 	color GetUserColor() const;
 	bool getSelectmode() const;
 	void setSelectmode(bool s);
 	ActionType GetUserAction() const; //Read the user click and map to an action
+
+	void ResetSelectMode() { selectmode = false; } //reset select mode to false
 	void ResetSelectMode(); //reset select mode to false
 	color GetUserColor() const;
 	void GetKeyPressed(char& key) const;
@@ -34,6 +41,7 @@ public:
 	void Repeatability_Validation(Point& p1, Point& p2, Output* pOut);
 
 	buttonstate GetMouseState(const button btMouse, int& iX, int& iY);
+
 
 	~Input();
 };

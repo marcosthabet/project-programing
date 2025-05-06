@@ -1,4 +1,12 @@
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <cmath>
 #include "CHexagon.h"
+#include "..\Actions/Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures/CFigure.h"
+#include "..\ColorFiles.h"
 #include <fstream>
 
 CHexagon::CHexagon(Point c, GfxInfo FigureGfxInfo) :
@@ -34,6 +42,22 @@ string CHexagon::GetFigureInfo() const {
 	return "Hexagon: ID = " + to_string(ID) +
 		", Center = (" + to_string(center.x) +
 		", " + to_string(center.y) + ")";
+}
+
+void CHexagon::SaveAll(ofstream& File)
+{
+	File << "Hexagon" << "\t" << ID << "\t";
+	File << center.x << "\t" << center.y << "\t";
+	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	if (FigGfxInfo.isFilled)
+	{
+		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+	}
+	else
+	{
+		File << "NoFill" << "\t";
+	}
+}
 }
 
 string CHexagon::getType()

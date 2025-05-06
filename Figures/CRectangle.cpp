@@ -1,6 +1,18 @@
+#pragma once
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <cmath>
 #include "CRectangle.h"
+#include "..\Actions/Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures/CFigure.h"
+#include "..\ColorFiles.h"
 #include "..\GUI\Output.h"
 #include <fstream>
+
+
+
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
@@ -50,6 +62,25 @@ string CRectangle::GetFigureInfo() const
 		", " + to_string(Corner1.y) +
 		"), Corner2 = (" + to_string(Corner2.x) +
 		", " + to_string(Corner2.y) + ")";
+}     
+
+void CRectangle::SaveAll(ofstream& File)
+{
+	File << "Rectangle" << "\t" << ID << "\t";
+	File << Corner1.x << "\t" << Corner1.y << "\t";
+	File << Corner2.x << "\t" << Corner2.y << "\t";
+	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+
+	if (FigGfxInfo.isFilled)
+	{
+		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+	}
+	else
+	{
+		File << "NoFill" << "\t";
+	}
+
+}
 }     
 
 

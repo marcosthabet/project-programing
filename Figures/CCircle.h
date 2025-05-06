@@ -2,6 +2,7 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 #include "CFigure.h"
+#include "..\defs.h"
 
 class CCircle : public CFigure
 {
@@ -10,7 +11,7 @@ private:
 	int radius;
 public:
 	CCircle(Point c, int r, GfxInfo FigureGfxInfo);
-	//CCircle();
+	CCircle();
 	virtual void Draw(Output* pOut) const;
 	string getType();
 	virtual bool IsPointInside(int x, int y) const; 
@@ -19,6 +20,7 @@ public:
 	virtual CFigure* Clone() const = 0;
 	virtual void Load(ifstream& Infile);
 	
+	void SaveAll(ofstream& File);
 };
 
 #endif

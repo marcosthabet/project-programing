@@ -75,6 +75,10 @@ public:
 
 
 
+	// -- SAVE functions
+	void SaveAll(ofstream& File); // Saves all figures to a file
+	int GetFigCount() const; // Returns the number of figures
+	CFigure* GetFigure(int index) const; // Returns a figure at a specific index
 
 	// -- CLRALL functions
 	void ClearAll();                        //deletes all the drawn figures from the array

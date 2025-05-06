@@ -1,6 +1,13 @@
-#include "CCircle.h"
+#include <fstream>
+#include <iostream>
+#include <string>
 #include <cmath>
 #include <fstream>
+#include "CCircle.h"
+#include "..\Actions/Action.h"
+#include "..\ApplicationManager.h"
+#include "..\Figures/CFigure.h"
+#include "..\ColorFiles.h"
 
 CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
     center = C;
@@ -55,4 +62,23 @@ void CCircle::Load(ifstream& Infile)
 
 	FigGfxInfo.DrawClr = stringtoclr(DrawColor);
 	FigGfxInfo.FillClr = stringtoclr(FillColor);
+}
+}
+
+void CCircle::SaveAll(ofstream& File)
+{
+	File << "Circle" << "\t" << ID << "\t";
+	File << center.x << "\t" << center.y << "\t";
+	File << radius << "\t";
+	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+
+	if (FigGfxInfo.isFilled)
+	{
+		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+	}
+	else
+	{
+		File << "NoFill" << "\t";
+	}
+	
 }
