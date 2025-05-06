@@ -13,6 +13,11 @@ CRectangle::CRectangle()
 	Type = "Rectangle";
 }
 
+CFigure* CRectangle::Clone() const
+{
+	return new CRectangle(*this);
+}
+
 string CRectangle::getType()
 {
 	return Type;
@@ -51,7 +56,7 @@ string CRectangle::GetFigureInfo() const
 		"), Corner2 = (" + to_string(Corner2.x) +
 		", " + to_string(Corner2.y) + ")";
 }     
-}
+
 
 void CRectangle::Load(ifstream& Infile)
 {

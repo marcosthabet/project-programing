@@ -1,6 +1,6 @@
 #include "Csquare.h"
 #include <fstream>
-
+#include "..\GUI\Output.h"
 //constructor 
 Csquare::Csquare(Point p, int l, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
 	center = p;
@@ -11,6 +11,12 @@ Csquare::Csquare()
 {
 	Type = "Square";
 }
+
+CFigure* Csquare::Clone() const
+{
+	return new Csquare(*this);
+}
+
 string Csquare::getType()
 {
 	return Type;

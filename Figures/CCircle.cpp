@@ -1,17 +1,26 @@
 #include "CCircle.h"
 #include <cmath>
 #include <fstream>
-
 CCircle::CCircle(Point C, int R, GfxInfo FigureGfxInfo) : CFigure(FigureGfxInfo) {
     center = C;
     radius = R;
 }
 
+void CCircle::Move(int x, int y)
+{
+	Center.x = x;
+	Center.y = y;
+	OuterPoint.x = x + Radius;
+	OuterPoint.y = y;
+	FitInsideDrawArea();
+}
+
 CCircle::CCircle()
 {
-	Type = "Circle";
-CFigure* CCircle::Clone() const {
-    return new CCircle(*this); // Calls the copy constructor to create an identical copy
+	Type = "Circle";}
+CFigure* CCircle::Clone() const 
+{
+    return new CCircle(*this); 
 }
 
 
@@ -48,7 +57,7 @@ string CCircle::GetFigureInfo() const {
 		"), Radius = " + to_string(radius);
 }
 
-void CCircle::Load(ifstream& Infile)
+void CCircle:: Load(ifstream& Infile)
 {
 	Infile >> ID >> center.x >> center.y >> radius >> DrawColor >> FillColor;
 

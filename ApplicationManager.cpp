@@ -1,18 +1,4 @@
 #include "ApplicationManager.h"
-#include "Figures/CFigure.h"
-#include "GUI/Input.h"
-#include "GUI/Output.h"
-#include "Actions/AddRectAction.h"
-#include "Actions/AddSquareAction.h"
-#include "Actions/AddTriangleAction.h"
-#include "Actions/AddHexagonAction.h"
-#include "Actions/AddCircleAction.h"
-#include "Actions/DeleteAction.h"
-#include "Actions/SelectFigureAction.h"
-#include "Actions/Action.h"
-#include "Actions/UndoAction.h"
-#include "Actions/LoadAction.h"
-
 
 
 #include <Windows.h>
@@ -380,7 +366,9 @@ Action* ApplicationManager::GetLastActiontoRedo()
 	return NULL;
 }
 
-
+CFigure* ApplicationManager::GetClipboard() const {
+	return Clipboard;
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor to clean up figures
 ApplicationManager::~ApplicationManager()

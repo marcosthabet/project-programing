@@ -13,6 +13,22 @@
 #include"Figures/CSquare.h"
 #include"Figures/CTriangle.h"
 
+#include "Figures/CFigure.h"
+#include "GUI/Input.h"
+#include "GUI/Output.h"
+#include "Actions/AddRectAction.h"
+#include "Actions/AddSquareAction.h"
+#include "Actions/AddTriangleAction.h"
+#include "Actions/AddHexagonAction.h"
+#include "Actions/AddCircleAction.h"
+#include "Actions/DeleteAction.h"
+#include "Actions/SelectFigureAction.h"
+#include "Actions/Action.h"
+#include "Actions/UndoAction.h"
+#include "Actions/LoadAction.h"
+#include "Actions/Copy.h"
+
+
 //Main class that manages everything in the application.
 class ApplicationManager
 {
@@ -93,6 +109,12 @@ public:
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
+
+	// -- Clipboard
+	void SetClipboard(CFigure* fig);
+	CFigure* GetClipboard() const;
+
+
 };
 
 #endif

@@ -2,8 +2,7 @@
 #define CFIGURE_H
 
 #include "..\defs.h"
-#include "..\GUI\Output.h"
-
+class Output;
 //Base class for all figures
 class CFigure
 {

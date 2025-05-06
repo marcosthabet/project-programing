@@ -11,13 +11,13 @@ private:
 public:
 	CHexagon(Point, GfxInfo FigureGfxInfo);
 	CHexagon();
-	virtual void Draw(Output* pOut) const;
-	virtual bool IsPointInside(int x, int y) const;
-	virtual void PrintInfo(Output* pOut) const;
-	virtual string GetFigureInfo() const;
-	virtual CFigure* Clone() const = 0;
-	string getType();
-	virtual void Load(ifstream& Infile);
+	virtual void Draw(Output* pOut) const override;
+	virtual bool IsPointInside(int x, int y) const override;
+	virtual void PrintInfo(Output* pOut) const override;
+	virtual string GetFigureInfo() const override;
+	virtual CFigure* Clone() const override;
+	string getType() const;
+	virtual void Load(ifstream& Infile) override;
 
 };
 #endif

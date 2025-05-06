@@ -13,12 +13,12 @@ public:
 	Csquare();
 	virtual void Draw(Output* pOut) const;
 
-	virtual bool IsPointInside(int x, int y) const;
-	virtual void PrintInfo(Output* pOut) const;
-	virtual string GetFigureInfo() const;
-	string getType();
-	virtual void Load(ifstream& Infile);
-	virtual CFigure* Clone() const = 0;
+	virtual bool IsPointInside(int x, int y) const override;
+	virtual void PrintInfo(Output* pOut) const override;
+	virtual string GetFigureInfo() const override;
+	string getType() const;
+	virtual void Load(ifstream& Infile) override;
+	virtual CFigure* Clone() const override;
 };
 
 

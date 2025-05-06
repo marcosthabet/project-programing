@@ -1,6 +1,6 @@
 #include "CHexagon.h"
 #include <fstream>
-
+#include "..\GUI\Output.h"
 CHexagon::CHexagon(Point c, GfxInfo FigureGfxInfo) :
 	CFigure(FigureGfxInfo) {
 	center = c;
@@ -9,6 +9,11 @@ CHexagon::CHexagon()
 {
 	Type = "Hexagon";
 }
+CFigure* CHexagon::Clone() const
+{
+	return new CHexagon(*this);
+}
+
 void CHexagon::Draw(Output* pOut) const {
 	pOut->DrawHexagon(center, FigGfxInfo, Selected);
 }

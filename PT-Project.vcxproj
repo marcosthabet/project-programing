@@ -185,6 +185,7 @@
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Actions\UndoAction.cpp" />
+    <ClCompile Include="Actions\Paste.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions\AddCircleAction.h" />
@@ -230,6 +231,7 @@
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
+    <ClInclude Include="Actions\Paste.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

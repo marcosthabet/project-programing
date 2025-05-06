@@ -1,8 +1,13 @@
 #include "Copy.h"
-#include "../GUI/Output.cpp"
+#include "../GUI/Output.h"
 #include "../ApplicationManager.h"
 
-
+#include "../Figures/CFigure.h"
+#include "../Figures/CCircle.h"
+#include "../Figures/CHexagon.h"
+#include "../Figures/CRectangle.h"
+#include "../Figures/Csquare.h"
+#include "../Figures/CTriangle.h"
 
 
 
@@ -15,11 +20,7 @@ void Copy::ReadActionParameters() {
 
 void Copy::Execute() {
 	ReadActionParameters();
-	CFigure* CopiedFig = NULL;
-	CFigure* CopiedFig = SelectedFig->Clone(); 
+	CFigure* CopiedFig = SelectedFig->Clone();
+	pManager->SetClipboard(CopiedFig);
 
-
-	}
-
-
-
+}
