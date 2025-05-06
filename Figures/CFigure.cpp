@@ -12,6 +12,10 @@ void CFigure::SetID(int id) {
 
 }
 
+int CFigure::GetID() {
+	return ID;
+}
+
 void CFigure::SetSelected(bool s)
 {
 	Selected = s;

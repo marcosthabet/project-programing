@@ -425,3 +425,32 @@ CFigure* ApplicationManager::GetFigure(int index) const
 	}
 	return nullptr;
 }
+CFigure* ApplicationManager::GetFigureByID(int ID)const
+{
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if (FigList[i]->GetID() == ID)
+			return FigList[i];
+	}
+	return NULL;
+}
+
+int ApplicationManager::GetCutFigureID() {
+	return CutFigureID;
+}
+
+// Clipboard functions
+void ApplicationManager::SetClipboard(CFigure* CF) {
+	Clipboard = CF;
+}
+
+void ApplicationManager::ClearClipboard() 
+{
+	delete Clipboard;
+	Clipboard = NULL;
+	CutFigureID = -1;//sets cutfigure ID by a value that cannot equal any ID
+}
+
+CFigure* ApplicationManager::GetClipboard() {
+	return Clipboard;
+}

@@ -22,6 +22,7 @@ public:
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 	void SetID(int id); //set the ID of the figure
+	int GetID();
 
 	virtual void Draw(Output* pOut) const = 0;		//Draw the figure
 	color stringtoclr(string);
@@ -40,6 +41,8 @@ public:
 	virtual void Rotate() = 0; //rotate the figure
 
 	virtual void Save(ofstream& OutFile) = 0;	//Save the figure parameters to the file
+
+	virtual FigureType GetFigType() const = 0; //Returns  figure type
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure

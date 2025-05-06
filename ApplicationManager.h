@@ -41,6 +41,12 @@ private:
 	Action* Redoarr[5]; //list of all actions to redo
 	Action* LastAction; //pointer to the last action done
 
+	CFigure* GetClipboard(); //returns pointer to figure in clipboard
+
+	int CutFigureID; //ID of the figure in clipboard if it was cut
+
+	int GetCutFigureID();	   //returns ID of Cut Figure in clipboard
+
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -61,6 +67,7 @@ public:
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	void Delete(CFigure* pFig);             //Deletes the selected -if any- firure
 	CFigure* DeleteLastFigure();                //deletes last figure from figlist 
+	CFigure* GetFigureByID(int)const; //Search for a figure given its ID
 	
 	// Select figure stuff
 	CFigure** GetSelectedFigs() const; // Get the array of selected figures
@@ -82,7 +89,14 @@ public:
 
 	// -- CLRALL functions
 	void ClearAll();                        //deletes all the drawn figures from the array
-	
+	// -- Clipboard functions
+	void ClearClipboard();//Clears any figures in clipboard
+	void SetClipboard(CFigure*);  //Adds a figure to the clipboard
+
+
+
+
+
 	// -- UNDO functions
 	void AddtoUndo(Action* action);         //adds action to undoarr
 	void RemovefromUndo();                  //removes action from undoarr 
