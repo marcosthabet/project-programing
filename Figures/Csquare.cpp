@@ -55,19 +55,32 @@ string Csquare::GetFigureInfo() const {
 		"), Length = " + to_string(length);
 }
 
-void Csquare::Save(ofstream& File)
+void Csquare::SetPosition(int x, int y) {
+	center.x = x;
+	center.y = y;
+}
+
+Point Csquare::GetCenter() const {
+	return center;
+}
+void Csquare::Rotate() {
+	// Rotation logic for square (if needed)
+	// For a square, rotation doesn't change its shape or position
+}
+
+void Csquare::Save(ofstream& OutFile)
 {
-	File << "Square" << "\t" << ID << "\t";
-	File << center.x << "\t" << center.y << "\t";
-	File << length << "\t";
-	File << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
+	OutFile << "Square" << "\t" << ID << "\t";
+	OutFile << center.x << "\t" << center.y << "\t";
+	OutFile << length << "\t";
+	OutFile << ColorFiles::ColorChoice(FigGfxInfo.DrawClr) << "\t";
 	if (FigGfxInfo.isFilled)
 	{
-		File << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
+		OutFile << ColorFiles::ColorChoice(FigGfxInfo.FillClr) << "\t";
 	}
 	else
 	{
-		File << "NoFill" << "\t";
+		OutFile << "NoFill" << "\t";
 	}
 }
 

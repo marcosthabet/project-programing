@@ -18,7 +18,11 @@ public:
 	virtual string GetFigureInfo() const ;
 	string getType();
 	virtual void Load(ifstream& Infile) ;
-	void Save(ofstream& File);
+
+	virtual Point GetCenter() const;
+	virtual void SetPosition(int x, int y);
+	virtual void Rotate();
+	virtual void Save(ofstream& OutFile);
 
 };
 #endif

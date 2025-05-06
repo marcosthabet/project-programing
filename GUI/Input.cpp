@@ -4,7 +4,7 @@
 #include "..\ApplicationManager.h"
 #include <string>
 
-//bool Input::selectmode = false; //initialize select mode to false
+bool Input::selectmode = false; //initialize select mode to false
 
 Input::Input(window* pW) 
 {

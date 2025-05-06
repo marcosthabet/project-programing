@@ -18,7 +18,8 @@ void UndoAction::Execute()
 	//Undo the last action in the undo list
 	if (action)
 	{
-		action->Undo();		//pManager->AddtoRedo(action);
+		action->Undo();		
+		pManager->AddtoRedo(action);
 	}
 	else   //if there is no action
 	{
