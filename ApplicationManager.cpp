@@ -338,6 +338,11 @@ void ApplicationManager::ClearAll()
 	}
 	FigCount = 0;
 	
+
+	//default draw/color mode for the shapes
+	pOut->setCrntDrawColor(BLUE);
+	pOut->setCrntFillColor(UI.BkGrndColor);
+	pOut->SetFilled(false);
 }
 
 
@@ -359,6 +364,7 @@ void ApplicationManager::AddtoUndo(Action* action)
 			UndoCount = 4;
 			Undoarr[UndoCount++] = action;
 		}
+		RedoStatus = false;
 	}
 }
 
@@ -368,7 +374,11 @@ void ApplicationManager::RemovefromUndo()
 	{
 		UndoCount--;
 	}
+	else
+		UndoCount = 0;
+	RedoStatus = true;
 }
+
 Action* ApplicationManager::GetLastActiontoUndo()
 {
 	if (UndoCount > 0)  // Last action is the Undo 
