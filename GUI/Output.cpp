@@ -87,24 +87,24 @@ void Output::CreateDrawToolBar() const
 	string MenuItemImages[DRAW_ITM_COUNT];
 	//shapes images
 	MenuItemImages[ITM_RECT] = "images\\MenuItems\\Menu_Rect.jpg";
-	MenuItemImages[ITM_SQU] = "images\\MenuItems\\Menu_Squ.jpg";
-	MenuItemImages[ITM_TRI] = "images\\MenuItems\\Menu_Tri.jpg";
 	MenuItemImages[ITM_CIRC] = "images\\MenuItems\\Menu_Circ.jpg";
+	MenuItemImages[ITM_TRI] = "images\\MenuItems\\Menu_Tri.jpg";
 	MenuItemImages[ITM_HEX] = "images\\MenuItems\\Menu_Hexa.jpg";
+	MenuItemImages[ITM_SQU] = "images\\MenuItems\\Menu_Squ.jpg";
 	//Features images
-	MenuItemImages[ITM_ROTATE] = "images\\MenuItems\\Menu_Rotate.jpg";
+	MenuItemImages[ITM_CLRALL] = "images\\MenuItems\\Menu_clear.jpg";
+	MenuItemImages[ITM_UNDO] = "images\\MenuItems\\Menu_Undo.jpg";
 	MenuItemImages[ITM_SWAP] = "images\\MenuItems\\Menu_Swap.jpg";
 	MenuItemImages[ITM_DEL] = "images\\MenuItems\\Menu_Delete.jpg";
-	MenuItemImages[ITM_MOVE] = "images\\MenuItems\\Menu_Move.jpg";
 	MenuItemImages[ITM_COPY] = "images\\MenuItems\\Menu_Copy.jpg";
 	MenuItemImages[ITM_CUT] = "images\\MenuItems\\Menu_Cut.jpg";
 	MenuItemImages[ITM_PASTE] = "images\\MenuItems\\Menu_Paste.jpg";
-	MenuItemImages[ITM_CLRALL] = "images\\MenuItems\\Menu_clear.jpg";
+    MenuItemImages[ITM_ROTATE] = "images\\MenuItems\\Menu_Rotate.jpg";
 	MenuItemImages[ITM_SELECT] = "images\\MenuItems\\Menu_Select.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_REDO] = "images\\MenuItems\\Menu_Redo.jpg";
-	MenuItemImages[ITM_UNDO] = "images\\MenuItems\\Menu_Undo.jpg";
+	
 	MenuItemImages[ITM_TO_PLAY] = "images\\MenuItems\\Menu_Play.jpg";
 	//new color and fill images
 	MenuItemImages[ITM_BLACK] = "images\\MenuItems\\Menu_Black.jpg";

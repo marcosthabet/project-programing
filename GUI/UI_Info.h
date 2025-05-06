@@ -23,20 +23,20 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_HEX,		//Hexagon item in menu
 	ITM_SQU,		//Square item in menu
 
-	ITM_UNDO,		//Undo item in menu
-	ITM_REDO,		//Redo item in menu
 	ITM_ROTATE,		//Rotate item in menu
 	ITM_SWAP,       //Swap 2 itms places
-	ITM_DEL,		//Delete item in menu
-	ITM_MOVE,		//Move item in menu
+
+	ITM_UNDO,		//Undo item in menu
+	ITM_REDO,		//Redo item in menu
 	ITM_COPY,		//Copy item in menu
 	ITM_CUT,		//Cut item in menu
 	ITM_PASTE,		//Paste item in menu
+	ITM_CLRALL,		//Clear all item in menu
 	ITM_SAVE,		//Save item in menu
 	ITM_LOAD,		//Load item in menu
-	ITM_CLRALL,		//Clear all item in menu
-	ITM_SELECT,		//Select item in menu
+	ITM_DEL,		//Delete item in menu
 	ITM_TO_PLAY,	//Switch to Play mode item
+	ITM_SELECT,		//Select item in menu
 
 	//new color and fill items
 	ITM_BLACK,      // Black color selection

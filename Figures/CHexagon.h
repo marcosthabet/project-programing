@@ -25,5 +25,7 @@ public:
 	virtual void Save(ofstream& OutFile);
 
 };
+
+
 #endif
 

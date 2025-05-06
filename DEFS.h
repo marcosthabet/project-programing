@@ -13,7 +13,6 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_SQU,       //Draw Square
 	SWAP,           //Swap 2 figures
 	DEL,			//Delete a figure
-	MOVE,	        //Move a figure 	
 	COPY,	        //Copy a figure 	
 	CUT,		    //Cut a figure 
 	PASTE,		    //Paste a figure 

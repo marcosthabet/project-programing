@@ -15,12 +15,11 @@
 #include "Actions/SwapAction.h"
 #include "Actions/UndoAction.h"
 #include "Actions/SaveAction.h"
-#include "Actions/LoadAction.h"
 #include "Actions/ExitAction.h"
 #include "Actions/SwitchToPlayAction.h"
 #include "Actions/SwitchToDrawAction.h"
 #include "Actions/RedoAction.h"
-
+#include "Actions/ClearAction.h"
 
 #include <Windows.h>
 #include "MMSystem.h"
@@ -43,6 +42,10 @@ ApplicationManager::ApplicationManager() :
 	pIn = pOut->CreateInput();
 	
 	FigCount = 0;
+	LastAction = NULL;
+	UndoCount = 0;
+	RedoCount = 0;
+
 
 }
 
@@ -88,9 +91,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new UndoAction(this);
 			break;
 		case CLRALL:
-			ClearAll();
+			pAct = new ClearAction(this);
 			pOut->PrintMessage("All figures deleted");
-			return;
+			break;
 		case SELECT:
 			pAct = new SelectFigureAction(this);
 			break;
@@ -99,36 +102,36 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			UI.DrawColor = BLACK;
 			pOut->setCrntDrawColor(BLACK);
 			pOut->PrintMessage("Draw color set to Black");
-			return;
+			break;
 		case SELECT_COLOR_YELLOW:
 			UI.DrawColor = YELLOW;
 			pOut->setCrntDrawColor(YELLOW);
 			pOut->PrintMessage("Draw color set to Yellow");
-			return;
+			break;
 		case SELECT_COLOR_ORANGE:
 			UI.DrawColor = ORANGE;
 			pOut->setCrntDrawColor(ORANGE);
 			pOut->PrintMessage("Draw color set to Orange");
-			return;
+			break;
 		case SELECT_COLOR_RED:
 			UI.DrawColor = RED;
 			pOut->setCrntDrawColor(RED);
 			pOut->PrintMessage("Draw color set to Red");
-			return;
+			break;
 		case SELECT_COLOR_GREEN:
 			UI.DrawColor = GREEN;
 			pOut->setCrntDrawColor(GREEN);
 			pOut->PrintMessage("Draw color set to Green");
-			return;
+			break;
 		case SELECT_COLOR_BLUE:
 			UI.DrawColor = BLUE;
 			pOut->setCrntDrawColor(BLUE);
 			pOut->PrintMessage("Draw color set to Blue");
-			return;
+			break;
 		case TOGGLE_FILL:
 			UI.IsFilled = !UI.IsFilled;
 			pOut->PrintMessage(UI.IsFilled ? "Figures will be filled" : "Figures will not be filled");
-			return;
+			break;
 		//case SELECT_FILL_COLOR:
 		//	pOut->PrintMessage("Select a fill color from the toolbar (Black, Yellow, Orange, Red, Green, Blue)");
 		//	UI.FillColor = pIn->GetUserColor();
@@ -147,12 +150,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new SwitchToPlayAction(this);
 			break;
 		case REDO:
-			pAct = new SwitchToPlayAction(this);
+			pAct = new RedoAction(this);
 			break;
 		case TO_DRAW:
 			pAct = new SwitchToDrawAction(this);
 			break;
-
 
 
 		case EXIT:
@@ -160,14 +162,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
-			return;
+			break;
 	}
 	
 	//Execute the created action
 	if(pAct != NULL)
 	{
 		pAct->Execute();//Execute
-		delete pAct;	//You may need to change this line depending to your implementation
+		//delete pAct;	//You may need to change this line depending to your implementation
 		pAct = NULL;
 	}
 }
@@ -342,7 +344,6 @@ void ApplicationManager::ClearAll()
 	//default draw/color mode for the shapes
 	pOut->setCrntDrawColor(BLUE);
 	pOut->setCrntFillColor(UI.BkGrndColor);
-	pOut->SetFilled(false);
 }
 
 

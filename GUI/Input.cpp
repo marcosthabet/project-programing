@@ -120,17 +120,18 @@ ActionType Input::GetUserAction() const
 			case ITM_SQU:  return DRAW_SQU;
 
 				//features cases
-			case ITM_CLRALL: return CLRALL; 	//Clear all figures
+			case ITM_ROTATE: return ROTATE;	//Rotate a figure 
 			case ITM_SWAP: return SWAP;	//Swap 2 figures
-			case ITM_MOVE: return MOVE;	//Move a figure
+			
 			case ITM_UNDO: return UNDO; //Undo last action
 			case ITM_REDO: return REDO; //Redo last action
 			case ITM_COPY: return COPY;	//Copy a figure
 			case ITM_CUT: return CUT;	//Cut a figure
 			case ITM_PASTE: return PASTE;	//Paste a figure
-			case ITM_LOAD: return LOAD;//Load a saved file
-			case ITM_ROTATE: return ROTATE;	//Rotate a figure 
+			case ITM_CLRALL: return CLRALL; 	//Clear all figures
 			case ITM_SAVE: return SAVE;	//Save the file
+			case ITM_LOAD: return LOAD;//Load a saved file
+			
 			case ITM_DEL: return DEL;	//Delete a figure
 			case ITM_TO_PLAY: return TO_PLAY;	//Switch to Play mode
 
